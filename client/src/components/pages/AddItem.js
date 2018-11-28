@@ -14,7 +14,7 @@ import api from '../../api'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 
 
-class AddHome extends Component {
+class AddItem extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -51,14 +51,14 @@ class AddHome extends Component {
       lng: this.state.lng,
       lat: this.state.lat,
     }
-    api.addHome(data)
+    api.addItem(data)
       .then(result => {
         console.log('SUCCESS!')
         this.setState({
           title: "",
           description: "",
           pricePerNight: 0,
-          message: `Your home has been created`
+          message: `Your item has been created`
         })
         setTimeout(() => {
           this.setState({
@@ -100,8 +100,8 @@ class AddHome extends Component {
   }
   render() {
     return (
-      <Container className="AddHome">
-        <h2>Add your Home</h2>
+      <Container className="AddItem">
+        <h2>Add your Item</h2>
 
         <Row>
           <Col md={6}>
@@ -159,4 +159,4 @@ class AddHome extends Component {
   }
 }
 
-export default AddHome
+export default AddItem;

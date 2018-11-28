@@ -1,27 +1,27 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 
-export default class HomeDetail extends Component {
+export default class ItemDetail extends Component {
   render() {
     let curId = this.props.match.params.id
-    let curHome = this.props.homes.find(home => home._id === curId)
+    let curItem = this.props.items.find(item => item._id === curId)
 
-    if (!curHome) {
+    if (!curItem) {
       return <div />
     }
 
     return (
       <div>
-        <h2>{curHome.title}</h2>
+        <h2>{curItem.title}</h2>
         
         <h4>Description</h4>
-        {curHome.description}
+        {curItem.description}
 
         <h4>Price per night</h4>
-        {curHome.pricePerNight}€
+        {curItem.pricePerNight}€
 
         <h4>Owner</h4>
-        {curHome._owner.username}
+        {curItem._owner.username}
       </div>
     )
   }

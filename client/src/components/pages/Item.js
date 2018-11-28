@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Home extends Component {
+class Item extends Component {
   // constructor(props) {
   //   super(props)
   //   this.state = {
@@ -8,8 +8,8 @@ class Home extends Component {
   // }
   render() {                
     return (
-      <div className="Home">
-        <h2>Home</h2>
+      <div className="Item">
+        <h2>Item</h2>
         <p>This is a sample project with the MERN stack</p>
         <button className="btn btn-primary">Hello</button>
       </div>
@@ -17,4 +17,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Item;

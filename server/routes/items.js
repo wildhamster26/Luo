@@ -1,14 +1,14 @@
 const express = require('express');
-const Home = require('../models/Home')
+const Item = require('../models/Item')
 const { isLoggedIn } = require('../middlewares')
 
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-  Home.find()
+  Item.find()
   .populate('_owner', 'username') // Populate on the field 'username' and '_id' (default) ==> avoid displaying the hash password that could be a security issue
-    .then(homes => {
-      res.json(homes);
+    .then(items => {
+      res.json(items);
     })
     .catch(err => next(err))
 });
@@ -19,7 +19,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
   if (!title || !description || !pricePerNight || !lng || !lat) {
     next(new Error('You have to send: title, description, pricePerNight, lng, lat'))
   }
-  Home.create({
+  Item.create({
     title,
     description,
     pricePerNight,
@@ -29,10 +29,10 @@ router.post('/', isLoggedIn, (req, res, next) => {
     },
     _owner
   })
-    .then(home => {
+    .then(item => {
       res.json({
         success: true,
-        home
+        item
       });
     })
     .catch(err => next(err))

@@ -6354,21 +6354,21 @@ body {
   .MainNavbar .navbar-brand {
     padding: 4px 0 0 0; }
 
-.Home p {
+.Item p {
   font-size: 1.2em; }
 
-.Homes {
+.Items {
   margin-top: -20px; }
-  .Homes .row {
+  .Items .row {
     height: calc(100vh - 60px); }
-    .Homes .row .col-text {
+    .Items .row .col-text {
       padding: 20px;
       overflow-y: scroll; }
-      .Homes .row .col-text h2 {
+      .Items .row .col-text h2 {
         text-align: center; }
-      .Homes .row .col-text h4 {
+      .Items .row .col-text h4 {
         margin-top: 40px; }
-    .Homes .row .map {
+    .Items .row .map {
       height: 100%; }
 
 .Secret .result {
