@@ -33,7 +33,7 @@ export default class MainNavbar extends Component {
     return (
       <Navbar color="primary" dark expand="md" className="MainNavbar">
         <NavbarBrand to="/" tag={Link}>
-          <img src={logo} className="logo" alt="logo" />
+          {/* <img src={logo} className="logo" alt="logo" /> */}
           Luo
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />

@@ -8,6 +8,7 @@ const itemSchema = new Schema({
   pricePerPeriod: { type: Number, required: true },
   pricePerPeriod: { type: Number, required: true },
   period: { type: String, enum: ['hour', 'day', 'month'], default: 'day' },
+  categories: [String],
   // address: {
   //   street: String,
   //   city: String,

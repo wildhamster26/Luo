@@ -1,5 +1,6 @@
 import React from 'react'
-
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import MapModal from './MapModal'
 
 const ItemCard = ({name, pictures, pricePerPeriod, period, description}) => {
   pictures.length === 0 && (pictures = '/images/generic.png')
@@ -16,7 +17,8 @@ const ItemCard = ({name, pictures, pricePerPeriod, period, description}) => {
           <h6><a href="#">Availability</a></h6>
         </div>
         <div>
-          <p>{description}</p>
+          <p>{description}<br/><a id="map-modal-link" href="#"><MapModal buttonLabel="Map" /></a></p>
+          
         </div>
         <div className="itemCard-btn-div">
           <button>Request</button>

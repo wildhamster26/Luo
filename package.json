@@ -16,6 +16,7 @@
     "bcryptjs": "^2.4.3",
     "crypto": "^1.0.1",
     "nodemailer": "^4.7.0",
-    "randomstring": "^1.1.5"
+    "randomstring": "^1.1.5",
+    "reactstrap": "^6.5.0"
   }
 }
