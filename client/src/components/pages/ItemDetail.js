@@ -21,7 +21,7 @@ export default class ItemDetail extends Component {
         {curItem.pricePerNight}€
 
         <h4>Owner</h4>
-        {curItem._owner.username}
+        {curItem._owner.email}
       </div>
     )
   }

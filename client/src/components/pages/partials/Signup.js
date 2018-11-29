@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import api from '../../api';
+import { Input, Button, Container } from 'reactstrap';
+import api from '../../../api';
+import { withRouter } from "react-router";
 
 class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: "",
+      email: "",
       name: "",
       password: "",
       message: null
@@ -21,7 +23,7 @@ class Signup extends Component {
   handleClick(e) {
     e.preventDefault()
     let data = {
-      username: this.state.username,
+      email: this.state.email,
       name: this.state.name,
       password: this.state.password,
     }
@@ -35,20 +37,19 @@ class Signup extends Component {
 
   render() {
     return (
-      <div className="Signup">
+      <Container className="Signup">
         <h2>Signup</h2>
-        <form>
-          Username: <input type="text" value={this.state.username} onChange={(e) => this.handleInputChange("username", e)} /> <br />
-          Name: <input type="text" value={this.state.name} onChange={(e) => this.handleInputChange("name", e)} /> <br />
-          Password: <input type="password" value={this.state.password} onChange={(e) => this.handleInputChange("password", e)} /> <br />
-          <button onClick={(e) => this.handleClick(e)}>Signup</button>
+        <form className="Signup-form">
+          <Input className="text-input" placeholder="Email"type="text" value={this.state.email} onChange={(e) => this.handleInputChange("email", e)} />
+          <Input className="text-input" placeholder="Password"type="password" value={this.state.password} onChange={(e) => this.handleInputChange("password", e)} />
+          <Button color="primary" className="submit" onClick={(e) => this.handleClick(e)}>Signup</Button>
         </form>
         {this.state.message && <div className="info info-danger">
           {this.state.message}
         </div>}
-      </div>
+      </Container>
     );
   }
 }
 
-export default Signup;
+export default withRouter(Signup);
