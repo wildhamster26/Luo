@@ -20,7 +20,8 @@ class AddItem extends Component {
     this.state = {
       title: "",
       description: "",
-      pricePerNight: 0,
+      pricePerPeriod: 0,
+      period: "",
       lng: 13.3711224,
       lat: 52.5063688,
       message: null
@@ -47,7 +48,8 @@ class AddItem extends Component {
     let data = {
       title: this.state.title,
       description: this.state.description,
-      pricePerNight: this.state.pricePerNight,
+      pricePerPeriod: this.state.pricePerPeriod,
+      period: this.state.period,
       lng: this.state.lng,
       lat: this.state.lat,
     }
@@ -57,7 +59,8 @@ class AddItem extends Component {
         this.setState({
           title: "",
           description: "",
-          pricePerNight: 0,
+          pricePerPeriod: 0,
+          period: "",
           message: `Your item has been created`
         })
         setTimeout(() => {
@@ -119,9 +122,15 @@ class AddItem extends Component {
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Label for="pricePerNight" xl={3}>Price Per Night</Label>
+                <Label for="pricePerPeriod" xl={3}>Price</Label>
                 <Col xl={9}>
-                  <Input type="number" value={this.state.pricePerNight} name="pricePerNight" onChange={this.handleInputChange} />
+                  <Input type="number" value={this.state.pricePerPeriod} name="pricePerPeriod" onChange={this.handleInputChange} />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label for="period" xl={3}>Per...</Label>
+                <Col xl={9}>
+                  <Input type="text" value={this.state.period} name="period" onChange={this.handleInputChange} />
                 </Col>
               </FormGroup>
               <FormGroup row>

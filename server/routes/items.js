@@ -8,21 +8,22 @@ router.get('/', (req, res, next) => {
   Item.find()
   .populate('_owner', 'email') // Populate on the field 'email' and '_id' (default) ==> avoid displaying the hash password that could be a security issue
     .then(items => {
+      // console.log(res.json(items))
       res.json(items);
     })
     .catch(err => next(err))
 });
 
 router.post('/', isLoggedIn, (req, res, next) => {
-  let { title, description, pricePerNight, lng, lat } = req.body
+  let { title, description, pricePerPeriod, lng, lat } = req.body
   let _owner = req.user._id
-  if (!title || !description || !pricePerNight || !lng || !lat) {
-    next(new Error('You have to send: title, description, pricePerNight, lng, lat'))
+  if (!title || !description || !pricePerPeriod || !lng || !lat) {
+    next(new Error('You have to send: title, description, pricePerPeriod, lng, lat'))
   }
   Item.create({
     title,
     description,
-    pricePerNight,
+    pricePerPeriod,
     location: {
       type: 'Point',
       coordinates: [lng, lat]

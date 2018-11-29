@@ -6400,3 +6400,12 @@ hr {
 .Secret .result {
   font-size: 1.2em;
   color: #1ebbff; }
+
+.itemCard {
+  display: flex;
+  flex-flow: column;
+  border-radius: 3px;
+  box-shadow: 0 3px 15px lightgrey;
+  margin: 10px 20px; }
+  .itemCard .itemCard-img-wrapper img {
+    height: 200px; }

@@ -66,7 +66,7 @@ class Items extends Component {
   componentDidMount() {
     api.getItems()
       .then(items => {
-        console.log(items)
+        // console.log('here', items)
         this.setState({
           items: items.map(item => {
             const [lng, lat] = item.location.coordinates
