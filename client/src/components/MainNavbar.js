@@ -34,7 +34,7 @@ export default class MainNavbar extends Component {
       <Navbar color="primary" dark expand="md" className="MainNavbar">
         <NavbarBrand to="/" tag={Link}>
           <img src={logo} className="logo" alt="logo" />
-          MERN Airbnb
+          Luo
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
@@ -43,10 +43,7 @@ export default class MainNavbar extends Component {
               <NavLink tag={NLink} to="/items">Items</NavLink>
             </NavItem>
             {!api.isLoggedIn() && <NavItem>
-              <NavLink tag={NLink} to="/signup">Signup</NavLink>
-            </NavItem>}
-            {!api.isLoggedIn() && <NavItem>
-              <NavLink tag={NLink} to="/login">Login</NavLink>
+              <NavLink tag={NLink} to="/login">Login/Signup</NavLink>
             </NavItem>}
             {api.isLoggedIn() && <NavItem>
               <NavLink tag={NLink} to="/add-item">Add your item</NavLink>

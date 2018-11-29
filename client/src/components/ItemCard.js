@@ -9,7 +9,7 @@ const ItemCard = ({name, pictures, pricePerPeriod, period, description}) => {
         <h2>{name}</h2>
       </div>
       <div className="itemCard-img-wrapper">
-        <img src={pictures} />
+        <img src={pictures} alt="The item"/>
       </div>
       <div className="itemCard-sub-img">
         <h5>{pricePerPeriod}€ per {period}</h5>

@@ -6,6 +6,7 @@ import Items from './pages/Items';
 import AddItem from './pages/AddItem';
 import Secret from './pages/Secret';
 import LoginSignup from './pages/LoginSignup';
+import Confirm from './pages/Confirm';
 import api from '../api';
 
 class App extends Component {
@@ -30,8 +31,10 @@ class App extends Component {
           <Route path="/items" component={Items} />
           <Route path="/add-item" component={AddItem} />
           <Route path="/login" component={LoginSignup} />
+          <Route path="/logout" component={Home} />
+          <Route path="/confirm/:confirmationCode" component={Confirm} />
           <Route path="/secret" component={Secret} />
-          <Route render={() => <h2>404</h2>} />
+          <Route render={() => <h2>Front end 404</h2>} />
         </Switch>
       </div>
     );

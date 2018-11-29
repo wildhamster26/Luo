@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import ItemCard from '../ItemCard'
 import api from '../../api';
-import Axios from 'axios';
-import ItemDetail from './ItemDetail';
+// import Axios from 'axios';
+// import ItemDetail from './ItemDetail';
 
 
 export default class Home extends Component {
