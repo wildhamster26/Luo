@@ -7,7 +7,9 @@ import AddItem from './pages/AddItem';
 import Secret from './pages/Secret';
 import LoginSignup from './pages/LoginSignup';
 import Confirm from './pages/Confirm';
+import PleaseConfirm from './pages/PleaseConfirm';
 import api from '../api';
+
 
 class App extends Component {
   constructor(props) {
@@ -32,6 +34,7 @@ class App extends Component {
           <Route path="/add-item" component={AddItem} />
           <Route path="/login" component={LoginSignup} />
           <Route path="/logout" component={Home} />
+          <Route path="/confirm" exact component={PleaseConfirm} />
           <Route path="/confirm/:confirmationCode" component={Confirm} />
           <Route path="/secret" component={Secret} />
           <Route render={() => <h2>Front end 404</h2>} />
