@@ -45,7 +45,7 @@ class Items extends Component {
             <ListGroup>
               {this.state.items.map((h, i) => (
                 <ListGroupItem key={h._id} action tag={NavLink} to={"/items/" + h._id} onClick={() => this.handleItemSelection(i)}>
-                  {h.title} by {h._owner.username}
+                  {h.title} by {h._owner.email}
                 </ListGroupItem>
               ))}
             </ListGroup>

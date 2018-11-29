@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Route, Link, NavLink, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import MainNavbar from './MainNavbar';
 import Home from './pages/Home';
 import Items from './pages/Items';
 import AddItem from './pages/AddItem';
 import Secret from './pages/Secret';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+import LoginSignup from './pages/LoginSignup';
 import api from '../api';
 
 class App extends Component {
@@ -30,8 +29,7 @@ class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/items" component={Items} />
           <Route path="/add-item" component={AddItem} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
+          <Route path="/login" component={LoginSignup} />
           <Route path="/secret" component={Secret} />
           <Route render={() => <h2>404</h2>} />
         </Switch>

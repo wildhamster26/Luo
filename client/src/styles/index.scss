@@ -109,6 +109,39 @@ body {
   }
 }
 
+.Login-signup-page, .Login, .Signup{
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+}
+
+.text-input{
+  text-align: center;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  margin: 4px;
+}
+
+.or{
+  display: flex;
+}
+
+.inner-or{
+  display: flex;
+  margin: auto;
+}
+
+hr{
+    border: 0;
+    height: 0;
+    width:20vw;
+    margin: auto 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+
 // --------------------
 // Style for Secret component
 .Secret {
