@@ -6328,6 +6328,17 @@ body {
 .info.info-danger {
   background-color: #e73f3f; }
 
+button {
+  background-color: #d77976;
+  padding: 2px 15px;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  box-shadow: 0 2px 5px grey; }
+
+button:hover {
+  background-color: #d16561; }
+
 .App .App-header {
   background-color: #1ebbff;
   padding: 20px;
@@ -6406,6 +6417,24 @@ hr {
   flex-flow: column;
   border-radius: 3px;
   box-shadow: 0 3px 15px lightgrey;
-  margin: 10px 20px; }
+  margin: 10px;
+  padding: 10px 0 20px; }
+  .itemCard h5 {
+    font-weight: bold;
+    margin-left: 10px; }
   .itemCard .itemCard-img-wrapper img {
-    height: 200px; }
+    margin: 0 auto;
+    object-fit: contain;
+    max-width: 100%;
+    height: auto; }
+  .itemCard .itemCard-sub-img {
+    display: flex;
+    width: 100%;
+    justify-content: space-between; }
+    .itemCard .itemCard-sub-img h6 {
+      margin: 10px; }
+  .itemCard p {
+    margin-left: 10px; }
+  .itemCard .itemCard-btn-div {
+    width: 100%;
+    text-align: center; }
