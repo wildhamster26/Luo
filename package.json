@@ -10,5 +10,11 @@
   },
   "engines": {
     "node": "8.9.4"
+  },
+  "dependencies": {
+    "async": "^2.6.1",
+    "crypto": "^1.0.1",
+    "nodemailer": "^4.7.0",
+    "randomstring": "^1.1.5"
   }
 }

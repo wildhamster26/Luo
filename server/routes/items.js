@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', (req, res, next) => {
   Item.find()
-  .populate('_owner', 'username') // Populate on the field 'username' and '_id' (default) ==> avoid displaying the hash password that could be a security issue
+  .populate('_owner', 'email') // Populate on the field 'email' and '_id' (default) ==> avoid displaying the hash password that could be a security issue
     .then(items => {
       res.json(items);
     })
