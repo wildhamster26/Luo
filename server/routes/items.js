@@ -39,4 +39,15 @@ router.post('/', isLoggedIn, (req, res, next) => {
     .catch(err => next(err))
 });
 
+router.get('/:id/edit', isLoggedIn, (req, res, next) => {
+  let itemId = req.params.id
+  Item.findById(itemId)
+  .then(item => {
+    res.json({
+      success: true, 
+      item
+    })
+  })
+})
+
 module.exports = router;

@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import MainNavbar from './MainNavbar';
 import Home from './pages/Home';
 import Items from './pages/Items';
+import MyItems from './pages/Items';
 import AddItem from './pages/AddItem';
 import Secret from './pages/Secret';
 import LoginSignup from './pages/LoginSignup';
@@ -28,6 +29,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/items" component={Items} />
+          <Route path="/myitems" component={MyItems} />
           <Route path="/add-item" component={AddItem} />
           <Route path="/login" component={LoginSignup} />
           <Route path="/secret" component={Secret} />

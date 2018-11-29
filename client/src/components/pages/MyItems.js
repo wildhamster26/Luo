@@ -12,7 +12,7 @@ import api from '../../api';
 
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 
-class Items extends Component {
+class MyItems extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -47,15 +47,16 @@ class Items extends Component {
           <Col sm={3} className="col-text">
             <ListGroup>
               {this.state.items.map((h, i) => (
-                <ListGroupItem key={h._id} action tag={NavLink} to={"/items/" + h._id} onClick={() => this.handleItemSelection(i)}>
+                <ListGroupItem key={h._id} action tag={NavLink} to={"/myitems/" + h._id} onClick={() => this.handleItemSelection(i)}>
                   {h.title} by {h._owner.email}
                 </ListGroupItem>
               ))}
             </ListGroup>
           </Col>
           <Col sm={4} className="col-text">
+            <Link to={this.props.location.pathname + "/edit"}><button>Edit item</button></Link>
             <Switch>
-              <Route path="/items/:id" render={(props) => <ItemDetail {...props} items={this.state.items} />} />
+              <Route path="/myitems/:id" render={(props) => <ItemDetail {...props} items={this.state.items} />} />
               <Route render={() => <h2>Select an item</h2>} />
             </Switch>
           </Col>
@@ -96,4 +97,4 @@ class Items extends Component {
   }
 }
 
-export default Items;
+export default MyItems;

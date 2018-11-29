@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ItemCard from '../ItemCard'
+import ItemCard from './partials/ItemCard'
 import api from '../../api';
 import Axios from 'axios';
 import ItemDetail from './ItemDetail';
@@ -26,8 +26,9 @@ export default class Home extends Component {
     return (
       <div>
         <h1>Home!</h1>
-        {this.state.items.map(item => <ItemCard key={item._id} name={item.title} pictures={item.pictures } pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} />) }
-        
+        <div className="itemCards-container">
+          {this.state.items.map(item => <ItemCard key={item._id} name={item.title} pictures={item.pictures } pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} />) }
+        </div>
       </div>
     )
   }

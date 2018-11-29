@@ -59,12 +59,25 @@ export default {
       .catch(errHandler)
   },
 
+  getItemById(id) {
+    return service
+      .get(`/${id}/items/`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   addItem(data) {
     return service
       .post('/items', data)
       .then(res => res.data)
       .catch(errHandler)
   },
+  // editItem(id) {
+  //   return service
+  //   .post(`/items/${id}/edit`)
+  //   .then(res => res.data)
+  //   .catch(errHandler)
+  // },
 
   getSecret() {
     return service

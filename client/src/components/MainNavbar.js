@@ -34,11 +34,14 @@ export default class MainNavbar extends Component {
       <Navbar color="primary" dark expand="md" className="MainNavbar">
         <NavbarBrand to="/" tag={Link}>
           <img src={logo} className="logo" alt="logo" />
-          MERN Airbnb
+          Luo
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink tag={NLink} to="/myitems">My items</NavLink>
+            </NavItem>
             <NavItem>
               <NavLink tag={NLink} to="/items">Items</NavLink>
             </NavItem>
