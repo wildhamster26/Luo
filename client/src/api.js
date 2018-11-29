@@ -27,7 +27,6 @@ export default {
       .then(res => {
         // If we have localStorage.getItem('user') saved, the application will consider we are loggedin
         localStorage.setItem('user', JSON.stringify(res.data))
-        res.data
       })
       .catch(errHandler)
   },
@@ -44,6 +43,14 @@ export default {
         return res.data
       })
       .catch(errHandler)
+  },
+
+  sendConfirmation(confirmationCode){
+    return service
+    .get(`/confirm/${confirmationCode}`)
+    .then(user => {
+      return user;
+    })
   },
 
   logout() {

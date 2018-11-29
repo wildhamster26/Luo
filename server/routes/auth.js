@@ -4,8 +4,7 @@ const router = express.Router();
 const User = require("../models/User");
 const nodemailer = require("nodemailer");
 const randomstring = require("randomstring");
-const crypto = require("crypto");
-const async = require("async");
+// const async = require("async");
 
 
 // Bcrypt to encrypt passwords
@@ -14,6 +13,7 @@ const bcryptSalt = 10
 
 router.post("/signup", (req, res, next) => {
   const { email, password } = req.body
+  const firstItemId = ""
   const confirmationCode = randomstring.generate(30);
   const resetPasswordToken = "";
   const resetPasswordExpires = "";
@@ -30,7 +30,7 @@ router.post("/signup", (req, res, next) => {
       }
       const salt = bcrypt.genSaltSync(bcryptSalt)
       const hashPass = bcrypt.hashSync(password, salt)
-      const newUser = new User({ email, password: hashPass, resetPasswordToken, resetPasswordExpires, confirmationCode })
+      const newUser = new User({ email, password: hashPass, resetPasswordToken, resetPasswordExpires, confirmationCode, firstItemId })
       return newUser.save()
     })
     .then(userSaved => {
@@ -55,7 +55,7 @@ router.post("/signup", (req, res, next) => {
         from: '"Luo"',
         to: email, // the email entered in the form 
         subject: 'Validate your Luo account', 
-        html: `Hi! :)<br> Please click <a href="${process.env.BASE_URL}/api/confirm/${confirmationCode}">here</a> to confirm your account.<br> <img src="https://res.cloudinary.com/wildhamster26/image/upload/v1543477042/folder-name/small_face.jpg">` //Additional alternative text: If the link doesn't work, you can go here: ${process.env.BASE_URL}auth/confirm/${confirmationCode}`
+        html: `Hi! :)<br> Please click <a href="${process.env.BASE_URL}/confirm/${confirmationCode}">here</a> to confirm your account.<br> <img src="https://res.cloudinary.com/wildhamster26/image/upload/v1543477042/folder-name/small_face.jpg">` //Additional alternative text: If the link doesn't work, you can go here: ${process.env.BASE_URL}auth/confirm/${confirmationCode}`
       })
 
       .then(info => console.log(info))
@@ -128,7 +128,6 @@ router.get("/logout", (req, res) => {
 })
 
 router.get('/confirm/:confirmationCode', (req,res,next)=> {
-  console.log("We made it");
   let confirmationCode = req.params.confirmationCode
   // Find the first user where confirmationCode = req.params.confirmationCode
   User.findOneAndUpdate({confirmationCode}, {status: 'active'})
@@ -136,8 +135,8 @@ router.get('/confirm/:confirmationCode', (req,res,next)=> {
     if (user) {
       // req.login makes the user login automatically
       req.login(user, () => {
-        console.log("EMAIL SENT SUCCESSFULLY");
-        res.redirect(`/`);
+        console.log("USER HAS BEEN CONFIRMED");
+        res.json(user);
       })
     }
     else {
@@ -147,86 +146,86 @@ router.get('/confirm/:confirmationCode', (req,res,next)=> {
 })
 
 
-router.get("/forgot", (req, res, next) => {
-  res.render("auth/forgot", { "message": req.flash("error") });
-});
+// router.get("/forgot", (req, res, next) => {
+//   res.render("auth/forgot", { "message": req.flash("error") });
+// });
 
-router.post("/forgot", (req, res, next) => {
-  async.waterfall([
-    function(done) {
-      crypto.randomBytes(20, function(err, buf){
-        let token = buf.toString("hex");
-        done(err, token);
-      });
-    },
-    function(token, done) {
-      User.findOne({email: req.body.email}, function(err, user){
-        if(!user){
-          return res.render("auth/forgot", { "message":  "There is no account with that email address." });
-        }
+// router.post("/forgot", (req, res, next) => {
+//   async.waterfall([
+//     function(done) {
+//       crypto.randomBytes(20, function(err, buf){
+//         let token = buf.toString("hex");
+//         done(err, token);
+//       });
+//     },
+//     function(token, done) {
+//       User.findOne({email: req.body.email}, function(err, user){
+//         if(!user){
+//           return res.render("auth/forgot", { "message":  "There is no account with that email address." });
+//         }
         
-        user.resetPasswordToken = token;
-        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour to change password
+//         user.resetPasswordToken = token;
+//         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour to change password
   
-        user.save();
-        done(err, token, user);
-      });
-    },
-    function(token, user, done){
-      let transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-          user:  process.env.GMAIL_USER,
-          pass:  process.env.GMAIL_PASS
-        }
-      });
+//         user.save();
+//         done(err, token, user);
+//       });
+//     },
+//     function(token, user, done){
+//       let transporter = nodemailer.createTransport({
+//         service: 'Gmail',
+//         auth: {
+//           user:  process.env.GMAIL_USER,
+//           pass:  process.env.GMAIL_PASS
+//         }
+//       });
       
-      transporter.sendMail({
-        from: '"Luo"',
-        to: req.body.email, // the email entered in the form 
-        subject: 'Reset your password', 
-        html: `Hello! :) <br> To reset your password please click <a href="${process.env.BASE_URL}/auth/reset/${token}">here</a>.`
-      })
+//       transporter.sendMail({
+//         from: '"Luo"',
+//         to: req.body.email, // the email entered in the form 
+//         subject: 'Reset your password', 
+//         html: `Hello! :) <br> To reset your password please click <a href="${process.env.BASE_URL}/api/reset/${token}">here</a>.`
+//       })
       
-      res.render("auth/goToMail");
-    },{
-      catch(err) {
-        req.flash("error", "There is no account with that email address.");
-        return res.render("auth/forgot", { "message": req.flash("error") });
-      }
-    }
-  ])
-});
+//       res.render("auth/goToMail");
+//     },{
+//       catch(err) {
+//         req.flash("error", "There is no account with that email address.");
+//         return res.render("auth/forgot", { "message": req.flash("error") });
+//       }
+//     }
+//   ])
+// });
 
-router.get("/reset/:token", (req, res, next) => {
-  let token = req.params.token;
-  User.findOne({resetPasswordToken: token, resetPasswordExpires:{$gt:Date.now()}}, (err, user) => {
-    if(!user) {
-      req.flash("error", "Password reset token is invalid or has expired.");
-      return res.render("auth/forgot", { "message": req.flash("error") })
-    }
-    res.render("auth/reset", {token, "message": req.flash("error") });
-  })
-});
+// router.get("/reset/:token", (req, res, next) => {
+//   let token = req.params.token;
+//   User.findOne({resetPasswordToken: token, resetPasswordExpires:{$gt:Date.now()}}, (err, user) => {
+//     if(!user) {
+//       req.flash("error", "Password reset token is invalid or has expired.");
+//       return res.render("auth/forgot", { "message": req.flash("error") })
+//     }
+//     res.render("auth/reset", {token, "message": req.flash("error") });
+//   })
+// });
 
-router.post("/reset/:token", (req, res, next) => {
-  let token = req.params.token;
-  let newPassword = req.body.newPassword;
-  let confirmPassword = req.body.confirmPassword;
-  let salt = bcrypt.genSaltSync(bcryptSalt);
-  let newHashPass = bcrypt.hashSync(newPassword, salt);
-  let query = {resetPasswordToken: token, resetPasswordExpires:{$gt:Date.now()}}
-  if(newPassword === confirmPassword){
-    User.findOneAndUpdate(query, {
-      password: newHashPass
-    })
-    .then(user => {
-      return res.redirect("/auth/login");
-    })
-  } else {
-      req.flash("error", "Password and confirm passwords must match.");
-      return res.redirect(`/auth/reset/${token}`);
-    }
-  });
+// router.post("/reset/:token", (req, res, next) => {
+//   let token = req.params.token;
+//   let newPassword = req.body.newPassword;
+//   let confirmPassword = req.body.confirmPassword;
+//   let salt = bcrypt.genSaltSync(bcryptSalt);
+//   let newHashPass = bcrypt.hashSync(newPassword, salt);
+//   let query = {resetPasswordToken: token, resetPasswordExpires:{$gt:Date.now()}}
+//   if(newPassword === confirmPassword){
+//     User.findOneAndUpdate(query, {
+//       password: newHashPass
+//     })
+//     .then(user => {
+//       return res.redirect("/auth/login");
+//     })
+//   } else {
+//       req.flash("error", "Password and confirm passwords must match.");
+//       return res.redirect(`/auth/reset/${token}`);
+//     }
+//   });
 
 module.exports = router
