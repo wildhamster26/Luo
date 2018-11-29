@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Link, NavLink, Switch } from 'react-router-dom';
 import MainNavbar from './MainNavbar';
-import Item from './pages/Item';
+import Home from './pages/Home';
 import Items from './pages/Items';
 import AddItem from './pages/AddItem';
 import Secret from './pages/Secret';
@@ -27,7 +27,7 @@ class App extends Component {
       <div className="App">
         <MainNavbar />
         <Switch>
-          <Route path="/" exact component={Item} />
+          <Route path="/" exact component={Home} />
           <Route path="/items" component={Items} />
           <Route path="/add-item" component={AddItem} />
           <Route path="/signup" component={Signup} />

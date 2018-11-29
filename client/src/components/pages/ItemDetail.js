@@ -18,7 +18,7 @@ export default class ItemDetail extends Component {
         {curItem.description}
 
         <h4>Price per night</h4>
-        {curItem.pricePerNight}€
+        {curItem.pricePerPeriod}€
 
         <h4>Owner</h4>
         {curItem._owner.username}
