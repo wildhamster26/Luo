@@ -6494,6 +6494,8 @@ hr {
 .itemCards-container {
   display: flex;
   flex-flow: wrap;
+  align-content: flex-start;
+  width: 100%;
   justify-content: center;
   width: auto;
   margin: 0 auto; }

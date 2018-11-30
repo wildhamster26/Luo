@@ -15,7 +15,7 @@ export default class Confirm extends Component {
     api.sendConfirmation(this.props.match.params.confirmationCode)
     .then(res => {
       //console.log(res.data._id); <== Change the _id to "firstItemId" to find the ifrst item's id.
-      this.props.history.push("/");
+      this.props.history.push("/items/"+localStorage.getItem("itemId"));
     })
   }
 }

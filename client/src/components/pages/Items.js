@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, Route, Switch, Link } from 'react-router-dom'
+import { NavLink, Route, Switch } from 'react-router-dom'
 import {
   // Button,
   Col,
@@ -38,7 +38,7 @@ class Items extends Component {
     this.map.setCenter(this.state.items[iSelected].location.coordinates)
   }
   render() {
-    let currentUser = JSON.parse(localStorage.getItem('user'))
+    // let currentUser = JSON.parse(localStorage.getItem('user'))
     console.log(this.props.location.pathname)
     return (
       <div className="Items">

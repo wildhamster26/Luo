@@ -6,6 +6,7 @@ import { Container } from 'reactstrap';
 
 
 export default class LoginSignup extends Component {
+  
   render() {
     return (
       <Container className="Login-signup-page">
@@ -17,7 +18,7 @@ export default class LoginSignup extends Component {
           </div>
         </div>
         <br/>
-        <Signup/>
+        <Signup itemId={this.props.itemId}/>
       </Container>
     )
   }
