@@ -12,7 +12,7 @@ import api from '../../api';
 
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 
-class MyItems extends Component {
+class Map extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -38,23 +38,13 @@ class MyItems extends Component {
     this.map.setCenter(this.state.items[iSelected].location.coordinates)
   }
   render() {
-    let currentUser = JSON.parse(localStorage.getItem('user'))
-    console.log(this.props.location.pathname)
+
     return (
       <div className="Items">
       
         <Row>
           <Col sm={3} className="col-text">
-            <ListGroup>
-              {this.state.items.map((h, i) => (
-                        <div className="itemCards-container">
-                        {this.state.items.map(item => <ItemCard key={item._id} name={item.title} pictures={item.pictures } pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} />) }
-                      </div>
-                <ListGroupItem key={h._id} action tag={NavLink} to={"/myitems/" + h._id} onClick={() => this.handleItemSelection(i)}>
-                  {h.title} by {h._owner.email}
-                </ListGroupItem>
-              ))}
-            </ListGroup>
+
           </Col>
           <Col sm={4} className="col-text">
             <Link to={this.props.location.pathname + "/edit"}><button>Edit item</button></Link>
@@ -100,4 +90,4 @@ class MyItems extends Component {
   }
 }
 
-export default MyItems;
+export default Map;

@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../../api';
 import ModalInteraction from './ModalInteraction'
-
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import MapModal from './MapModal'
 
 
 const ItemCard = ({id, name, pictures, pricePerPeriod, period, description}) => {
@@ -30,7 +31,8 @@ const ItemCard = ({id, name, pictures, pricePerPeriod, period, description}) => 
           {!api.isLoggedIn() && <Link to="/" onClick={check}>Availability</Link>}
         </div>
         <div>
-          <p>{description}</p>
+          <p>{description}<br/><a id="map-modal-link" href="#"><MapModal buttonLabel="Map" /></a></p>
+          
         </div>
         <div className="itemCard-btn-div">
         {api.isLoggedIn() && <ModalInteraction itemId={id} text="Request" />}
