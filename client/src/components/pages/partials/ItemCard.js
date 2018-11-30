@@ -8,13 +8,9 @@ import MapModal from './MapModal'
 
 const ItemCard = ({id, name, pictures, pricePerPeriod, period, description}) => {
   pictures.length === 0 && (pictures = '/images/generic.png')
-  let handleClick = (e) => {
-    console.log("this item's id is:", id);
-  }
-
-  let check = ()=>{
-    console.log("please log in");
-  }
+  // let handleClick = (e) => {
+  //   console.log("this item's id is:", id);
+  // }
 
   
   return (
@@ -27,19 +23,19 @@ const ItemCard = ({id, name, pictures, pricePerPeriod, period, description}) => 
         </div>
         <div className="itemCard-sub-img">
           <h6>{pricePerPeriod}€ per {period}</h6>
-          {api.isLoggedIn() && <Link to="/" onClick={handleClick}>Availability</Link>}
-          {!api.isLoggedIn() && <Link to="/" onClick={check}>Availability</Link>}
+          {api.isLoggedIn() && <Link to="/" >Availability</Link>}
+          {!api.isLoggedIn() && <ModalInteraction itemId={id} text="Availability" />}
         </div>
         <div>
           <p>{description}<br/><a id="map-modal-link" href="#"><MapModal buttonLabel="Map" /></a></p>
           
         </div>
         <div className="itemCard-btn-div">
-        {api.isLoggedIn() && <ModalInteraction itemId={id} text="Request" />}
-        {!api.isLoggedIn() && <ModalInteraction itemId={id} onClick={handleClick} text="Request" />}
+        {api.isLoggedIn() && <Button>Request</Button>}
+        {!api.isLoggedIn() && <ModalInteraction itemId={id} text="Request" />}
         </div>
     </div>
   )
 }
 
-export default ItemCard
+export default ItemCard;
