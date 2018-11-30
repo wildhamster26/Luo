@@ -2,13 +2,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const itemSchema = new Schema({
-  title: { type: String, required: true },
-  pictures: [String],
+  name: { type: String, required: true },
+  picture: [String],
   description: { type: String, required: true },
-  pricePerPeriod: { type: Number, required: true },
   pricePerPeriod: { type: Number, required: true },
   period: { type: String, enum: ['hour', 'day', 'month'], default: 'day' },
   categories: [String],
+  imgName: {type: String, default:""},
+  imgPath: {type: String,  default:""},
+  public_id: {type: String, default:""},
   // address: {
   //   street: String,
   //   city: String,

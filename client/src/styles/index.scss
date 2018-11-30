@@ -226,7 +226,7 @@ button:hover {
     }
 
     .map {
-      height: 100%;
+      height: 100px;
       // height: calc(100vh - #{$navbarHeight});
     }
   }
@@ -272,6 +272,25 @@ hr{
   margin-top: 50px;
 }
 
+.item-detail{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item-detail-buttons{
+  display: flex;
+  button{
+    margin: 20px;
+  }
+}
+
+.item-detail-map{
+  margin: 0 auto;
+  max-width: 400px;
+  min-width: 300px;
+}
+
 
 // --------------------
 // Style for Secret component
@@ -287,13 +306,8 @@ hr{
 .itemCards-container {
   display: flex;
   flex-flow: wrap;
-<<<<<<< HEAD
-  align-content: flex-start;
-  width: 100%;
-=======
   justify-content: center;
   width: auto;
->>>>>>> b9d30bd5266ff5935d5d0738ad20d5580bcee3a3
   margin: 0 auto;
 }
 .itemCard {

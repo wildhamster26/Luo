@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ItemCard from './partials/ItemCard'
 import api from '../../api';
-import { Container } from 'reactstrap';
 import ReactModal from 'react-modal';
 
 import SearchBox from './partials/SearchBox';
@@ -27,7 +26,7 @@ export default class Home extends Component {
   }
 
   render() {
-    // this.state.items.length > 0 && console.log('NOTHING?', this.state.items[0].title)
+    // this.state.items.length > 0 && console.log('NOTHING?', this.state.items[0].name)
     return (
       <div>
         <ReactModal isOpen={this.state.isOpen} />
@@ -40,46 +39,46 @@ export default class Home extends Component {
             <h3>Explore by category</h3>
           </div>
           <div className="categories-container">
-            <a className="category-button" href="#">
+            <a className="category-button" href="/">
               <div>
-                <img src="/images/categories/tools (white).png" />
+                <img alt="item" src="/images/categories/tools (white).png" />
                 <p>Tools</p>
               </div>
             </a>
-            <a className="category-button" href="#">
+            <a className="category-button" href="/">
               <div>
-                <img src="/images/categories/bicycle (white).png" />
+                <img alt="item" src="/images/categories/bicycle (white).png" />
                 <p>Bikes</p>
               </div>
             </a>
-            <a className="category-button" href="#">
+            <a className="category-button" href="/">
               <div>
-                <img src="/images/categories/clothes.png" />
+                <img alt="item" src="/images/categories/clothes.png" />
                 <p>Clothes</p>
               </div>
             </a>
-            <a className="category-button" href="#">
+            <a className="category-button" href="/">
               <div>
-                <img src="/images/categories/weightlifting (white).png" />
+                <img alt="item" src="/images/categories/weightlifting (white).png" />
                 <p>Sports</p>
               </div>
             </a>
-            <a className="category-button" href="#">
+            <a className="category-button" href="/">
               <div>
-                <img src="/images/categories/computer (white).png" />
+                <img alt="item" src="/images/categories/computer (white).png" />
                 <p>Computers</p>
               </div>
             </a>
-            <a className="category-button" href="#">
+            <a className="category-button" href="/">
               <div>
-                <img src="/images/categories/kitchen (white).png" />
+                <img alt="item" src="/images/categories/kitchen (white).png" />
                 <p>Kitchen</p>
               </div>
             </a>
           </div>
         </section>
         <div className="itemCards-container">
-          {this.state.items.map(item => <ItemCard key={item._id} id={item._id} name={item.title} pictures={item.pictures } pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} />) }
+          {this.state.items.map(item => <ItemCard key={item._id} id={item._id} name={item.name} pictures={item.pictures } pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} />) }
         </div>
       </div>
       </div>

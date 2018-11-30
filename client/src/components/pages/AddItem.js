@@ -18,7 +18,7 @@ class AddItem extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: "",
+      name: "",
       description: "",
       pricePerPeriod: 0,
       period: "",
@@ -44,9 +44,9 @@ class AddItem extends Component {
 
   handleClick(e) {
     e.preventDefault()
-    console.log(this.state.title, this.state.description)
+    console.log(this.state.name, this.state.description)
     let data = {
-      title: this.state.title,
+      name: this.state.name,
       description: this.state.description,
       pricePerPeriod: this.state.pricePerPeriod,
       period: this.state.period,
@@ -57,7 +57,7 @@ class AddItem extends Component {
       .then(result => {
         console.log('SUCCESS!')
         this.setState({
-          title: "",
+          name: "",
           description: "",
           pricePerPeriod: 0,
           period: "",
@@ -94,7 +94,7 @@ class AddItem extends Component {
     // Trigger a function every time the marker is dragged
     this.marker.on('drag', () => {
       let {lng,lat} = this.marker.getLngLat()
-      console.log('DEBUG lng, lat', lng, lat)
+      // console.log('DEBUG lng, lat', lng, lat)
       this.setState({
         lng,
         lat
@@ -110,9 +110,9 @@ class AddItem extends Component {
           <Col md={6}>
             <Form>
               <FormGroup row>
-                <Label for="title" xl={3}>Title</Label>
+                <Label for="name" xl={3}>name</Label>
                 <Col xl={9}>
-                  <Input type="text" value={this.state.title} name="title" onChange={this.handleInputChange} />
+                  <Input type="text" value={this.state.name} name="name" onChange={this.handleInputChange} />
                 </Col>
               </FormGroup>
               <FormGroup row>
@@ -134,7 +134,7 @@ class AddItem extends Component {
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Label for="title" xl={3}>Longitude/Latitude</Label>
+                <Label for="name" xl={3}>Longitude/Latitude</Label>
                 <Col xl={9}>
                   <Row>
                     <Col sm={6}>

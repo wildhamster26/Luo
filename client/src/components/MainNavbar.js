@@ -9,7 +9,6 @@ import {
   NavLink,
 } from 'reactstrap';
 import { NavLink as NLink, Link } from 'react-router-dom' // Be careful, NavLink is already exported from 'reactstrap'
-import logo from '../logo.svg';
 import api from '../api';
 
 

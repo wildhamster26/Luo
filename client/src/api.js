@@ -13,10 +13,13 @@ const errHandler = err => {
   }
   throw err
 }
+ 
 
 export default {
   service: service,
-
+  //====================
+  //Login/Signup routes
+  //====================
   isLoggedIn() {
     return localStorage.getItem('user') != null
   },
@@ -59,6 +62,12 @@ export default {
       .get('/logout')
   },
 
+
+  //====================
+  //Item routes
+  //====================
+
+
   getItems() {
     return service
       .get('/items')
@@ -68,7 +77,7 @@ export default {
 
   getItemById(id) {
     return service
-      .get(`/${id}/items/`)
+      .get(`/items/${id}`)
       .then(res => res.data)
       .catch(errHandler)
   },
@@ -79,12 +88,28 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
-  // editItem(id) {
-  //   return service
-  //   .post(`/items/${id}/edit`)
-  //   .then(res => res.data)
-  //   .catch(errHandler)
-  // },
+  
+  editItem(id) {
+    return service
+    .post(`/items/${id}/edit`)
+    .then(res => res.data)
+    .catch(errHandler)
+  },
+  
+  requestItem(id){
+    return service
+    .get(`/items/${id}/request/${JSON.parse(localStorage.getItem('user'))._id}`)
+    .then(res => console.log(res))
+    .catch(errHandler)
+  },
+
+  deleteItem(){
+
+  },
+
+  //====================
+  //User routes --- to be set
+  //====================
 
   getSecret() {
     return service
