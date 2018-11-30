@@ -10,8 +10,14 @@ export default class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      items: []
+      items: [],
+      search: "",
     }
+  }
+  searchState = (character) => {
+    this.setState({
+      search: character
+    })
   }
   componentDidMount() {
     api.getItems()
@@ -27,7 +33,7 @@ export default class Home extends Component {
     return (
       <div className="home">
         <div>
-          <SearchBox placeholder="What are you looking for?" />
+          <SearchBox placeholder="What are you looking for?" searchState={this.searchState} />
         </div>
         <section className="categories-section">
           <div>
@@ -73,7 +79,7 @@ export default class Home extends Component {
           </div>
         </section>
         <div className="itemCards-container">
-          {this.state.items.map(item => <ItemCard key={item._id} name={item.title} pictures={item.pictures } pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} />) }
+          {this.state.items.map(item => <ItemCard key={item._id} name={item.title} pictures={item.pictures } pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} searchFilter={this.state.search} />) }
         </div>
       </div>
     )
