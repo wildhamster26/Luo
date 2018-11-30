@@ -9,6 +9,7 @@ import Secret from './pages/Secret';
 import LoginSignup from './pages/LoginSignup';
 import Confirm from './pages/Confirm';
 import PleaseConfirm from './pages/PleaseConfirm';
+import ItemDetail from './pages/ItemDetail';
 import api from '../api';
 
 
@@ -32,8 +33,9 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/items" component={Items} />
+          <Route path="/items/:itemId" component={ItemDetail} />
           <Route path="/myitems" component={MyItems} />
-          <Route path="/add-item" component={AddItem} />
+          <Route path="/item/new" component={AddItem} />
           <Route path="/login" component={LoginSignup} />
           <Route path="/logout" component={Home} />
           <Route path="/confirm" exact component={PleaseConfirm} />

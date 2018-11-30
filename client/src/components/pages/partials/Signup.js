@@ -24,7 +24,6 @@ class Signup extends Component {
     e.preventDefault()
     let data = {
       email: this.state.email,
-      name: this.state.name,
       password: this.state.password,
     }
     api.signup(data)

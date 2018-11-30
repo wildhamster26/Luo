@@ -7,8 +7,7 @@ const userSchema = new Schema({
   resetPasswordExpires: Number,
   resetPasswordToken: String,
   confirmationCode: String,
-  status: {type: String, enum: ["active", "inactive"], default: "inactive"},
-  firstItemId: String
+  status: {type: String, enum: ["active", "inactive"], default: "inactive"}
 }, {
     timestamps: {
       createdAt: 'created_at',

@@ -6423,7 +6423,7 @@ hr {
   display: flex;
   flex-flow: wrap;
   align-content: flex-start;
-  width: auto;
+  width: 100%;
   margin: 0 auto; }
 
 .itemCard {

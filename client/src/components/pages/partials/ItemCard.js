@@ -1,25 +1,40 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import api from '../../../api';
+import ModalInteraction from './ModalInteraction'
 
 
-const ItemCard = ({name, pictures, pricePerPeriod, period, description}) => {
+
+const ItemCard = ({id, name, pictures, pricePerPeriod, period, description}) => {
   pictures.length === 0 && (pictures = '/images/generic.png')
+  let handleClick = (e) => {
+    console.log("this item's id is:", id);
+  }
+
+  let check = ()=>{
+    console.log("please log in");
+  }
+
+  
   return (
       <div className="itemCard">
         <div className="itemCard-name">
           <h5>{name}</h5>
         </div>
         <div className="itemCard-img-wrapper">
-          <img src={pictures} />
+          <img src={pictures} alt="The item"/>
         </div>
         <div className="itemCard-sub-img">
           <h6>{pricePerPeriod}€ per {period}</h6>
-          <h6><a href="#">Availability</a></h6>
+          {api.isLoggedIn() && <Link to="/" onClick={handleClick}>Availability</Link>}
+          {!api.isLoggedIn() && <Link to="/" onClick={check}>Availability</Link>}
         </div>
         <div>
           <p>{description}</p>
         </div>
         <div className="itemCard-btn-div">
-          <button>Request</button>
+        {api.isLoggedIn() && <ModalInteraction itemId={id} text="Request" />}
+        {!api.isLoggedIn() && <ModalInteraction itemId={id} onClick={handleClick} text="Request" />}
         </div>
     </div>
   )

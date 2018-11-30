@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { Redirect } from 'react-router-dom'
 
 export default class ItemDetail extends Component {
   render() {
@@ -12,7 +11,8 @@ export default class ItemDetail extends Component {
 
     return (
       <div>
-        <h2>{curItem.title}</h2>
+        <h1>Item detail page!</h1>
+        {/* <h2>{curItem.title}</h2>
         
         <h4>Description</h4>
         {curItem.description}
@@ -21,7 +21,7 @@ export default class ItemDetail extends Component {
         {curItem.pricePerPeriod}€
 
         <h4>Owner</h4>
-        {curItem._owner.email}
+        {curItem._owner.email} */}
       </div>
     )
   }
