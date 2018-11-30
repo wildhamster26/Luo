@@ -6390,23 +6390,25 @@ button:hover {
 .home h3 {
   text-align: center; }
 
-.search-box form {
-  text-align: center; }
-
-.search-box input {
-  background-color: #e6e6e6;
-  border: none;
-  border-radius: 5px;
-  margin-top: 20px;
-  width: 400px;
-  max-width: 95%;
-  text-align: center;
-  padding: 10px 30px;
-  box-shadow: 0 5px 15px lightgray; }
+.search-box {
+  background-color: #495269;
+  height: 100px; }
+  .search-box form {
+    text-align: center; }
+  .search-box input {
+    background-color: #e6e6e6;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 400px;
+    max-width: 95%;
+    text-align: center;
+    padding: 10px 30px;
+    box-shadow: 0 5px 15px #1f232d; }
 
 .categories-section {
   background-color: #1f232d;
-  margin: 20px 0;
+  margin: 0 0 20px;
   padding: 10px 10px 0;
   width: 100%; }
   .categories-section h3 {
@@ -6425,7 +6427,7 @@ button:hover {
       padding: 20px;
       transition: all 0.25s;
       color: white; }
-    .categories-section .categories-container .category-button:hover {
+    .categories-section .categories-container .category-button:hover, .categories-section .categories-container .isActive {
       background-color: #729ea1;
       border-radius: 5px;
       color: white;
