@@ -1,13 +1,4 @@
 import React, { Component } from 'react';
-import { NavLink, Route, Switch, Link } from 'react-router-dom'
-import {
-  Button,
-  Col,
-  ListGroup,
-  ListGroupItem,
-  Row,
-} from 'reactstrap'
-import api from '../../../api';
 
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 
@@ -52,4 +43,4 @@ class Map extends Component {
   }
 }
 
-export default Map;
+export default Map; 

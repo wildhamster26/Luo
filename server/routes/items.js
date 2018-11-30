@@ -74,8 +74,8 @@ router.get("/:id/request/:userId", (req, res, next) => {
       transporter.sendMail({
         from: '"Luo"',
         to: user.email,
-        subject: `I would like to rent the ${item.name} you mentioned on Luo.`, 
-        html: `Hi!<br> I am interested in renting your ${item.name}.<br> Please contact me at: ${requestingUser.email}.<br> <img src="https://res.cloudinary.com/wildhamster26/image/upload/v1543477042/folder-name/small_face.jpg">`
+        subject: `Luo rent request for your ${item.name}.`, 
+        html: `Hi!<br> I am interested in renting the ${item.name} you published on Luo.<br> Please contact me at: ${requestingUser.email}. <br> Have a good day.<br> <img src="https://res.cloudinary.com/wildhamster26/image/upload/v1543477042/folder-name/small_face.jpg">`
       })
       
       res.json({

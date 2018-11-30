@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, Route, Switch } from 'react-router-dom'
-import {
-  Button,
-  Col,
-  ListGroup,
-  ListGroupItem,
-  Row,
-} from 'reactstrap'
-import ItemDetail from './ItemDetail'
-import api from '../../api';
+import { Row } from 'reactstrap'
 
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
 
