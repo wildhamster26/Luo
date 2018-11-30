@@ -3,13 +3,27 @@
 // --------------------
 // Definition of variables
 // $primary: #1ebbff;
+// Palette 1
+// $primary: rgb(114, 158, 161);
+// $secondary: rgb(181, 189, 137);
+// $orange: rgb(236, 145, 146);
+// $warning: rgb(223, 190, 153);
+// $danger: rgb(219, 83, 117);
+// $marginBottomNavbar: 0px;
+// $navbarHeight: 60px;
+
+// Palette 2
 $primary: rgb(114, 158, 161);
 $secondary: rgb(181, 189, 137);
-$orange: rgb(236, 145, 146);
+$terciary: rgb(236, 145, 146);
+$background1: rgb(31, 35, 45);
+$shadow: lightgray;
 $warning: rgb(223, 190, 153);
 $danger: rgb(219, 83, 117);
+$buy: rgb(219, 83, 117);
 $marginBottomNavbar: 0px;
 $navbarHeight: 60px;
+
 
 // ----------------------------------------
 // To install Boostrap:
@@ -102,7 +116,7 @@ button:hover {
   height: $navbarHeight;
   margin-bottom: $marginBottomNavbar;
   .logo {
-    height: 40px;
+    height: 150px;
     padding-bottom: 4px;
   }
   .navbar-brand {
@@ -113,7 +127,8 @@ button:hover {
 // --------------------
 // Style for Home component
 .home {
-  background-image: linear-gradient(lightgrey, grey);
+  // background-image: linear-gradient(lightgrey, grey);
+  // background-color: $background1;
   h2 {
     text-align: center;
     font-weight: bold;
@@ -137,12 +152,13 @@ button:hover {
     max-width: 95%;
     text-align: center;
     padding: 10px 30px;
-    box-shadow: 0 5px 15px gray;
+    box-shadow: 0 5px 15px lightgray;
 
   }
 }
 .categories-section {
-  background-color: black;
+  // background-color: black;
+  background-color: $background1;
   margin: 20px 0;
   padding: 10px 10px 0;
   width: 100%;
@@ -280,15 +296,17 @@ hr{
   display: flex;
   flex-flow: column;
   border-radius: 3px;
-  box-shadow: 0 5px 20px gray;
+  box-shadow: 0 5px 20px lightgray;
   background-color: #fff;
   transition: box-shadow 0.5s;
   margin: 15px 10px;
   padding: 10px 0 20px;
-  max-width: 355px;
+  // max-width: 355px;
+  max-width: 250px;
   h5 {
     font-weight: bold;
     margin-left: 10px; 
+    font-size: 1em;
   }
 
   .itemCard-img-wrapper {
@@ -323,6 +341,6 @@ hr{
 
 }
 .itemCard:hover {
-  box-shadow: 0 7px 20px hsl(0, 0%, 40%);
+  box-shadow: 0 7px 20px hsl(0, 0%, 70%);
   transition: box-shadow 0.5s;
 }

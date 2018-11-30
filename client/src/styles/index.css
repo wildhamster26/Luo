@@ -10,7 +10,7 @@
   --purple: #6f42c1;
   --pink: #e83e8c;
   --red: #dc3545;
-  --orange: #ec9192;
+  --orange: #fd7e14;
   --yellow: #ffc107;
   --green: #28a745;
   --teal: #20c997;
@@ -6378,18 +6378,17 @@ button:hover {
   height: 60px;
   margin-bottom: 0px; }
   .MainNavbar .logo {
-    height: 40px;
+    height: 150px;
     padding-bottom: 4px; }
   .MainNavbar .navbar-brand {
     padding: 4px 0 0 0; }
 
-.home {
-  background-image: linear-gradient(lightgrey, grey); }
-  .home h2 {
-    text-align: center;
-    font-weight: bold; }
-  .home h3 {
-    text-align: center; }
+.home h2 {
+  text-align: center;
+  font-weight: bold; }
+
+.home h3 {
+  text-align: center; }
 
 .search-box form {
   text-align: center; }
@@ -6403,10 +6402,10 @@ button:hover {
   max-width: 95%;
   text-align: center;
   padding: 10px 30px;
-  box-shadow: 0 5px 15px gray; }
+  box-shadow: 0 5px 15px lightgray; }
 
 .categories-section {
-  background-color: black;
+  background-color: #1f232d;
   margin: 20px 0;
   padding: 10px 10px 0;
   width: 100%; }
@@ -6504,15 +6503,16 @@ hr {
   display: flex;
   flex-flow: column;
   border-radius: 3px;
-  box-shadow: 0 5px 20px gray;
+  box-shadow: 0 5px 20px lightgray;
   background-color: #fff;
   transition: box-shadow 0.5s;
   margin: 15px 10px;
   padding: 10px 0 20px;
-  max-width: 355px; }
+  max-width: 250px; }
   .itemCard h5 {
     font-weight: bold;
-    margin-left: 10px; }
+    margin-left: 10px;
+    font-size: 1em; }
   .itemCard .itemCard-img-wrapper img {
     margin: 0 auto;
     object-fit: contain;
@@ -6535,5 +6535,5 @@ hr {
     margin-bottom: 0; }
 
 .itemCard:hover {
-  box-shadow: 0 7px 20px #666666;
+  box-shadow: 0 7px 20px #b3b3b3;
   transition: box-shadow 0.5s; }
