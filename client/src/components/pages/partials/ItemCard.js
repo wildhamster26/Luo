@@ -12,7 +12,8 @@ const ItemCard = ({id, name, pictures, pricePerPeriod, period, description, sear
       catFilt = true
     }
   }
-  if (searchFilter === "" && categoryFilter.length === 0 || (name.toLowerCase().includes(searchFilter) && catFilt)) {
+
+  if ((searchFilter !== "" && name.toLowerCase().includes(searchFilter) || catFilt) || (searchFilter === "" && categoryFilter.length === 0)) {
       pictures.length === 0 && (pictures = '/images/generic.png')
       return (
           <div className="itemCard">
@@ -24,7 +25,7 @@ const ItemCard = ({id, name, pictures, pricePerPeriod, period, description, sear
             </div>
             <div className="itemCard-sub-img">
               <h6>{pricePerPeriod}€ per {period}</h6>
-              {api.isLoggedIn() && <Link to="/" >Availability</Link>}
+              {api.isLoggedIn() && <Link to="/" ><h6>Availability</h6></Link>}
               {!api.isLoggedIn() && <ModalInteraction itemId={id} text="Availability" />}
             </div>
             <div>
@@ -37,7 +38,10 @@ const ItemCard = ({id, name, pictures, pricePerPeriod, period, description, sear
         </div>
       )
   } else {
-    return (<div></div>)
+    return (
+    <div>
+    </div>
+    )
   }
 }
 
