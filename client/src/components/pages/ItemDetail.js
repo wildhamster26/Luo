@@ -1,28 +1,67 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Map from './partials/Map';
+import api from '../../api';
+import { Button } from 'reactstrap';
+
+
 
 export default class ItemDetail extends Component {
-  render() {
-    let curId = this.props.match.params.id
-    let curItem = this.props.items.find(item => item._id === curId)
-
-    if (!curItem) {
-      return <div />
+  constructor(props){
+    super(props)
+    this.id = this.props.match.params.itemId
+    this.state= {
+      item: {}
     }
+  }
 
+  contactOwner = () => {
+    
+  }
+
+  requestItem = () => {
+    api.requestItem(this.state.item._id)
+  }
+
+  render() {
+    
+    console.log(this.state.item);
+
+    if (!this.state.item._id) {
+      return <div>Loading...</div>
+    }
     return (
-      <div>
-        <h1>Item detail page!</h1>
-        {/* <h2>{curItem.title}</h2>
+      <div className="item-detail">
+        <h2>{this.state.item.name}</h2>
+
+        <img src={this.state.item.picture} alt="The item"/>
         
         <h4>Description</h4>
-        {curItem.description}
+        {this.state.item.description}
 
         <h4>Price per night</h4>
-        {curItem.pricePerPeriod}€
+        {this.state.item.pricePerPeriod}€
 
         <h4>Owner</h4>
-        {curItem._owner.email} */}
+        <Button onClick={this.contactOwner}>Owner details</Button>
+        <div className="item-detail-buttons">
+          <Button>Availability</Button>
+          <Button onClick={this.requestItem}>Request</Button>
+        </div>
+
+        <div className="item-detail-map"><Map coordinates={[this.state.item.location.coordinates]} /></div>
       </div>
     )
   }
+
+  componentDidMount() {
+    api.getItemById(this.id)
+      .then(data => {
+        console.log("item is:", data.item)
+        this.setState({
+            item: data.item
+          })
+        })
+        .catch(err => console.log(err))
+      }
+    
 }

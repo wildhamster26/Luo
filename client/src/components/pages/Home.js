@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ItemCard from './partials/ItemCard'
 import api from '../../api';
-import { Container } from 'reactstrap';
 import ReactModal from 'react-modal';
 
 import SearchBox from './partials/SearchBox';
@@ -46,6 +45,7 @@ export default class Home extends Component {
   }
 
   render() {
+    // this.state.items.length > 0 && console.log('NOTHING?', this.state.items[0].name)
     return (
       <div>
         <ReactModal isOpen={this.state.isOpen} />
@@ -60,7 +60,7 @@ export default class Home extends Component {
           <div className="categories-container">
             <a className={"category-button" + (this.state.activeCategories.includes('bikes') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('bikes')}>
               <div>
-                <img src="/images/categories/bicycle (white).png" />
+                <img alt="item" src="/images/categories/bicycle (white).png" />
                 <p>Bikes</p>
               </div>
             </a>
@@ -78,7 +78,7 @@ export default class Home extends Component {
             </a>
             <a className={"category-button" + (this.state.activeCategories.includes('computers') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('computers')}>
               <div>
-                <img src="/images/categories/computer (white).png" />
+                <img alt="item" src="/images/categories/computer (white).png" />
                 <p>Computers</p>
               </div>
             </a>
@@ -90,7 +90,7 @@ export default class Home extends Component {
             </a>
             <a className={"category-button" + (this.state.activeCategories.includes('kitchen') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('kitchen')}>
               <div>
-                <img src="/images/categories/kitchen (white).png" />
+                <img alt="item" src="/images/categories/kitchen (white).png" />
                 <p>Kitchen</p>
               </div>
             </a>

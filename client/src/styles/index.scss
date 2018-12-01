@@ -273,7 +273,7 @@ input:focus {
     }
 
     .map {
-      height: 100%;
+      height: 100px;
       // height: calc(100vh - #{$navbarHeight});
     }
   }
@@ -317,6 +317,25 @@ hr{
 
 .please-confirm-image{
   margin-top: 50px;
+}
+
+.item-detail{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item-detail-buttons{
+  display: flex;
+  button{
+    margin: 20px;
+  }
+}
+
+.item-detail-map{
+  margin: 0 auto;
+  max-width: 400px;
+  min-width: 300px;
 }
 
 

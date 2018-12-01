@@ -33,8 +33,8 @@ class App extends Component {
         <MainNavbar />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/items" component={Items} />
           <Route path="/items/:itemId" component={ItemDetail} />
+          <Route path="/items" component={Items} />
           <Route path="/myitems" component={MyItems} />
           <Route path="/item/new" component={AddItem} />
           <Route path="/login" component={LoginSignup} />

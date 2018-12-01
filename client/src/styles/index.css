@@ -6492,7 +6492,7 @@ input:focus {
       .Items .row .col-text h4 {
         margin-top: 40px; }
     .Items .row .map {
-      height: 100%; }
+      height: 100px; }
 
 .Login-signup-page, .Login, .Signup {
   max-width: 400px;
@@ -6526,6 +6526,21 @@ hr {
 
 .please-confirm-image {
   margin-top: 50px; }
+
+.item-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.item-detail-buttons {
+  display: flex; }
+  .item-detail-buttons button {
+    margin: 20px; }
+
+.item-detail-map {
+  margin: 0 auto;
+  max-width: 400px;
+  min-width: 300px; }
 
 .Secret .result {
   font-size: 1.2em;
