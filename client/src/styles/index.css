@@ -6379,7 +6379,7 @@ input:focus {
   background-color: lightcoral;
   color: white;
   cursor: pointer;
-  box-shadow: 0 2px 7px grey;
+  box-shadow: 0 2px 7px lightgrey;
   transition: all 0.15s; }
 
 .App .App-header {
