@@ -6494,6 +6494,9 @@ hr {
   flex-direction: column;
   align-items: center; }
 
+.item-detail img {
+  max-width: 400px; }
+
 .item-detail-buttons {
   display: flex; }
   .item-detail-buttons button {

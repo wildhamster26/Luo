@@ -96,7 +96,7 @@ export default class Home extends Component {
           </div>
         </section>
         <div className="itemCards-container">
-          {this.state.items.map(item => <ItemCard key={item._id} id={item._id} name={item.title} pictures={item.pictures } pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} searchFilter={this.state.search} categories={item.categories} categoryFilter={this.state.activeCategories} />) }
+          {this.state.items.map(item => <ItemCard key={item._id} id={item._id} name={item.name} imgPath={item.imgPath } pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} searchFilter={this.state.search} categories={item.categories} categoryFilter={this.state.activeCategories} />) }
         </div>
       </div>
       </div>

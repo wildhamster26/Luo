@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 const itemSchema = new Schema({
   name: { type: String, required: true },
-  picture: [String],
   description: { type: String, required: true },
   pricePerPeriod: { type: Number, required: true },
   period: { type: String, enum: ['hour', 'day', 'month'], default: 'day' },
   categories: [String],
+  // pictureUrl: {type: String,  default:""},
   imgName: {type: String, default:""},
   imgPath: {type: String,  default:""},
   public_id: {type: String, default:""},

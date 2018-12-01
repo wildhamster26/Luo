@@ -8,8 +8,8 @@ const randomstring = require("randomstring");
 
 
 // Bcrypt to encrypt passwords
-const bcrypt = require("bcryptjs")
-const bcryptSalt = 10
+const bcrypt = require("bcryptjs");
+const bcryptSalt = 10;
 
 router.post("/signup", (req, res, next) => {
   const { email, password, itemId } = req.body

@@ -18,13 +18,15 @@ class AddItem extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      id: "",
       name: "",
       description: "",
       pricePerPeriod: 0,
       period: "",
       lng: 13.3711224,
       lat: 52.5063688,
-      message: null
+      message: null,
+      file: null
     }
     this.mapRef = React.createRef()
     this.map = null
@@ -42,6 +44,14 @@ class AddItem extends Component {
     })
   }
 
+  handleChange = (e) => {
+    console.log('handleChange');
+    console.log('DEBUG e.target.files[0]', e.target.files[0]);
+    this.setState({
+      file: e.target.files[0]
+    })
+  }
+
   handleClick(e) {
     e.preventDefault()
     console.log(this.state.name, this.state.description)
@@ -55,7 +65,10 @@ class AddItem extends Component {
     }
     api.addItem(data)
       .then(result => {
-        console.log('SUCCESS!')
+        api.addItemPicture(this.state.file, result.item._id)
+      })
+      .then(result => {
+        console.log('SUCCESS!', result)
         this.setState({
           name: "",
           description: "",
@@ -136,7 +149,7 @@ class AddItem extends Component {
               <FormGroup row>
                 <Label for="image" xl={3}>Image</Label>
                 <Col xl={9}>
-                  <Input type="file" name="image" onChange={this.handleInputChange} />
+                  <Input type="file" name="image" onChange={this.handleChange} />
                 </Col>
               </FormGroup>
               <FormGroup row>
