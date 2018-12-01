@@ -51,7 +51,7 @@ export default class Home extends Component {
         <ReactModal isOpen={this.state.isOpen} />
       <div className="home">
         <div className="search-box-div">
-          <SearchBox placeholder="What are you looking for?" searchString={this.state.search} onSearch={this.searchState} />
+          <SearchBox placeholder="Search" searchString={this.state.search} onSearch={this.searchState} />
         </div>
         <section className="categories-section">
           <div>

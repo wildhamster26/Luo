@@ -13,7 +13,7 @@ const ItemCard = ({id, name, pictures, pricePerPeriod, period, description, sear
     }
   }
 
-  if ((searchFilter !== "" && name.toLowerCase().includes(searchFilter) || catFilt) || (searchFilter === "" && categoryFilter.length === 0)) {
+  if ((searchFilter !== "" && name.toLowerCase().includes(searchFilter) || description.toLowerCase().includes(searchFilter) || catFilt) || (searchFilter === "" && categoryFilter.length === 0)) {
     pictures === undefined || pictures.length === 0 && (pictures = '/images/generic.png')
 
     let handleClick = () => {
@@ -36,7 +36,7 @@ const ItemCard = ({id, name, pictures, pricePerPeriod, period, description, sear
               <p>{description}<br/><a id="map-modal-link" href="/"><MapModal buttonLabel="Map" /></a></p>
             </div>
             <div className="itemCard-btn-div">
-            {api.isLoggedIn() && <Button onClick={handleClick}>Request</Button>}
+            {api.isLoggedIn() && <button className="btn-second" onClick={handleClick}>Request</button>}
               {!api.isLoggedIn() && <ModalInteraction itemId={id} text="Request" />}
             </div>
         </div>

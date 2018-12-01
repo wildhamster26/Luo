@@ -14,7 +14,7 @@
 
 // Palette 2
 $primary: #1f232d;
-$secondary: rgb(181, 189, 137);
+$secondary: lightcoral;
 $terciary: rgb(236, 145, 146);
 $background1: #1f232d;
 $background2: rgb(61, 78, 91);
@@ -24,7 +24,6 @@ $danger: rgb(219, 83, 117);
 $buy: #984447;
 $marginBottomNavbar: 0px;
 $navbarHeight: 60px;
-$searchSectionHeight: 100px + $navbarHeight;
 
 
 // ----------------------------------------
@@ -37,13 +36,12 @@ $searchSectionHeight: 100px + $navbarHeight;
 
 // --------------------
 // Style reusable for all components
-html {
-  width: 100%;
-}
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  width: 100%;
+  color: rgb(72, 72, 72);
 }
 a {
   text-decoration: none;
@@ -60,8 +58,6 @@ input:focus {
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
   color: lightgrey;
 }
-
-
 .info {
   margin: 20px;
   padding: 10px 20px;
@@ -72,7 +68,7 @@ input:focus {
 }
 
 .info.info-danger {
-  background-color: #e73f3f;
+  background-color: $danger;
 }
 
 .btn {
@@ -83,6 +79,7 @@ input:focus {
   color: white;
   box-shadow: 0 2px 5px grey;
   transition: all 0.25s;
+  font-size: 0.9em;
 }
 .btn:hover {
   background-color: hsl(2, 55%, 60%);
@@ -91,8 +88,27 @@ input:focus {
 }
 .btn:focus {
   outline:0;
+  background-color: hsl(2, 55%, 60%);
 }
 
+.btn-second {
+  background-color: white;
+  font-size: 0.9em;
+  border-radius: 20px;
+  border: 1px solid $secondary;
+  padding: 0 20px;
+  height: auto;
+  color: $secondary;
+  transition: all 0.15s;
+
+}
+.btn-second:hover {
+  background-color: $secondary;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 2px 7px grey;
+  transition: all 0.15s;
+}
 // --------------------
 // Style for App component
 .App {
@@ -123,12 +139,11 @@ input:focus {
 .MainNavbar {
   height: $navbarHeight;
   margin-bottom: $marginBottomNavbar;
+  border: none;
   z-index: 999;
   width: 100%;
   position: fixed;
-  box-shadow: 0 0 15px black;
-  // top: 0;
-
+  transition: all 0.25s;
   .logo {
     height: 150px;
     padding-bottom: 4px;
@@ -136,6 +151,13 @@ input:focus {
   .navbar-brand {
     padding: 4px 0 0 0;
   }
+}
+.hasShadow {
+  box-shadow: 0 0 15px black;
+  transition: all 1s;
+}
+.empty-div {
+  height: $navbarHeight;
 }
 
 // --------------------
@@ -152,10 +174,8 @@ input:focus {
   }
 }
 .search-box {
-  // margin-top: $navbarHeight;
   background-color: #1F232D;;
-  height: $searchSectionHeight; 
-  border-top: $navbarHeight solid #1F232D;
+  height: 100px; 
   display: grid;
   justify-content: center;
   align-content: center;
@@ -364,7 +384,7 @@ hr{
   display: flex;
   flex-flow: column;
   border-radius: 3px;
-  box-shadow: 0 5px 20px lightgray;
+  box-shadow: 0 5px 20px hsl(0, 0%, 83%);
   background-color: #fff;
   transition: box-shadow 0.5s;
   margin: 15px 10px;
@@ -392,7 +412,10 @@ hr{
     font-size: 1em;
     h6 {
       // margin: 10px;
-      font-size: 1em;
+      font-size: 0.9em;
+    }
+    a { 
+      color: $buy;
     }
   }
   p {

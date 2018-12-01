@@ -17,7 +17,8 @@ export default class MainNavbar extends Component {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      hasShadow: false
     };
   }
   handleLogoutClick(e) {
@@ -28,9 +29,22 @@ export default class MainNavbar extends Component {
       isOpen: !this.state.isOpen
     });
   }
+  shadowToggler = () => {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      this.setState({
+        hasShadow: true
+      })
+    } else {
+      this.setState({
+        hasShadow: false
+      })
+    }
+  }
   render() {
+    window.onscroll = () => {this.shadowToggler()};
     return (
-      <Navbar color="primary" dark expand="md" className="MainNavbar">
+      
+      <Navbar color="primary" dark expand="md" className={"MainNavbar" + (this.state.hasShadow ? " hasShadow" : "")}>
         <NavbarBrand to="/" tag={Link}>
           <img src='/images/logo/logo1.png' className="logo" alt="logo" />
         </NavbarBrand>

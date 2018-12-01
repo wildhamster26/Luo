@@ -16,7 +16,7 @@ export default class SearchBox extends Component {
     return (
       <div className="search-box">
         <form>
-          <input className={this.props.searchString !== "" && "active-input"} type="text" name="search" placeholder={this.props.placeholder} onChange={(e) => this.changeSearchBar(e)}></input>
+          <input className={"" + (this.props.searchString !== "" && "active-input")} type="text" name="search" placeholder={this.props.placeholder} onChange={(e) => this.changeSearchBar(e)}></input>
         </form>
       </div>
     )

@@ -29,8 +29,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="empty-nav"></div>
         <MainNavbar />
+        <div className="empty-div"></div>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/items/:itemId" component={ItemDetail} />

@@ -12,3 +12,5 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibWMxMDBzIiwiYSI6ImNqb2E2ZTF3ODBxa3czd2xldHp1Z
 
 
 ReactDOM.render(<Router><App /></Router>, document.getElementById('root'));
+
+
