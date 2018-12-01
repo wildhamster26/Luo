@@ -134,6 +134,12 @@ class AddItem extends Component {
                 </Col>
               </FormGroup>
               <FormGroup row>
+                <Label for="image" xl={3}>Image</Label>
+                <Col xl={9}>
+                  <Input type="file" name="image" onChange={this.handleInputChange} />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
                 <Label for="name" xl={3}>Longitude/Latitude</Label>
                 <Col xl={9}>
                   <Row>

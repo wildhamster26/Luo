@@ -20,6 +20,9 @@ export default class ItemDetail extends Component {
 
   requestItem = () => {
     api.requestItem(this.state.item._id)
+    .then(res =>{
+      alert("The owner has been contacted with your email.");
+    });
   }
 
   render() {

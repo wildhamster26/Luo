@@ -99,7 +99,7 @@ export default {
   requestItem(id){
     return service
     .get(`/items/${id}/request/${JSON.parse(localStorage.getItem('user'))._id}`)
-    .then(res => console.log(res))
+    .then(res => res.data)
     .catch(errHandler)
   },
 
