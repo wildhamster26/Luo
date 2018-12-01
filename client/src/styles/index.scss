@@ -13,14 +13,15 @@
 // $navbarHeight: 60px;
 
 // Palette 2
-$primary: rgb(114, 158, 161);
-$secondary: rgb(181, 189, 137);
+$primary: #1f232d;
+$secondary: lightcoral;
 $terciary: rgb(236, 145, 146);
-$background1: rgb(31, 35, 45);
+$background1: #1f232d;
+$background2: rgb(61, 78, 91);
 $shadow: lightgray;
 $warning: rgb(223, 190, 153);
 $danger: rgb(219, 83, 117);
-$buy: rgb(219, 83, 117);
+$buy: #984447;
 $marginBottomNavbar: 0px;
 $navbarHeight: 60px;
 
@@ -39,6 +40,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  width: 100%;
+  color: rgb(72, 72, 72);
 }
 a {
   text-decoration: none;
@@ -48,15 +51,13 @@ input:focus {
   outline:0;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: hsl(0, 0%, 70%);
+  color: rgba(255, 255, 255, 0.2);
   opacity: 1; /* Firefox */
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
   color: lightgrey;
 }
-
-
 .info {
   margin: 20px;
   padding: 10px 20px;
@@ -67,10 +68,10 @@ input:focus {
 }
 
 .info.info-danger {
-  background-color: #e73f3f;
+  background-color: $danger;
 }
 
-button {
+.btn {
   background-color: rgb(215, 121, 118);
   padding: 2px 15px;
   border: none;
@@ -78,20 +79,43 @@ button {
   color: white;
   box-shadow: 0 2px 5px grey;
   transition: all 0.25s;
+  font-size: 0.9em;
 }
-button:hover {
+.btn:hover {
   background-color: hsl(2, 55%, 60%);
+  color: white;
   transition: all 0.25s;
 }
+.btn:focus {
+  outline:0;
+  background-color: hsl(2, 55%, 60%);
+}
 
+.btn-second {
+  background-color: white;
+  font-size: 0.9em;
+  border-radius: 20px;
+  border: 1px solid $secondary;
+  padding: 0 20px;
+  height: auto;
+  color: $secondary;
+  transition: all 0.15s;
+
+}
+.btn-second:hover {
+  background-color: $secondary;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 2px 7px lightgrey;
+  transition: all 0.15s;
+}
 // --------------------
 // Style for App component
 .App {
   .App-header {
     background-color: $primary;
-    padding: 20px;
     color: white;
-
+    width: 100%;
     a {
       color: white;
       padding: 0 5px;
@@ -115,6 +139,11 @@ button:hover {
 .MainNavbar {
   height: $navbarHeight;
   margin-bottom: $marginBottomNavbar;
+  border: none;
+  z-index: 999;
+  width: 100%;
+  position: fixed;
+  transition: all 0.25s;
   .logo {
     height: 150px;
     padding-bottom: 4px;
@@ -122,6 +151,13 @@ button:hover {
   .navbar-brand {
     padding: 4px 0 0 0;
   }
+}
+.hasShadow {
+  box-shadow: 0 0 15px black;
+  transition: all 1s;
+}
+.empty-div {
+  height: $navbarHeight;
 }
 
 // --------------------
@@ -138,64 +174,95 @@ button:hover {
   }
 }
 .search-box {
-  background-color: hsl(223, 18%, 35%);;
-  height: 100px;
+  background-color: #1F232D;;
+  height: 100px; 
+  display: grid;
+  justify-content: center;
+  align-content: center;
   form {
     text-align: center;
   }
   input {
-    background-color: hsl(0, 0%, 90%);
+    background-color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 1); 
     border: none;
     border-radius: 5px;
-    margin-top: 20px;
     width: 400px;
-    max-width: 95%;
+    max-width: 90%;
     text-align: center;
     padding: 10px 30px;
-    box-shadow: 0 5px 15px hsl(223, 18%, 15%);
-
+    transition: all 0.25s;
+  }
+  .active-input {
+    transition: all 0.25s;
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }
 .categories-section {
-  // background-color: black;
-  background-color: $background1;
+  background-image: linear-gradient($background2, $background1);
   margin: 0 0 20px;
-  padding: 10px 10px 0;
+  padding: 10px 0;
   width: 100%;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
   h3 {
-    color: white;
+    color: rgba(255, 255, 255, 0.9);
     font-size: 1.2em;
     font-weight: bold;
   }
   .categories-container {
+    box-sizing: border-box;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 5px;
+    justify-items: center;
     text-align: center;
     img {
-      height: 50px;
-      margin: 10px;
+      height: 30px;
+      margin-bottom: 10px;
     }
-    .category-button {
-      margin: 10px;
-      padding: 20px;
-      transition: all 0.25s;
-      color: white;
+    p {
+      font-size: 0.9em;
 
     }
-    .category-button:hover, .isActive {
-      background-color: $primary;
-      border-radius: 5px;
+    .category-button {
+      box-sizing: border-box;
+      // margin: 0 5px;
+      padding-top: 10px;
+      width: 100%;
+      height: 80px;
+      transition: all 0.25s;
       color: white;
+    }
+    .category-button:hover {
+      box-sizing: border-box;
+      border-bottom: 3px solid $secondary;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .isActive {
+      background-color: $primary;
+      // border-radius: 5px;
+      border-top-left-radius: 5px; 
+      border-top-right-radius: 5px; 
       text-decoration: none;
       transition: all 0.25s;
     }
   }
 }
-@media only screen and (min-width: 850px) {
+@media only screen and (max-width: 850px) {
   .categories-section {
     .categories-container {
-      display: grid;
-      grid-template-columns: auto auto auto auto auto auto;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+      img {
+        height: 25px;
+      }
+      .category-button {
+        transition: all 0.25s;
+        color: white;
+        margin-bottom: 5px;
+      }
     }
   }
 }
@@ -321,19 +388,17 @@ hr{
   display: flex;
   flex-flow: column;
   border-radius: 3px;
-  box-shadow: 0 5px 20px lightgray;
+  box-shadow: 0 5px 20px hsl(0, 0%, 83%);
   background-color: #fff;
   transition: box-shadow 0.5s;
   margin: 15px 10px;
   padding: 10px 0 20px;
-  // max-width: 355px;
   max-width: 250px;
   h5 {
     font-weight: bold;
     margin-left: 10px; 
     font-size: 1em;
   }
-
   .itemCard-img-wrapper {
     img {
       margin: 0 auto;
@@ -347,12 +412,19 @@ hr{
     display: flex;
     width: 100%;
     justify-content: space-between;
+    padding:10px;
+    font-size: 1em;
     h6 {
-      margin: 10px;
+      // margin: 10px;
+      font-size: 0.9em;
+    }
+    a { 
+      color: $buy;
     }
   }
   p {
     margin: 10px 10px 40px 10px; 
+    font-size: 0.9em;
   }
 
   .itemCard-btn-div {
@@ -368,4 +440,9 @@ hr{
 .itemCard:hover {
   box-shadow: 0 7px 20px hsl(0, 0%, 70%);
   transition: box-shadow 0.5s;
+}
+@media only screen and (max-width: 850px) {
+  .itemCard {
+    max-width: 95%;
+  }
 }

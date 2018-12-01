@@ -22,6 +22,7 @@ export default class Home extends Component {
     this.setState({
       search: character
     })
+    // console.log(this.state.search)
   }
   handleCategory = (category) => {
     let cats = this.state.activeCategories
@@ -50,47 +51,71 @@ export default class Home extends Component {
         <ReactModal isOpen={this.state.isOpen} />
       <div className="home">
         <div className="search-box-div">
-          <SearchBox placeholder="What are you looking for?" onSearch={this.searchState} />
+          <SearchBox placeholder="Search" searchString={this.state.search} onSearch={this.searchState} />
         </div>
         <section className="categories-section">
           <div>
             <h3>Explore by category</h3>
           </div>
           <div className="categories-container">
-            <a className={"category-button" + (this.state.activeCategories.includes('tools') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('tools')}>
-              <div>
-                <img alt="item" src="/images/categories/tools (white).png" />
-                <p>Tools</p>
-              </div>
-            </a>
-            <a className={"category-button" + (this.state.activeCategories.includes('bikes') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('bikes')}>
+            <a className={"category-button" + (this.state.activeCategories.includes('bikes') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('bikes')}>
               <div>
                 <img alt="item" src="/images/categories/bicycle (white).png" />
                 <p>Bikes</p>
               </div>
             </a>
-            <a className={"category-button" + (this.state.activeCategories.includes('clothes') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('clothes')}>
+            <a className={"category-button" + (this.state.activeCategories.includes('books') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('books')}>
               <div>
-                <img alt="item" src="/images/categories/clothes.png" />
+                <img src="/images/categories/book (white).png" />
+                <p>Books</p>
+              </div>
+            </a>
+            <a className={"category-button" + (this.state.activeCategories.includes('clothes') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('clothes')}>
+              <div>
+                <img src="/images/categories/clothes.png" />
                 <p>Clothes</p>
               </div>
             </a>
-            <a className={"category-button" + (this.state.activeCategories.includes('sports') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('sports')}>
-              <div>
-                <img alt="item" src="/images/categories/weightlifting (white).png" />
-                <p>Sports</p>
-              </div>
-            </a>
-            <a className={"category-button" + (this.state.activeCategories.includes('computers') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('computers')}>
+            <a className={"category-button" + (this.state.activeCategories.includes('computers') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('computers')}>
               <div>
                 <img alt="item" src="/images/categories/computer (white).png" />
                 <p>Computers</p>
               </div>
             </a>
-            <a className={"category-button" + (this.state.activeCategories.includes('kitchen') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('kitchen')}>
+            <a className={"category-button" + (this.state.activeCategories.includes('gardening') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('gardening')}>
+              <div>
+                <img src="/images/categories/gardening (white).png" />
+                <p>Gardening</p>
+              </div>
+            </a>
+            <a className={"category-button" + (this.state.activeCategories.includes('kitchen') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('kitchen')}>
               <div>
                 <img alt="item" src="/images/categories/kitchen (white).png" />
                 <p>Kitchen</p>
+              </div>
+            </a>
+            <a className={"category-button" + (this.state.activeCategories.includes('sports') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('sports')}>
+              <div>
+                <img src="/images/categories/weightlifting (white).png" />
+                <p>Sports</p>
+              </div>
+            </a>
+            <a className={"category-button" + (this.state.activeCategories.includes('tools') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('tools')}>
+              <div>
+                <img src="/images/categories/tools (white).png" />
+                <p>Tools</p>
+              </div>
+            </a>
+            <a className={"category-button" + (this.state.activeCategories.includes('toys') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('toys')}>
+              <div>
+                <img src="/images/categories/toys (white).png" />
+                <p>Toys</p>
+              </div>
+            </a>
+            <a className={"category-button" + (this.state.activeCategories.includes('others') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('others')}>
+              <div>
+                <img src="/images/categories/others (white).png" />
+                <p>Others</p>
               </div>
             </a>
           </div>

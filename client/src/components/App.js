@@ -30,6 +30,7 @@ class App extends Component {
     return (
       <div className="App">
         <MainNavbar />
+        <div className="empty-div"></div>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/items/:itemId" component={ItemDetail} />
