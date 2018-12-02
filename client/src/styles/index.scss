@@ -21,7 +21,7 @@ $background2: rgb(61, 78, 91);
 $shadow: lightgray;
 $warning: rgb(223, 190, 153);
 $danger: rgb(219, 83, 117);
-$buy: #984447;
+$buy: lightcoral;
 $marginBottomNavbar: 0px;
 $navbarHeight: 60px;
 
@@ -44,7 +44,7 @@ body {
   color: rgb(72, 72, 72);
 }
 a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 input:focus {
@@ -135,7 +135,13 @@ input:focus {
     font-size: large;
   }
 }
-
+nav {
+  height: $navbarHeight;
+  z-index: 999;
+  width: 100%;
+  position: fixed;
+  transition: all 0.25s;
+}
 .MainNavbar {
   height: $navbarHeight;
   margin-bottom: $marginBottomNavbar;
@@ -184,6 +190,10 @@ input:focus {
   }
   input {
     background-color: rgba(255, 255, 255, 0.3);
+    background-image: url("/images/magnifying-glass (white).png");
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: 95% 50%;
     color: rgba(255, 255, 255, 1); 
     border: none;
     border-radius: 5px;
@@ -195,7 +205,9 @@ input:focus {
   }
   .active-input {
     transition: all 0.25s;
+    font-size: 1.2em;
     background-color: rgba(255, 255, 255, 0.1);
+
   }
 }
 .categories-section {
@@ -430,8 +442,9 @@ hr{
     bottom: 15px;
     margin-bottom: 0;
   }
-
-
+  #map-modal-link {
+    color: $buy;
+  }
 }
 .itemCard:hover {
   box-shadow: 0 7px 20px hsl(0, 0%, 70%);

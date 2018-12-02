@@ -43,6 +43,7 @@ export default class MainNavbar extends Component {
   render() {
     window.onscroll = () => {this.shadowToggler()};
     return (
+      
       <Navbar color="primary" dark expand="md" className={"MainNavbar" + (this.state.hasShadow ? " hasShadow" : "")}>
         <NavbarBrand to="/" tag={Link}>
           <img src='/images/logo/logo1.png' className="logo" alt="logo" />

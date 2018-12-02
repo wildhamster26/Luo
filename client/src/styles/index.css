@@ -6320,7 +6320,7 @@ body {
   color: #484848; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none !important; }
 
 input:focus {
   outline: 0; }
@@ -6399,6 +6399,13 @@ input:focus {
 .App .App-intro {
   font-size: large; }
 
+nav {
+  height: 60px;
+  z-index: 999;
+  width: 100%;
+  position: fixed;
+  transition: all 0.25s; }
+
 .MainNavbar {
   height: 60px;
   margin-bottom: 0px;
@@ -6437,6 +6444,10 @@ input:focus {
     text-align: center; }
   .search-box input {
     background-color: rgba(255, 255, 255, 0.3);
+    background-image: url("/images/magnifying-glass (white).png");
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: 95% 50%;
     color: white;
     border: none;
     border-radius: 5px;
@@ -6447,6 +6458,7 @@ input:focus {
     transition: all 0.25s; }
   .search-box .active-input {
     transition: all 0.25s;
+    font-size: 1.2em;
     background-color: rgba(255, 255, 255, 0.1); }
 
 .categories-section {
@@ -6610,7 +6622,7 @@ hr {
     .itemCard .itemCard-sub-img h6 {
       font-size: 0.9em; }
     .itemCard .itemCard-sub-img a {
-      color: #984447; }
+      color: lightcoral; }
   .itemCard p {
     margin: 10px 10px 40px 10px;
     font-size: 0.9em; }
@@ -6620,6 +6632,8 @@ hr {
     position: absolute;
     bottom: 15px;
     margin-bottom: 0; }
+  .itemCard #map-modal-link {
+    color: lightcoral; }
 
 .itemCard:hover {
   box-shadow: 0 7px 20px #b3b3b3;

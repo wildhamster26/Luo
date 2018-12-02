@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import ItemCard from './partials/ItemCard'
 import api from '../../api';
 import ReactModal from 'react-modal';
-
 import SearchBox from './partials/SearchBox';
+import Calendar from 'react-calendar'
 // import Axios from 'axios';
 // import ItemDetail from './ItemDetail';
 
@@ -51,7 +51,8 @@ export default class Home extends Component {
         <ReactModal isOpen={this.state.isOpen} />
       <div className="home">
         <div className="search-box-div">
-          <SearchBox placeholder="Search" searchString={this.state.search} onSearch={this.searchState} />
+          {/* <Calendar /> */}
+          <SearchBox placeholder="" searchString={this.state.search} onSearch={this.searchState} />
         </div>
         <section className="categories-section">
           <div>
