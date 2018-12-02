@@ -22,10 +22,10 @@ class ModalInteraction extends React.Component {
   
   
   render() {
-    console.log(this.props.itemId);
+    // console.log(this.props.itemId);
     return (
       <div>
-        <Button onClick={this.toggle}>{this.props.text}</Button>
+        <a onClick={this.toggle}><h6>{this.props.text}</h6></a>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>
             Please log in or sign up to do that.

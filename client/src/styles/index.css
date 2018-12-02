@@ -6316,7 +6316,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  width: 100%;
+  width: 100% !important;
   color: #484848; }
 
 a {
@@ -6626,6 +6626,9 @@ hr {
       font-size: 0.9em; }
     .itemCard .itemCard-sub-img a {
       color: lightcoral; }
+    .itemCard .itemCard-sub-img a:hover {
+      cursor: pointer;
+      color: #ec5f5f; }
   .itemCard p {
     margin: 10px 10px 40px 10px;
     font-size: 0.9em; }
@@ -6637,10 +6640,65 @@ hr {
     margin-bottom: 0; }
   .itemCard #map-modal-link {
     color: lightcoral; }
+  .itemCard #map-modal-link:hover {
+    cursor: pointer;
+    color: #ec5f5f; }
 
 .itemCard:hover {
   box-shadow: 0 7px 20px #b3b3b3;
   transition: box-shadow 0.5s; }
+
+.modal {
+  display: grid !important;
+  align-content: center;
+  align-items: center; }
+
+#availability-calendar {
+  display: grid;
+  width: 100%;
+  justify-content: center; }
+
+.react-calendar {
+  border: none !important;
+  border-radius: 5px;
+  box-shadow: 0 5px 20px black; }
+
+.react-calendar__tile {
+  font-size: 0.8em; }
+
+.react-calendar__month-view__days__day--weekend {
+  color: lightcoral !important; }
+
+.modal-content {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none; }
+
+.modal-header {
+  border: none; }
+
+.modal-title {
+  color: white;
+  text-align: center; }
+
+.modal-footer {
+  border: none;
+  color: white;
+  justify-content: center;
+  text-align: center; }
+  .modal-footer button {
+    background-color: rgba(255, 255, 255, 0); }
+  .modal-footer button:hover {
+    box-shadow: none; }
+  .modal-footer button:focus {
+    outline: none; }
+  .modal-footer Link {
+    color: white; }
+
+button.close {
+  color: lightcoral !important;
+  text-shadow: none;
+  opacity: 1; }
 
 @media only screen and (max-width: 850px) {
   .itemCard {

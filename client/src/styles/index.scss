@@ -40,7 +40,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  width: 100%;
+  width: 100% !important;
   color: rgb(72, 72, 72);
 }
 a {
@@ -433,6 +433,10 @@ hr{
     a { 
       color: $buy;
     }
+    a:hover {
+      cursor: pointer;
+      color: hsl(0, 79%, 65%);
+    }
   }
   p {
     margin: 10px 10px 40px 10px; 
@@ -449,11 +453,72 @@ hr{
   #map-modal-link {
     color: $buy;
   }
+  #map-modal-link:hover {
+    cursor: pointer;
+    color: hsl(0, 79%, 65%);
+  }
 }
 .itemCard:hover {
   box-shadow: 0 7px 20px hsl(0, 0%, 70%);
   transition: box-shadow 0.5s;
 }
+.modal {
+  display: grid !important;
+  align-content: center;
+  align-items: center;
+}
+#availability-calendar {
+  display: grid;
+  width: 100%;
+  justify-content: center;
+}
+.react-calendar {
+  border: none !important;
+  border-radius: 5px;
+  box-shadow: 0 5px 20px black;
+}
+.react-calendar__tile {
+  font-size: 0.8em;
+}
+.react-calendar__month-view__days__day--weekend {
+  color: lightcoral !important;
+}
+.modal-content {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+}
+.modal-header {
+  border: none;
+}
+.modal-title {
+  color: white;
+  text-align: center;
+}
+.modal-footer {
+  border: none;
+  color: white;
+  justify-content: center;
+  text-align: center;
+  button {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  button:hover {
+    box-shadow: none;
+  }
+  button:focus {
+    outline: none;
+  }
+  Link {
+    color: white;
+  }
+}
+button.close {
+  color: lightcoral !important;
+  text-shadow: none;
+  opacity: 1;
+}
+
 @media only screen and (max-width: 850px) {
   .itemCard {
     max-width: 95%;

@@ -16,6 +16,7 @@ const itemSchema = new Schema({
   //   city: String,
   //   country: String,
   // },
+  reservedDates: [Date],
   location: {
     type: { type: String, required: true },
     coordinates: { type: [Number], required: true }

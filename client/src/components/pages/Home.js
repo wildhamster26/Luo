@@ -14,7 +14,8 @@ export default class Home extends Component {
     this.state = {
       items: [],
       search: "",
-      activeCategories: []
+      activeCategories: [],
+      pickedDates: []
     }
 
   }
@@ -35,6 +36,9 @@ export default class Home extends Component {
       activeCategories: cats
     })
   }
+  onSubmitDates = () => {
+
+  }
   componentDidMount() {
     api.getItems()
     .then(items => {
@@ -51,7 +55,6 @@ export default class Home extends Component {
         <ReactModal isOpen={this.state.isOpen} />
       <div className="home">
         <div className="search-box-div">
-          {/* <Calendar /> */}
           <SearchBox placeholder="" searchString={this.state.search} onSearch={this.searchState} />
         </div>
         <section className="categories-section">
@@ -122,7 +125,7 @@ export default class Home extends Component {
           </div>
         </section>
         <div className="itemCards-container">
-          {this.state.items.map(item => <ItemCard key={item._id} id={item._id} name={item.name} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} searchFilter={this.state.search} categories={item.categories} categoryFilter={this.state.activeCategories} />) }
+          {this.state.items.map(item => <ItemCard key={item._id} id={item._id} name={item.name} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} searchFilter={this.state.search} categories={item.categories} categoryFilter={this.state.activeCategories} reservedDates={item.reservedDates} />) }
         </div>
       </div>
       </div>
