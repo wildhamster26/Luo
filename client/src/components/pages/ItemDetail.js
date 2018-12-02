@@ -20,6 +20,9 @@ export default class ItemDetail extends Component {
 
   requestItem = () => {
     api.requestItem(this.state.item._id)
+    .then(res =>{
+      alert("The owner has been contacted with your email.");
+    });
   }
 
   render() {
@@ -29,11 +32,15 @@ export default class ItemDetail extends Component {
     if (!this.state.item._id) {
       return <div>Loading...</div>
     }
+
+    if (this.state.item.imgPath === undefined || this.state.item.imgPath.length === 0) 
+      this.state.item.imgPath = 'https://res.cloudinary.com/wildhamster26/image/upload/v1543699130/folder-name/generic.png'
+
     return (
       <div className="item-detail">
         <h2>{this.state.item.name}</h2>
 
-        <img src={this.state.item.picture} alt="The item"/>
+        <img src={this.state.item.imgPath} alt="The item"/>
         
         <h4>Description</h4>
         {this.state.item.description}

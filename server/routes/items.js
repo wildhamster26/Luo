@@ -1,6 +1,7 @@
 const express = require('express');
 const Item = require('../models/Item')
 const { isLoggedIn } = require('../middlewares')
+const uploadCloud = require('../configs/cloudinary')
 const User = require("../models/User")
 const nodemailer = require("nodemailer");
 
@@ -17,7 +18,9 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err))
 });
 
+
 router.post('/', isLoggedIn, (req, res, next) => {
+  console.log("from the add item route - top")
   let { name, description, pricePerPeriod, lng, lat } = req.body
   let _owner = req.user._id
   if (!name || !description || !pricePerPeriod || !lng || !lat) {
@@ -33,13 +36,31 @@ router.post('/', isLoggedIn, (req, res, next) => {
     },
     _owner
   })
-    .then(item => {
+  .then(item => {
+    console.log("Created item");
+    res.json({
+      success: true,
+      item
+    });
+  })
+  .catch(err => next(err))
+});
+
+router.post('/:id/image', uploadCloud.single('picture'), (req, res, next) => {
+  // console.log("from the items image route - top", req.file)
+  Item.findByIdAndUpdate(req.params.id, 
+    { 
+      imgPath: req.file.url,
+      public_id: req.file.public_id,
+      imgName: req.file.originalname
+    })
+    .then(() => {
+    console.log(res)
       res.json({
         success: true,
-        item
-      });
+        picture: req.file.url
+      })
     })
-    .catch(err => next(err))
 });
 
 router.get('/:id', isLoggedIn, (req, res, next) => {
@@ -58,14 +79,14 @@ router.get("/:id/request/:userId", (req, res, next) => {
   const {userId, id} = req.params;
   User.findOne({_id : userId})
   .then(requestingUser => {
-  Item.findOne({ _id : id })
-  .then(item =>{
-    let ownerId = item._owner
-  
-  User.findOne({ _id : ownerId })
-    .then(user => {
-      let transporter = nodemailer.createTransport({
-        service: 'Gmail',
+    Item.findOne({ _id : id })
+    .then(item =>{
+      let ownerId = item._owner
+      
+      User.findOne({ _id : ownerId })
+      .then(user => {
+        let transporter = nodemailer.createTransport({
+          service: 'Gmail',
         auth: {
           user:  process.env.GMAIL_USER,
           pass:  process.env.GMAIL_PASS

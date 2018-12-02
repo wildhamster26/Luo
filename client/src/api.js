@@ -99,7 +99,7 @@ export default {
   requestItem(id){
     return service
     .get(`/items/${id}/request/${JSON.parse(localStorage.getItem('user'))._id}`)
-    .then(res => console.log(res))
+    .then(res => res.data)
     .catch(errHandler)
   },
 
@@ -118,11 +118,11 @@ export default {
       .catch(errHandler)
   },
 
-  addPicture(file) {
+  addItemPicture(file, id) {
     const formData = new FormData()
-    formData.append("picture", file)
+    formData.append("picture", file);
     return service
-      .post('/endpoint/to/add/a/picture', formData, {
+      .post(`/items/${id}/image`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -130,4 +130,20 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
+
+  addUserPicture(file) {
+    const formData = new FormData();
+    formData.append("picture", file)
+    console.log('DEBUG formData', formData.get("picture"));
+    return service
+      .post('/users/new/image', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(res => res.data)
+      .catch(errHandler);
+  }
 }
+
+

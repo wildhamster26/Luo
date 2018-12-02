@@ -5,7 +5,7 @@ import ModalInteraction from './ModalInteraction'
 import { Button } from 'reactstrap';
 import MapModal from './MapModal'
 
-const ItemCard = ({id, name, pictures, pricePerPeriod, period, description, searchFilter, categories, categoryFilter}) => {
+const ItemCard = ({id, name, imgPath, pricePerPeriod, period, description, searchFilter, categories, categoryFilter}) => {
   let catFilt = false
   for (let i = 0; i < categories.length; i++) {
     if (categoryFilter.includes(categories[i])) {
@@ -13,19 +13,22 @@ const ItemCard = ({id, name, pictures, pricePerPeriod, period, description, sear
     }
   }
 
+
   if (((searchFilter !== "" && (name.toLowerCase().includes(searchFilter) || description.toLowerCase().includes(searchFilter))) || catFilt) || (searchFilter === "" && categoryFilter.length === 0)) {
-    pictures === undefined || pictures.length === 0 && (pictures = '/images/generic.png')
+    if (imgPath === undefined || imgPath.length === 0) 
+      imgPath = 'https://res.cloudinary.com/wildhamster26/image/upload/v1543699130/folder-name/generic.png'
 
     let handleClick = () => {
       window.location.assign('/items/'+id);    
     };
+
       return (
           <div className="itemCard">
             <div className="itemCard-name">
               <h5>{name}</h5>
             </div>
             <div className="itemCard-img-wrapper">
-              <img src={pictures} alt="The item"/>
+              <img src={imgPath} alt="The item"/>
             </div>
             <div className="itemCard-sub-img">
               <h6>{pricePerPeriod}€ per {period}</h6>
