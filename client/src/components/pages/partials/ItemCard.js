@@ -1,13 +1,23 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import api from '../../../api';
 import ModalInteraction from './ModalInteraction'
 // import ReactModal from 'react-modal'
 // import { Button } from 'reactstrap';
 import MapModal from './MapModal'
 import CalendarModal from './CalendarModal'
+import DeleteItemModal from './DeleteItemModal'
 
-const ItemCard = ({id, name, imgPath, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates}) => {
+// const ItemCard = ({id, name, imgPath, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates}) => {
+
+
+const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates, updateDeleteItem}) => {
+  let catFilt = false
+  for (let i = 0; i < categories.length; i++) {
+    if (categoryFilter.includes(categories[i])) {
+      catFilt = true
+    }
+  }
   var pickedDays = "not updated"
 
   let requestItem = () => {
@@ -20,14 +30,6 @@ const ItemCard = ({id, name, imgPath, pricePerPeriod, period, description, searc
   let getPickedDays = (e) => {
     pickedDays = e
   }
-  // console.log('THIS IS THE SHIT', pickedDays)
-
-  let catFilt = false
-  for (let i = 0; i < categories.length; i++) {
-    if (categoryFilter.includes(categories[i])) {
-      catFilt = true
-    }
-  }
 
   if (((searchFilter !== "" && (name.toLowerCase().includes(searchFilter) || description.toLowerCase().includes(searchFilter))) || catFilt) || (searchFilter === "" && categoryFilter.length === 0)) {
     if (imgPath === undefined || imgPath.length === 0) 
@@ -35,6 +37,14 @@ const ItemCard = ({id, name, imgPath, pricePerPeriod, period, description, searc
 
     let handleClick = () => {
       window.location.assign('/items/'+id);    
+    };
+
+    let deleteItem = () => {
+      api.deleteItem(id)
+      .then(res => {
+        console.log(res);
+        updateDeleteItem()
+      });
     };
 
       return (
@@ -54,10 +64,12 @@ const ItemCard = ({id, name, imgPath, pricePerPeriod, period, description, searc
               <div className="map-modal-div">{description}<br/><MapModal buttonLabel="Map" /></div>
             </div>
             <div className="itemCard-btn-div">
-            {/* {api.isLoggedIn() && <button className="btn-second" onClick={handleClick}>Request</button>} */}
-            {api.isLoggedIn() && <button className="btn-second" onClick={requestItem}>Request</button>}
-            {!api.isLoggedIn() && <ModalInteraction itemId={id} text="Request" />}
+              {/* {api.isLoggedIn() && <button className="btn-second" onClick={handleClick}>Request</button>} */}
+              {api.isLoggedIn() && <button className="btn-second" onClick={requestItem}>Request</button>}
+              {!api.isLoggedIn() && <ModalInteraction itemId={id} text="Request" />}
             </div>
+            {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) && <DeleteItemModal deleteItem={deleteItem} itemId={id}/>}
+            <Link className="itemCard-btn-div" to={`/items/${id}/edit`}><img src="../images/edit.png" alt="edit" width="20px" /></Link>
         </div>
       )
   } else {

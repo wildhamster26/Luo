@@ -5,6 +5,7 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
+
 class MapModal extends React.Component {
   constructor(props) {
     super(props);

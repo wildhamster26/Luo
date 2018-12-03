@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import MainNavbar from './MainNavbar';
 import Home from './pages/Home';
 import Items from './pages/Items';
-import MyItems from './pages/Items';
+import Profile from './pages/Profile';
 import AddItem from './pages/AddItem';
 import Secret from './pages/Secret';
 import LoginSignup from './pages/LoginSignup';
@@ -18,7 +18,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      countries: []
+      
     }
     // api.loadUser();
   }
@@ -35,7 +35,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/items" exact component={Items} />
-          <Route path="/myitems" exact component={MyItems} />
+          <Route path="/profile" exact component={Profile} />
           <Route path="/items/new" exact  component={AddItem} />
           <Route path="/items/:itemId" exact component={ItemDetail} />
           <Route path="/items/:itemId/edit" exact component={EditItem} />

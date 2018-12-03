@@ -12,10 +12,12 @@ const bcrypt = require("bcryptjs");
 const bcryptSalt = 10;
 
 router.post("/signup", (req, res, next) => {
-  const { email, password, itemId } = req.body
+  const { email, password } = req.body
   const confirmationCode = randomstring.generate(30);
   const resetPasswordToken = "";
   const resetPasswordExpires = "";
+  const imgPath = "https://res.cloudinary.com/wildhamster26/image/upload/v1543843830/folder-name/default-user-image.png";
+  const username = email.split('@')[0];
 
   if (!email || !password) {
     res.status(401).json({ message: "Indicate email and password" })
@@ -29,7 +31,7 @@ router.post("/signup", (req, res, next) => {
       }
       const salt = bcrypt.genSaltSync(bcryptSalt)
       const hashPass = bcrypt.hashSync(password, salt)
-      const newUser = new User({ email, password: hashPass, resetPasswordToken, resetPasswordExpires, confirmationCode })
+      const newUser = new User({ email, password: hashPass, resetPasswordToken, resetPasswordExpires, confirmationCode, imgPath, username })
       return newUser.save()
     })
     .then(userSaved => {

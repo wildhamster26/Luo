@@ -48,7 +48,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
 
 router.post('/:id/image', uploadCloud.single('picture'), (req, res, next) => {
   // console.log("from the items image route - top", req.file);
-  cloudinary.v2.uploader.destroy(req.user.public_id, function(result) { console.log(result) }); 
+  // cloudinary.v2.uploader.destroy(req.user.public_id, function(result) { console.log(result) }); 
   Item.findByIdAndUpdate(req.params.id, 
     { 
       imgPath: req.file.url,
@@ -75,7 +75,7 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
 })
 
 router.post('/:id/edit', uploadCloud.single('photo'), (req, res, next) => {
-  console.log("From the :id/edit route.")
+  console.log("From the ITEM :id/edit route.")
   let { name, description, pricePerPeriod, period, lng, lat } = req.body;
   Item.findByIdAndUpdate(req.params.id, {
     name: name,
@@ -86,15 +86,37 @@ router.post('/:id/edit', uploadCloud.single('photo'), (req, res, next) => {
       type: 'Point',
       coordinates: [lng, lat]
     },
+    })
+    .then(data => {	
+      res.json({
+        success: true, 
+        data
       })
-      .then(data => {	
+    })
+});
+
+router.get('/:id/delete', isLoggedIn, (req, res, next) => {
+  let user = req.user._id;
+  let itemId = req.params.id
+  Item.findById(itemId)
+  .then(item => {
+    console.log("Item owner:", JSON.stringify(item._owner) );
+    console.log("user:", JSON.stringify(user+"jhb"));
+    if(JSON.stringify(item._owner) === JSON.stringify(user)){
+      Item.findByIdAndRemove(itemId)
+      .then(
         res.json({
-          success: true, 
-          data
+          success: true,
+          message: "The item was deleted."
         })
-      })
-    }		
-    );
+      )}
+    else {
+      res.json({
+        success: false,
+        message: "User is unauthorized to delete this item."
+      })}
+    }
+)});
     
 router.get("/:id/request/:userId", (req, res, next) => {      
   console.log("params:", req.params)
