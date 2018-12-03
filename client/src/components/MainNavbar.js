@@ -60,7 +60,7 @@ export default class MainNavbar extends Component {
               <NavLink tag={NLink} to="/login">Login/Signup</NavLink>
             </NavItem>}
             {api.isLoggedIn() && <NavItem>
-              <NavLink tag={NLink} to="/item/new">Add your item</NavLink>
+              <NavLink tag={NLink} to="/items/new">Add your item</NavLink>
             </NavItem>}
             {api.isLoggedIn() && <NavItem>
               <NavLink tag={Link} to="/"  onClick={(e) => this.handleLogoutClick(e)}>Logout</NavLink>

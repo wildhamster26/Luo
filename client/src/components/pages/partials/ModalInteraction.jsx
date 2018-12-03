@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalFooter } from 'reactstrap';
 import {Link } from 'react-router-dom'
 
 class ModalInteraction extends React.Component {

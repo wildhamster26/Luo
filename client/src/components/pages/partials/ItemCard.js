@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../../api';
 import ModalInteraction from './ModalInteraction'
-import { Button } from 'reactstrap';
+import CalendarModal from './CalendarModal'
 import MapModal from './MapModal'
 
 const ItemCard = ({id, name, imgPath, pricePerPeriod, period, description, searchFilter, categories, categoryFilter}) => {
@@ -32,7 +32,7 @@ const ItemCard = ({id, name, imgPath, pricePerPeriod, period, description, searc
             </div>
             <div className="itemCard-sub-img">
               <h6>{pricePerPeriod}€ per {period}</h6>
-              {api.isLoggedIn() && <Link to={"/items/"+id} ><h6>Availability</h6></Link>}
+              {api.isLoggedIn() && <CalendarModal itemId={id} text="Availability" />}
               {!api.isLoggedIn() && <ModalInteraction itemId={id} text="Availability" />}
             </div>
             <div>
