@@ -3,7 +3,7 @@ import ItemCard from './partials/ItemCard'
 import api from '../../api';
 import ReactModal from 'react-modal';
 import SearchBox from './partials/SearchBox';
-import Calendar from 'react-calendar'
+// import Calendar from 'react-calendar'
 // import Axios from 'axios';
 // import ItemDetail from './ItemDetail';
 
@@ -14,6 +14,7 @@ export default class Home extends Component {
     this.state = {
       items: [],
       search: "",
+      date: new Date(),
       activeCategories: [],
       pickedDates: []
     }
@@ -126,7 +127,7 @@ export default class Home extends Component {
           </div>
         </section>
         <div className="itemCards-container">
-          {this.state.items.map(item => <ItemCard key={item._id} id={item._id} name={item.name} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} searchFilter={this.state.search} categories={item.categories} categoryFilter={this.state.activeCategories} reservedDates={item.reservedDates} />) }
+          {this.state.items.map(item => <ItemCard key={item._id} id={item._id} name={item.name} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} searchFilter={this.state.search} categories={item.categories} categoryFilter={this.state.activeCategories} reservedDates={item.reservedDates} date={this.state.date} />) }
         </div>
       </div>
       </div>

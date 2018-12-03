@@ -6382,6 +6382,9 @@ input:focus {
   box-shadow: 0 2px 7px lightgrey;
   transition: all 0.15s; }
 
+.btn-second:focus {
+  outline: 0; }
+
 .App .App-header {
   background-color: #1f232d;
   color: white;
@@ -6629,7 +6632,7 @@ hr {
     .itemCard .itemCard-sub-img a:hover {
       cursor: pointer;
       color: #ec5f5f; }
-  .itemCard p {
+  .itemCard .map-modal-div {
     margin: 10px 10px 40px 10px;
     font-size: 0.9em; }
   .itemCard .itemCard-btn-div {

@@ -25,6 +25,7 @@ class AddItem extends Component {
       id: "",
       name: "",
       description: "",
+      category: "toys",
       pricePerPeriod: 0,
       period: "day",
       lng: 13.3711224,
@@ -75,6 +76,7 @@ class AddItem extends Component {
     let data = {
       name: this.state.name,
       description: this.state.description,
+      category: this.state.category,     
       pricePerPeriod: this.state.pricePerPeriod,
       period: this.state.period,
       lng: this.state.lng,
@@ -89,8 +91,9 @@ class AddItem extends Component {
         this.setState({
           name: "",
           description: "",
+          category: "toys",
           pricePerPeriod: 0,
-          period: "",
+          period: "day",
           message: `Your item has been created`
         })
         setTimeout(() => {

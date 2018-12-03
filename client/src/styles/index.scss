@@ -87,7 +87,7 @@ input:focus {
   transition: all 0.25s;
 }
 .btn:focus {
-  outline:0;
+  outline: 0;
   background-color: hsl(2, 55%, 60%);
 }
 
@@ -108,6 +108,9 @@ input:focus {
   cursor: pointer;
   box-shadow: 0 2px 7px lightgrey;
   transition: all 0.15s;
+}
+.btn-second:focus {
+  outline: 0;
 }
 // --------------------
 // Style for App component
@@ -438,7 +441,7 @@ hr{
       color: hsl(0, 79%, 65%);
     }
   }
-  p {
+  .map-modal-div {
     margin: 10px 10px 40px 10px; 
     font-size: 0.9em;
   }
