@@ -40,6 +40,15 @@ export default class Home extends Component {
   onSubmitDates = () => {
 
   }
+
+  updateDeleteItem = () => {
+    api.getItems()
+    .then(items => {
+        this.setState({
+          items: items
+        })
+      })
+  }
   
   componentDidMount() {
     api.getItems()
@@ -127,7 +136,7 @@ export default class Home extends Component {
           </div>
         </section>
         <div className="itemCards-container">
-          {this.state.items.map(item => <ItemCard key={item._id} id={item._id} name={item.name} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} searchFilter={this.state.search} categories={item.categories} categoryFilter={this.state.activeCategories} reservedDates={item.reservedDates} date={this.state.date} />) }
+          {this.state.items.map(item => <ItemCard key={item._id} id={item._id} owner={item._owner} name={item.name} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} searchFilter={this.state.search} categories={item.categories} categoryFilter={this.state.activeCategories} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} />) }
         </div>
       </div>
       </div>

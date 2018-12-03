@@ -6567,6 +6567,37 @@ hr {
 .please-confirm-image {
   margin-top: 50px; }
 
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .profile-page h1 {
+    margin: 20px auto; }
+
+.profile-form-div {
+  display: flex;
+  max-width: 400px;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  text-align: center;
+  letter-spacing: 1px; }
+  .profile-form-div input {
+    text-align: center;
+    border-radius: 10px;
+    letter-spacing: 1px;
+    margin: 4px; }
+  .profile-form-div .user-img {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center; }
+  .profile-form-div .user-button {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center; }
+
 .item-detail {
   display: flex;
   flex-direction: column;

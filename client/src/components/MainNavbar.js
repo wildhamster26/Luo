@@ -18,7 +18,9 @@ export default class MainNavbar extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false,
-      hasShadow: false
+      hasShadow: false,
+      username: "Howdy stranger!",
+      imgPath: "https://res.cloudinary.com/wildhamster26/image/upload/v1543843830/folder-name/default-user-image.png"
     };
   }
   handleLogoutClick(e) {
@@ -40,6 +42,23 @@ export default class MainNavbar extends Component {
       })
     }
   }
+
+  componentDidMount() {
+    if(!!localStorage.getItem("user")){
+      api.getUser()
+        .then(user => {
+          this.setState({
+            username: user.username,
+            // email: user.email,
+            imgPath: user.imgPath,
+            // id: user._id
+          })
+        })
+        .catch(err => console.log(err))
+    }
+
+  }
+
   render() {
     window.onscroll = () => {this.shadowToggler()};
     return (
@@ -51,7 +70,7 @@ export default class MainNavbar extends Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink tag={NLink} to="/myitems">My items</NavLink>
+            {api.isLoggedIn() && <NavLink tag={NLink} to="/profile"><img src={this.state.imgPath} alt="User avatar" width="20px" />{this.state.username}</NavLink>}
             </NavItem>
             <NavItem>
               <NavLink tag={NLink} to="/items">Items</NavLink>

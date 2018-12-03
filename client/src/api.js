@@ -103,21 +103,13 @@ export default {
     .catch(errHandler)
   },
 
-  deleteItem(){
-
-  },
-
-  //====================
-  //User routes --- to be set
-  //====================
-
-  getSecret() {
+  deleteItem(id){
     return service
-      .get('/secret')
-      .then(res => res.data)
-      .catch(errHandler)
+    .get(`/items/${id}/delete`)
+    .then(res => res.data)
+    .catch(errHandler)
   },
-
+  
   addItemPicture(file, id) {
     const formData = new FormData()
     formData.append("picture", file);
@@ -130,13 +122,39 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
+  //====================
+  //User routes --- to be set
+  //====================
 
-  addUserPicture(file) {
+  getUser() {
+    return service
+    .get(`/users/${JSON.parse(localStorage.getItem('user'))._id}`)
+    .then(res => 
+      res.data)
+    .catch(errHandler)
+  },
+
+  editUser(id, data) {
+    return service
+    .post(`/users/${id}/edit`, data)
+    .then(res => res.data)
+    .catch(errHandler)
+  },
+
+  deleteUser(id){
+    return service
+    .get(`/users/${id}/delete`)
+    .then(res => res.data)
+    .catch(errHandler)
+  },
+
+
+  addUserPicture(file, id) {
     const formData = new FormData();
     formData.append("picture", file)
     console.log('DEBUG formData', formData.get("picture"));
     return service
-      .post('/users/new/image', formData, {
+      .post(`/users/${id}/image`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
