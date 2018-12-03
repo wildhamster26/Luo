@@ -29,18 +29,18 @@ class ModalInteraction extends React.Component {
       pickedDates: e
     })
     console.log('e[0]', (e[0]))
-    console.log('e[0]', typeof(e[0]))
-    let date = new Date(1984, 0, 29)
-    console.log('date', date)
-    console.log('date', date)
-    console.log('typeof(date)', typeof(date))
-    
-
-
+    console.log('e[1]', (e[1]))
+    console.log(Math.floor(((e[1] - e[0] + 1000)/1000)/3600)/24, " day(s)")
+    // let date = new Date(1984, 0, 29)
+    // console.log('date', date)
+    // console.log('date', date)
+    // console.log('typeof(date)', typeof(date))
   }
   
   render() {
     // console.log(this.props.itemId);
+    console.log(this.props.reservedDates[0])
+    console.log(this.props.reservedDates[1])
     return (
       <div id="calendar-modal-div">
         <a onClick={this.toggle}><h6>{this.props.linkName}</h6></a>
