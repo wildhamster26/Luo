@@ -8,6 +8,10 @@ import {
   Input,
   Label,
   Row,
+  Dropdown, 
+  DropdownToggle, 
+  DropdownMenu, 
+  DropdownItem
 } from 'reactstrap'
 import api from '../../api'
 
@@ -25,11 +29,18 @@ class EditItem extends Component {
       lng: 13.3711224,
       lat: 52.5063688,
       message: null,
-      file: null
+      file: null,
+      dropdownOpen: false
     }
     this.mapRef = React.createRef()
     this.map = null
     this.marker = null
+  }
+
+  toggle = () => {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
+    }));
   }
 
   handleInputChange = (event) => {
@@ -40,6 +51,12 @@ class EditItem extends Component {
       if (this.marker && (name === 'lat' || name === 'lng')) {
         this.marker.setLngLat([this.state.lng, this.state.lat])
       }
+    })
+  }
+
+  period = (value) => {
+    this.setState({
+      period: value
     })
   }
 
@@ -63,9 +80,11 @@ class EditItem extends Component {
       lat: this.state.lat,
     }
     api.editItem(this.props.match.params.itemId, data)
-      // .then(result => {
-      //   api.addItemPicture(this.state.file, result.item._id)
-      // })
+      .then(result => {
+        console.log("result before image upload:", result)
+        if(this.state.file)
+          api.addItemPicture(this.state.file, result.data._id)
+      })
       .then(result => {
         console.log('SUCCESS!', result)
         this.setState({
@@ -76,6 +95,9 @@ class EditItem extends Component {
             message: null
           })
         }, 2000)
+      })
+      .then(res => {
+        this.props.history.push("/");
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
@@ -149,9 +171,21 @@ class EditItem extends Component {
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Label for="period" xl={3}>Per...</Label>
+                {/* <Label for="period" xl={3}>Per...</Label> */}
                 <Col xl={9}>
-                  <Input type="text" value={this.state.period} name="period" onChange={this.handleInputChange} />
+                Per:
+                <Dropdown direction="right" isOpen={this.state.dropdownOpen} toggle={this.toggle}  name="period">
+                  <DropdownToggle caret>
+                    {this.state.period}
+                  </DropdownToggle>
+                  <DropdownMenu >
+                    <DropdownItem onClick={() => this.period("hour")}>Hour</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => this.period("day")}>Day</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => this.period("month")}>Month</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
                 </Col>
               </FormGroup>
               <FormGroup row>

@@ -3,7 +3,7 @@ import ItemCard from './partials/ItemCard'
 import api from '../../api';
 import ReactModal from 'react-modal';
 import SearchBox from './partials/SearchBox';
-import Calendar from 'react-calendar'
+// import Calendar from 'react-calendar'
 // import Axios from 'axios';
 // import ItemDetail from './ItemDetail';
 
@@ -64,63 +64,63 @@ export default class Home extends Component {
             <h3>Explore by category</h3>
           </div>
           <div className="categories-container">
-            <a className={"category-button" + (this.state.activeCategories.includes('bikes') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('bikes')}>
+            <a className={"category-button" + (this.state.activeCategories.includes('bikes') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('bikes')}>
               <div>
                 <img alt="item" src="/images/categories/bicycle (white).png" />
                 <p>Bikes</p>
               </div>
             </a>
-            <a className={"category-button" + (this.state.activeCategories.includes('books') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('books')}>
+            <a className={"category-button" + (this.state.activeCategories.includes('books') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('books')}>
               <div>
-                <img src="/images/categories/book (white).png" />
+                <img src="/images/categories/book (white).png" alt="item"/>
                 <p>Books</p>
               </div>
             </a>
-            <a className={"category-button" + (this.state.activeCategories.includes('clothes') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('clothes')}>
+            <a className={"category-button" + (this.state.activeCategories.includes('clothes') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('clothes')}>
               <div>
-                <img src="/images/categories/clothes.png" />
+                <img src="/images/categories/clothes.png" alt="item"/>
                 <p>Clothes</p>
               </div>
             </a>
-            <a className={"category-button" + (this.state.activeCategories.includes('computers') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('computers')}>
+            <a className={"category-button" + (this.state.activeCategories.includes('computers') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('computers')}>
               <div>
                 <img alt="item" src="/images/categories/computer (white).png" />
                 <p>Computers</p>
               </div>
             </a>
-            <a className={"category-button" + (this.state.activeCategories.includes('gardening') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('gardening')}>
+            <a className={"category-button" + (this.state.activeCategories.includes('gardening') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('gardening')}>
               <div>
-                <img src="/images/categories/gardening (white).png" />
+                <img src="/images/categories/gardening (white).png" alt="item"/>
                 <p>Gardening</p>
               </div>
             </a>
-            <a className={"category-button" + (this.state.activeCategories.includes('kitchen') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('kitchen')}>
+            <a className={"category-button" + (this.state.activeCategories.includes('kitchen') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('kitchen')}>
               <div>
-                <img alt="item" src="/images/categories/kitchen (white).png" />
+                <img src="/images/categories/kitchen (white).png" alt="item"/>
                 <p>Kitchen</p>
               </div>
             </a>
-            <a className={"category-button" + (this.state.activeCategories.includes('sports') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('sports')}>
+            <a className={"category-button" + (this.state.activeCategories.includes('sports') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('sports')}>
               <div>
-                <img src="/images/categories/weightlifting (white).png" />
+                <img src="/images/categories/weightlifting (white).png" alt="item"/>
                 <p>Sports</p>
               </div>
             </a>
-            <a className={"category-button" + (this.state.activeCategories.includes('tools') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('tools')}>
+            <a className={"category-button" + (this.state.activeCategories.includes('tools') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('tools')}>
               <div>
-                <img src="/images/categories/tools (white).png" />
+                <img src="/images/categories/tools (white).png" alt="item"/>
                 <p>Tools</p>
               </div>
             </a>
-            <a className={"category-button" + (this.state.activeCategories.includes('toys') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('toys')}>
+            <a className={"category-button" + (this.state.activeCategories.includes('toys') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('toys')}>
               <div>
-                <img src="/images/categories/toys (white).png" />
+                <img src="/images/categories/toys (white).png" alt="item"/>
                 <p>Toys</p>
               </div>
             </a>
-            <a className={"category-button" + (this.state.activeCategories.includes('others') ? " isActive" : "")} href="#" onClick={()=>this.handleCategory('others')}>
+            <a className={"category-button" + (this.state.activeCategories.includes('others') ? " isActive" : "")} href="/" onClick={()=>this.handleCategory('others')}>
               <div>
-                <img src="/images/categories/others (white).png" />
+                <img src="/images/categories/others (white).png" alt="item"/>
                 <p>Others</p>
               </div>
             </a>

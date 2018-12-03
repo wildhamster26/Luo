@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Link } from 'react-router-dom';
+
 
 class MapModal extends React.Component {
   constructor(props) {
@@ -23,7 +25,7 @@ class MapModal extends React.Component {
     return (
       <div>
         {/* <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button> */}
-        <a onClick={this.toggle}>{this.props.buttonLabel}</a>
+        <Link to={"/"} onClick={this.toggle}>{this.props.buttonLabel}</Link>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Item location</ModalHeader>
           <ModalBody>

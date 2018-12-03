@@ -10,7 +10,8 @@ export default class ItemDetail extends Component {
     super(props)
     this.id = this.props.match.params.itemId
     this.state= {
-      item: {}
+      item: {},
+      imgPath: null
     }
   }
 
@@ -30,15 +31,15 @@ export default class ItemDetail extends Component {
       return <div>Loading...</div>
     }
 
-    if (this.state.item.imgPath === undefined || this.state.item.imgPath.length === 0) 
-      this.state.item.imgPath = 'https://res.cloudinary.com/wildhamster26/image/upload/v1543699130/folder-name/generic.png'
+    
 
     return (
       <div className="item-detail">
         <h2>{this.state.item.name}</h2>
-
-        <img src={this.state.item.imgPath} alt="The item"/>
-        
+        {(this.state.item.imgPath === undefined || this.state.item.imgPath.length === 0) &&
+          <img src={this.state.imgPath} alt="The item"/>}
+        {!(this.state.item.imgPath === undefined || this.state.item.imgPath.length === 0) && 
+        <img src={this.state.item.imgPath} alt="The item"/>}
         <h4>Description</h4>
         {this.state.item.description}
 
@@ -66,6 +67,10 @@ export default class ItemDetail extends Component {
           })
         })
         .catch(err => console.log(err))
-      }
+    if (this.state.item.imgPath === undefined || this.state.item.imgPath.length === 0) {
+      this.setState({
+        imgPath: 'https://res.cloudinary.com/wildhamster26/image/upload/v1543699130/folder-name/generic.png'
+      })}
+  }
     
 }

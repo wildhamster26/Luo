@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import api from '../../../api';
 import ModalInteraction from './ModalInteraction'
-import ReactModal from 'react-modal'
-import { Button } from 'reactstrap';
+// import ReactModal from 'react-modal'
+// import { Button } from 'reactstrap';
 import MapModal from './MapModal'
 import CalendarModal from './CalendarModal'
 
@@ -38,7 +38,7 @@ const ItemCard = ({id, name, imgPath, pricePerPeriod, period, description, searc
               {!api.isLoggedIn() && <CalendarModal itemId={id} linkName="Availability" />}
             </div>
             <div>
-              <p>{description}<br/><a id="map-modal-link" href="/"><MapModal buttonLabel="Map" /></a></p>
+              <div className="map-modal-div">{description}<br/><MapModal buttonLabel="Map" /></div>
             </div>
             <div className="itemCard-btn-div">
             {api.isLoggedIn() && <button className="btn-second" onClick={handleClick}>Request</button>}

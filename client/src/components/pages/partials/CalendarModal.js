@@ -1,6 +1,6 @@
 import Calendar from 'react-calendar'
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalFooter } from 'reactstrap';
 import {Link } from 'react-router-dom'
 import api from '../../../api';
 
@@ -39,8 +39,8 @@ class ModalInteraction extends React.Component {
   
   render() {
     // console.log(this.props.itemId);
-    console.log(this.props.reservedDates[0])
-    console.log(this.props.reservedDates[1])
+    // console.log(this.props.reservedDates[0])
+    // console.log(this.props.reservedDates[1])
     return (
       <div id="calendar-modal-div">
         <a onClick={this.toggle}><h6>{this.props.linkName}</h6></a>

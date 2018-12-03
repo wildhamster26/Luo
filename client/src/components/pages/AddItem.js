@@ -8,6 +8,10 @@ import {
   Input,
   Label,
   Row,
+  Dropdown, 
+  DropdownToggle,
+  DropdownMenu, 
+  DropdownItem
 } from 'reactstrap'
 import api from '../../api'
 
@@ -21,12 +25,14 @@ class AddItem extends Component {
       id: "",
       name: "",
       description: "",
+      category: "toys",
       pricePerPeriod: 0,
-      period: "",
+      period: "day",
       lng: 13.3711224,
       lat: 52.5063688,
       message: null,
-      file: null
+      file: null,
+      dropdownOpen: false
     }
     this.mapRef = React.createRef()
     this.map = null
@@ -44,6 +50,18 @@ class AddItem extends Component {
     })
   }
 
+  period = (value) => {
+    this.setState({
+      period: value
+    })
+  }
+
+  toggle = () => {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
+    }));
+  }
+
   handleChange = (e) => {
     console.log('handleChange');
     console.log('DEBUG e.target.files[0]', e.target.files[0]);
@@ -58,6 +76,7 @@ class AddItem extends Component {
     let data = {
       name: this.state.name,
       description: this.state.description,
+      category: this.state.category,     
       pricePerPeriod: this.state.pricePerPeriod,
       period: this.state.period,
       lng: this.state.lng,
@@ -72,8 +91,9 @@ class AddItem extends Component {
         this.setState({
           name: "",
           description: "",
+          category: "toys",
           pricePerPeriod: 0,
-          period: "",
+          period: "day",
           message: `Your item has been created`
         })
         setTimeout(() => {
@@ -82,11 +102,16 @@ class AddItem extends Component {
           })
         }, 2000)
       })
+      .then(res => {
+        this.props.history.push("/");
+      })
       .catch(err => this.setState({ message: err.toString() }))
   }
+  
   componentDidMount() {
     this.initMap()
   }
+
   initMap() {
     // Init the map where "this.mapRef" is defined in the render
     this.map = new mapboxgl.Map({
@@ -141,9 +166,20 @@ class AddItem extends Component {
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Label for="period" xl={3}>Per...</Label>
-                <Col xl={9}>
-                  <Input type="text" value={this.state.period} name="period" onChange={this.handleInputChange} />
+              <Col xl={9}>
+                Per:
+                <Dropdown direction="right" isOpen={this.state.dropdownOpen} toggle={this.toggle}  name="period">
+                  <DropdownToggle caret>
+                    {this.state.period}
+                  </DropdownToggle>
+                  <DropdownMenu >
+                    <DropdownItem onClick={() => this.period("hour")}>Hour</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => this.period("day")}>Day</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => this.period("month")}>Month</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
                 </Col>
               </FormGroup>
               <FormGroup row>
