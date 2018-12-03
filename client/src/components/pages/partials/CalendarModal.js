@@ -45,9 +45,9 @@ class ModalInteraction extends React.Component {
       <div id="calendar-modal-div">
         <a onClick={this.toggle}><h6>{this.props.linkName}</h6></a>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          {/* <ModalHeader toggle={this.toggle}> */}
-            <h4>Availability</h4>
-          {/* </ModalHeader> */}
+          <ModalHeader toggle={this.toggle}>
+            Availability
+          </ModalHeader>
           <div id="availability-calendar">
             <Calendar selectRange={true} onChange={(e) => this.handleRange(e)} />
           </div>
