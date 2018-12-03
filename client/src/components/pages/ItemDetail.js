@@ -14,8 +14,6 @@ export default class ItemDetail extends Component {
       imgPath: null
     }
   }
-
-
   requestItem = () => {
     api.requestItem(this.state.item._id)
     .then(res =>{
@@ -25,7 +23,7 @@ export default class ItemDetail extends Component {
 
   render() {
     
-    console.log(this.state.item);
+    // console.log(this.state.item);
 
     if (!this.state.item._id) {
       return <div>Loading...</div>

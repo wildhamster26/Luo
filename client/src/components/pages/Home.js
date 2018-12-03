@@ -16,8 +16,7 @@ export default class Home extends Component {
       items: [],
       search: "",
       date: new Date(),
-      activeCategories: [],
-      pickedDates: []
+      activeCategories: []
     }
 
   }
@@ -25,7 +24,6 @@ export default class Home extends Component {
     this.setState({
       search: character
     })
-    // console.log(this.state.search)
   }
   handleCategory = (category) => {
     let cats = this.state.activeCategories
@@ -38,9 +36,6 @@ export default class Home extends Component {
       activeCategories: cats
     })
   }
-  onSubmitDates = () => {
-
-  }
   
   componentDidMount() {
     api.getItems()
@@ -52,7 +47,6 @@ export default class Home extends Component {
   }
 
   render() {
-    // this.state.items.length > 0 && console.log('NOTHING?', this.state.items[0].name)
     return (
       <div>
         <ReactModal isOpen={this.state.isOpen} />

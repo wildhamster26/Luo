@@ -4,7 +4,7 @@ import { Modal, ModalHeader, ModalFooter } from 'reactstrap';
 import {Link } from 'react-router-dom'
 import api from '../../../api';
 
-class ModalInteraction extends React.Component {
+class CalendarModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,13 +36,13 @@ class ModalInteraction extends React.Component {
     this.setState({
       pickedDays: pickedDaysArr
     })
-
-
   }
 
   handleSubmittedDays = () => {
     if (this.state.pickedDays.length !== 0) {
-      console.log(this.state.pickedDays)
+      this.props.pickedDays(this.state.pickedDays)
+    } else {
+
     }
   }
   
@@ -67,4 +67,4 @@ class ModalInteraction extends React.Component {
   }
 }
 
-export default ModalInteraction;
+export default CalendarModal;
