@@ -30,7 +30,7 @@ class ModalInteraction extends React.Component {
     })
     console.log('e[0]', (e[0]))
     console.log('e[1]', (e[1]))
-    console.log(Math.floor(((e[1] - e[0] + 1000)/1000)/3600)/24, " day(s)")
+    console.log((Math.floor(((e[1] - e[0] + 1000)/1000)/3600)/24) + " day(s)")
     // let date = new Date(1984, 0, 29)
     // console.log('date', date)
     // console.log('date', date)
@@ -45,9 +45,9 @@ class ModalInteraction extends React.Component {
       <div id="calendar-modal-div">
         <a onClick={this.toggle}><h6>{this.props.linkName}</h6></a>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>
+          {/* <ModalHeader toggle={this.toggle}> */}
             <h4>Availability</h4>
-          </ModalHeader>
+          {/* </ModalHeader> */}
           <div id="availability-calendar">
             <Calendar selectRange={true} onChange={(e) => this.handleRange(e)} />
           </div>
