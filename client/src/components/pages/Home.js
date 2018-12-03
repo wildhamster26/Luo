@@ -40,6 +40,7 @@ export default class Home extends Component {
   onSubmitDates = () => {
 
   }
+  
   componentDidMount() {
     api.getItems()
     .then(items => {

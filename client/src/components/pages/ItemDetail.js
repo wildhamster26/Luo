@@ -14,9 +14,6 @@ export default class ItemDetail extends Component {
     }
   }
 
-  contactOwner = () => {
-    
-  }
 
   requestItem = () => {
     api.requestItem(this.state.item._id)

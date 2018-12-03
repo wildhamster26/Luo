@@ -7,7 +7,7 @@ import { Button } from 'reactstrap';
 import MapModal from './MapModal'
 import CalendarModal from './CalendarModal'
 
-const ItemCard = ({id, name, imgPath, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates, date}) => {
+const ItemCard = ({id, name, imgPath, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates}) => {
   let catFilt = false
   for (let i = 0; i < categories.length; i++) {
     if (categoryFilter.includes(categories[i])) {
@@ -22,7 +22,6 @@ const ItemCard = ({id, name, imgPath, pricePerPeriod, period, description, searc
     let handleClick = () => {
       window.location.assign('/items/'+id);    
     };
-    console.log(reservedDates)
 
 
       return (
@@ -35,8 +34,8 @@ const ItemCard = ({id, name, imgPath, pricePerPeriod, period, description, searc
             </div>
             <div className="itemCard-sub-img">
               <h6>{pricePerPeriod}€ per {period}</h6>
-              {api.isLoggedIn() && <CalendarModal itemId={id} reservedDates={reservedDates} value={date} linkName="Availability" />}
-              {!api.isLoggedIn() && <CalendarModal reservedDates={reservedDates} itemId={id} linkName="Availability" />}
+              {api.isLoggedIn() && <CalendarModal itemId={id} reservedDates={reservedDates} linkName="Availability" />}
+              {!api.isLoggedIn() && <CalendarModal itemId={id} linkName="Availability" />}
             </div>
             <div>
               <p>{description}<br/><a id="map-modal-link" href="/"><MapModal buttonLabel="Map" /></a></p>
@@ -57,4 +56,3 @@ const ItemCard = ({id, name, imgPath, pricePerPeriod, period, description, searc
 
 
 export default ItemCard
-

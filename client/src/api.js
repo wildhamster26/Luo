@@ -89,9 +89,9 @@ export default {
       .catch(errHandler)
   },
   
-  editItem(id) {
+  editItem(id, data) {
     return service
-    .post(`/items/${id}/edit`)
+    .post(`/items/${id}/edit`, data)
     .then(res => res.data)
     .catch(errHandler)
   },

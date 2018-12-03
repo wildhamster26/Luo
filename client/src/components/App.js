@@ -10,6 +10,7 @@ import LoginSignup from './pages/LoginSignup';
 import Confirm from './pages/Confirm';
 import PleaseConfirm from './pages/PleaseConfirm';
 import ItemDetail from './pages/ItemDetail';
+import EditItem from './pages/EditItem';
 import api from '../api';
 
 
@@ -33,15 +34,16 @@ class App extends Component {
         <div className="empty-div"></div>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/items/:itemId" component={ItemDetail} />
-          <Route path="/items" component={Items} />
-          <Route path="/myitems" component={MyItems} />
-          <Route path="/item/new" component={AddItem} />
-          <Route path="/login" component={LoginSignup} />
-          <Route path="/logout" component={Home} />
+          <Route path="/items" exact component={Items} />
+          <Route path="/myitems" exact component={MyItems} />
+          <Route path="/items/new" exact  component={AddItem} />
+          <Route path="/items/:itemId" exact component={ItemDetail} />
+          <Route path="/items/:itemId/edit" exact component={EditItem} />
+          <Route path="/login" exact component={LoginSignup} />
+          <Route path="/logout" exact component={Home} />
           <Route path="/confirm" exact component={PleaseConfirm} />
-          <Route path="/confirm/:confirmationCode" component={Confirm} />
-          <Route path="/secret" component={Secret} />
+          <Route path="/confirm/:confirmationCode" exact component={Confirm} />
+          <Route path="/secret" exact component={Secret} />
           <Route render={() => <h2>Front end 404</h2>} />
         </Switch>
       </div>

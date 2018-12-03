@@ -6382,6 +6382,9 @@ input:focus {
   box-shadow: 0 2px 7px lightgrey;
   transition: all 0.15s; }
 
+.btn-second:focus {
+  outline: 0; }
+
 .App .App-header {
   background-color: #1f232d;
   color: white;
