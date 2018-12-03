@@ -48,6 +48,8 @@ router.post('/', isLoggedIn, (req, res, next) => {
 
 router.post('/:id/image', uploadCloud.single('picture'), (req, res, next) => {
   // console.log("from the items image route - top", req.file)
+  // if (req.file){ 
+  // cloudinary.v2.uploader.destroy(req.user.public_id, function(result) { console.log(result) }); 
   Item.findByIdAndUpdate(req.params.id, 
     { 
       imgPath: req.file.url,
@@ -73,6 +75,27 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
     })
   })
 })
+
+router.post('/:id/edit', uploadCloud.single('photo'), (req, res, next) => {
+  let { name, description, pricePerPeriod, period, lng, lat } = req.body;
+  Item.findByIdAndUpdate(req.params.id, {
+    name: name,
+    description,
+    pricePerPeriod,
+    period,
+    location: {
+      type: 'Point',
+      coordinates: [lng, lat]
+    },
+      })
+      .then(data => {	
+        res.json({
+          success: true, 
+          data
+        })
+      })
+  }		
+);
 
 router.get("/:id/request/:userId", (req, res, next) => {
   console.log("params:", req.params)
