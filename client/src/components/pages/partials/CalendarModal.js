@@ -11,7 +11,9 @@ class ModalInteraction extends React.Component {
       itemId: props.itemId,
       modal: false,
       buttonLabel: "",
-      pickedDates: null
+      // reservedDates: props.reservedDates,
+      reservedDates: ["Fri Dec 07 2018 00:00:00 GMT+0100 (Central European Standard Time)","Wed Dec 05 2018 00:00:00 GMT+0100 (Central European Standard Time)"],
+      pickedDays: []
     };
 
     this.toggle = this.toggle.bind(this);
@@ -23,24 +25,28 @@ class ModalInteraction extends React.Component {
     });
     localStorage.setItem("itemId", this.props.itemId);
   }
-  
-  handleRange = (e) => {
+
+  handleClickedDay = (e) => {
+    let pickedDaysArr = [...this.state.pickedDays]
+    if (!JSON.stringify(pickedDaysArr).includes(JSON.stringify(e))){
+      pickedDaysArr.push(e)
+    } else {
+      pickedDaysArr = pickedDaysArr.filter(day => (JSON.stringify(day) !== JSON.stringify(e)))
+    }
     this.setState({
-      pickedDates: e
+      pickedDays: pickedDaysArr
     })
-    console.log('e[0]', (e[0]))
-    console.log('e[1]', (e[1]))
-    console.log((Math.floor(((e[1] - e[0] + 1000)/1000)/3600)/24) + " day(s)")
-    // let date = new Date(1984, 0, 29)
-    // console.log('date', date)
-    // console.log('date', date)
-    // console.log('typeof(date)', typeof(date))
+
+
+  }
+
+  handleSubmittedDays = () => {
+    if (this.state.pickedDays.length !== 0) {
+      console.log(this.state.pickedDays)
+    }
   }
   
   render() {
-    // console.log(this.props.itemId);
-    // console.log(this.props.reservedDates[0])
-    // console.log(this.props.reservedDates[1])
     return (
       <div id="calendar-modal-div">
         <a onClick={this.toggle}><h6>{this.props.linkName}</h6></a>
@@ -49,11 +55,11 @@ class ModalInteraction extends React.Component {
             Availability
           </ModalHeader>
           <div id="availability-calendar">
-            <Calendar selectRange={true} onChange={(e) => this.handleRange(e)} />
+            <Calendar  tileDisabled={({activeStartDate, date, view }) => this.state.reservedDates.includes(date.toString())} selectRange={false} tileClassName={({ date, view }) => (view === 'month' && JSON.stringify(this.state.pickedDays).includes(JSON.stringify(date.toJSON())) ? 'react-calendar__tile--active--custom' : "")} onClickDay={(e) => this.handleClickedDay(e)} />
           </div>
           <ModalFooter>
             {!api.isLoggedIn() && <Link to="/login" >Sure - Let's sign up!</Link>}
-            {api.isLoggedIn() && <button className="btn-second">Pick dates</button>}
+            {api.isLoggedIn() && <button className="btn-second" onClick={() => this.handleSubmittedDays()}>Pick dates</button>}
           </ModalFooter>
         </Modal>
       </div>
