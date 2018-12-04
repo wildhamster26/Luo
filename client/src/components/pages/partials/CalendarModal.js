@@ -7,12 +7,19 @@ import api from '../../../api';
 class CalendarModal extends React.Component {
   constructor(props) {
     super(props);
+
+    let reservedDates = []
+    if (props.reservedDates.length !== 0) {
+      for (let i = 0; i < props.reservedDates.length; i++) {
+        reservedDates.push(new Date(props.reservedDates[i].date))
+      }
+    }
+
     this.state = {
       itemId: props.itemId,
       modal: false,
       buttonLabel: "",
-      // reservedDates: props.reservedDates,
-      reservedDates: ["Fri Dec 07 2018 00:00:00 GMT+0100 (Central European Standard Time)","Wed Dec 05 2018 00:00:00 GMT+0100 (Central European Standard Time)"],
+      reservedDates: reservedDates,
       pickedDays: []
     };
 
@@ -45,6 +52,19 @@ class CalendarModal extends React.Component {
 
     }
   }
+
+  // tileDisabler = (date) => {
+  //   date = new Date(date)
+  //   let reservedDates = this.state.reservedDates
+  //   reservedDates.forEach((res) => {
+  //     res = new Date(res)
+  //     if (res.getTime() === date.getTime()) {
+  //       console.log(res.getTime() === date.getTime())
+  //       return true 
+  //     }
+  //   })
+  //   return false
+  // }
   
   render() {
     return (
@@ -55,7 +75,7 @@ class CalendarModal extends React.Component {
             Availability
           </ModalHeader>
           <div id="availability-calendar">
-            <Calendar  tileDisabled={({activeStartDate, date, view }) => this.state.reservedDates.includes(date.toString())} selectRange={false} tileClassName={({ date, view }) => (view === 'month' && JSON.stringify(this.state.pickedDays).includes(JSON.stringify(date.toJSON())) ? 'react-calendar__tile--active--custom' : "")} onClickDay={(e) => this.handleClickedDay(e)} />
+            <Calendar  tileDisabled={({activeStartDate, date, view }) => this.state.reservedDates.toString().includes(date.toString())} selectRange={false} tileClassName={({ date, view }) => (view === 'month' && JSON.stringify(this.state.pickedDays).includes(JSON.stringify(date.toJSON())) ? 'react-calendar__tile--active--custom' : "")} onClickDay={(e) => this.handleClickedDay(e)} />
           </div>
           <ModalFooter>
             {!api.isLoggedIn() && <Link to="/login" >Sure - Let's sign up!</Link>}

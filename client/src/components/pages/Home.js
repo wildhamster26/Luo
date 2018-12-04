@@ -4,9 +4,7 @@ import api from '../../api';
 import ReactModal from 'react-modal';
 import SearchBox from './partials/SearchBox';
 import { Link } from 'react-router-dom' // Be careful, NavLink is already exported from 'reactstrap'
-// import Calendar from 'react-calendar'
-// import Axios from 'axios';
-// import ItemDetail from './ItemDetail';
+
 
 
 export default class Home extends Component {

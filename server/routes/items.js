@@ -203,7 +203,7 @@ router.get("/request/:requestId/accept", (req, res, next) => {
           {
             $push: { reservedDates: borrowerDatePair }
         })
-        .then(res => {console.log('SUCCESSSSSSSSS')})
+        .then(res => {console.log('Success')})
       })
     })
 })

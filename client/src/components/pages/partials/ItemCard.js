@@ -8,8 +8,6 @@ import MapModal from './MapModal'
 import CalendarModal from './CalendarModal'
 import DeleteItemModal from './DeleteItemModal'
 
-// const ItemCard = ({id, name, imgPath, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates}) => {
-
 
 const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates, updateDeleteItem}) => {
   let catFilt = false
@@ -18,6 +16,7 @@ const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description
       catFilt = true
     }
   }
+  // console.log('RESERVED DATES FROM ITEMCARD', reservedDates)
   var pickedDays = "not updated"
 
   let requestItem = () => {
