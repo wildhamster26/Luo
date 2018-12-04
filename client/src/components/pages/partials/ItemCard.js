@@ -67,9 +67,9 @@ const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description
               {/* {api.isLoggedIn() && <button className="btn-second" onClick={handleClick}>Request</button>} */}
               {api.isLoggedIn() && <button className="btn-second" onClick={requestItem}>Request</button>}
               {!api.isLoggedIn() && <ModalInteraction itemId={id} text="Request" />}
+              {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) && <DeleteItemModal deleteItem={deleteItem} itemId={id}/>}
+              <Link className="itemCard-btn-div" to={`/items/${id}/edit`}><img src="../images/edit.png" alt="edit" width="20px" /></Link>
             </div>
-            {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) && <DeleteItemModal deleteItem={deleteItem} itemId={id}/>}
-            <Link className="itemCard-btn-div" to={`/items/${id}/edit`}><img src="../images/edit.png" alt="edit" width="20px" /></Link>
         </div>
       )
   } else {
