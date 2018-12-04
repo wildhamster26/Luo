@@ -22,11 +22,10 @@ class Profile extends Component {
       imgPath: "",
       file: "",
       id: "",
-      items: []
+      items: [],
+      initialUsername: null,
+      initialEmail: null
     }
-    // this.mapRef = React.createRef()
-    // this.map = null
-    // this.markers = []
   }
 
   handleChange = (e) => {
@@ -71,21 +70,6 @@ class Profile extends Component {
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
-  // initMap() {
-  //   // Embed the map where "this.mapRef" is defined in the render
-  //   this.map = new mapboxgl.Map({
-  //     container: this.mapRef.current,
-  //     style: 'mapbox://styles/mapbox/streets-v10',
-  //     center: [0, 0], // Africa lng,lat
-  //     zoom: 5
-  //   })
-
-    // Add zoom control on the top right corner
-  //   this.map.addControl(new mapboxgl.NavigationControl())
-  // }
-  // handleItemSelection(iSelected) {
-  //   this.map.setCenter(this.state.items[iSelected].location.coordinates)
-  // }
   
   render() {
       return (
@@ -99,9 +83,10 @@ class Profile extends Component {
                       <img src={this.state.imgPath} width="100px" alt="User avatar"/>
                       <Input type="file" name="image" onChange={this.handleChange} />
                     </div>
+                    {(this.state.initialUsername !== this.state.username || this.state.initialEmail !== this.state.email) &&
                     <div className="user-button">
                       <Button color="primary" onClick={(e) => this.handleClick(e)}>Edit</Button>
-                    </div>
+                    </div>}
               </Form>
           </div>
           <div className="itemCards-container">
@@ -117,7 +102,9 @@ class Profile extends Component {
     .then(res => {
         this.setState({
           username: res[0].username,
+          initialUsername: res[0].username,
           email: res[0].email,
+          initialEmail: res[0].email,
           imgPath: res[0].imgPath,
           id: res[0]._id,
           items: res[1].filter(item => {
