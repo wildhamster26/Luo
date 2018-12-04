@@ -31,7 +31,6 @@ const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description
         updateDeleteItem()
       });
     };
-
       return (
           <div className="itemCard">
             <div className="itemCard-name">
@@ -54,15 +53,15 @@ const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description
             </div>
             {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) && <DeleteItemModal deleteItem={deleteItem} itemId={id}/>}
             <Link className="itemCard-btn-div" to={`/items/${id}/edit`}><img src="../images/edit.png" alt="edit" width="20px" /></Link>
-        </div>
+          </div>
+      ) 
+    } else {
+      return (
+      <div>
+      </div>
       )
-  } else {
-    return (
-    <div>
-    </div>
-    )
   }
 }
 
 
-export default ItemCard
+export default ItemCard;

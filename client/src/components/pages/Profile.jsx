@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import ItemCard from './partials/ItemCard';
 // import { NavLink, Route, Switch, Link } from 'react-router-dom'
 import {
   Form,
@@ -88,40 +88,45 @@ class Profile extends Component {
   // }
   
   render() {
-    return (
-      <div className="profile-page">
-        <h1>My Profile</h1>
-        <div className="profile-form-div">
-            <Form>
-                  <Input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} />
-                  <Input type="text" name="username" value={this.state.username} onChange={this.handleInputChange} />
-                  <div className="user-img">
-                    <img src={this.state.imgPath} width="100px" alt="User avatar"/>
-                    <Input type="file" name="image" onChange={this.handleChange} />
-                  </div>
-                  <div className="user-button">
-                    <Button color="primary" onClick={(e) => this.handleClick(e)}>Edit</Button>
-                  </div>
-            </Form>
+      return (
+        <div className="profile-page">
+          <h1>My Profile</h1>
+          <div className="profile-form-div">
+              <Form>
+                    <Input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} />
+                    <Input type="text" name="username" value={this.state.username} onChange={this.handleInputChange} />
+                    <div className="user-img">
+                      <img src={this.state.imgPath} width="100px" alt="User avatar"/>
+                      <Input type="file" name="image" onChange={this.handleChange} />
+                    </div>
+                    <div className="user-button">
+                      <Button color="primary" onClick={(e) => this.handleClick(e)}>Edit</Button>
+                    </div>
+              </Form>
+          </div>
+          <div className="itemCards-container">
+            {this.state.items.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
+          </div>
         </div>
-       
-        
-      </div>
-    );
+      );
   }
+  
   componentDidMount() {
     if(localStorage.getItem("user")){
-    api.getUser()
-      .then(user => {
+    Promise.all([api.getUser(), api.getItems()])
+    .then(res => {
         this.setState({
-          username: user.username,
-          email: user.email,
-          imgPath: user.imgPath,
-          id: user._id
+          username: res[0].username,
+          email: res[0].email,
+          imgPath: res[0].imgPath,
+          id: res[0]._id,
+          items: res[1].filter(item => {
+             return item._owner._id === res[0]._id
         })
-      })
-      .catch(err => console.log(err))
-    }
+      })      
+    })
+    .catch(err => console.log(err))
+   }
   }
 }
 
