@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import MainNavbar from './MainNavbar';
 import Home from './pages/Home';
 import Items from './pages/Items';
+import AcceptRequest from './pages/AcceptRequest';
 import Profile from './pages/Profile';
 import AddItem from './pages/AddItem';
 import Secret from './pages/Secret';
@@ -39,6 +40,7 @@ class App extends Component {
           <Route path="/items/new" exact  component={AddItem} />
           <Route path="/items/:itemId" exact component={ItemDetail} />
           <Route path="/items/:itemId/edit" exact component={EditItem} />
+          <Route path="/items/request/:requestId/accept" exact component={AcceptRequest} />
           <Route path="/login" exact component={LoginSignup} />
           <Route path="/logout" exact component={Home} />
           <Route path="/confirm" exact component={PleaseConfirm} />

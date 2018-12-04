@@ -3,6 +3,7 @@ const Item = require('../models/Item')
 const { isLoggedIn } = require('../middlewares')
 const uploadCloud = require('../configs/cloudinary')
 const User = require("../models/User")
+const Request = require("../models/Request")
 const nodemailer = require("nodemailer");
 
 
@@ -119,45 +120,89 @@ router.get('/:id/delete', isLoggedIn, (req, res, next) => {
 )});
     
 
-router.post("/:id/request/:userId", (req, res, next) => {      
-  let pickedDays = req.body
+router.post("/:id/request/:borrowerId", (req, res, next) => {
+  const pickedDays = req.body
+  const {borrowerId, id} = req.params;
+  let requestedDates = []
+  let _owner
+  let requestId
+  let acceptLink
+  let declineLink
+  let requestedDatesList = "<ul>"
 
   for (let i = 0; i < pickedDays.length; i++) {
-    console.log(pickedDays[i])
+    requestedDates.push(new Date(pickedDays[i]))
+    requestedDatesList += "<li>" + pickedDays[i].substring(0, 10) + "</li>"
+    if (i === pickedDays.length-1) {
+      requestedDatesList += "</ul>"
+    }
   }
-  
-  const {userId, id} = req.params;
-  User.findOne({_id : userId})
-  .then(requestingUser => {
-    Item.findOne({ _id : id })
-    .then(item =>{
-      let ownerId = item._owner
-      
-      User.findOne({ _id : ownerId })
-      .then(user => {
-        let transporter = nodemailer.createTransport({
-          service: 'Gmail',
-        auth: {
-          user:  process.env.GMAIL_USER,
-          pass:  process.env.GMAIL_PASS
-        }
-      });
-      transporter.sendMail({
-        from: '"Luo"',
-        to: user.email,
-        subject: `Luo rent request for your ${item.name}.`, 
-        html: `Hi!<br> I am interested in renting the ${item.name} you published on Luo.<br> Please contact me at: ${requestingUser.email}. <br> Have a good day.<br> <img src="https://res.cloudinary.com/wildhamster26/image/upload/v1543477042/folder-name/small_face.jpg">`
+
+  Item.findById(id)
+    .then(item => {
+      _owner = item._owner
+      Request.create({
+        _owner: _owner,
+        _borrower: borrowerId,
+        _item: id,
+        requestedDates: requestedDates
       })
-      
-      res.json({
-        success: true,
+      .then(data => {	
+        requestId = data._id
+        acceptLink = `items/request/${requestId}/accept`
+        declineLink = `items/request/${requestId}/decline`
+        User.findOne({_id : borrowerId})
+          .then(requestingUser => {
+            Item.findOne({ _id : id })
+              .then(item =>{
+                let ownerId = item._owner
+                User.findOne({ _id : ownerId })
+                  .then(user => {
+                    let transporter = nodemailer.createTransport({
+                      service: 'Gmail',
+                      auth: {
+                        user:  process.env.GMAIL_USER,
+                        pass:  process.env.GMAIL_PASS
+                      }
+                    })
+                    transporter.sendMail({
+                      from: '"Luo"',
+                      to: user.email,
+                      subject: `Luo rent request for your ${item.name}.`, 
+                      html: `Hi there!<br><br> I am interested in renting the ${item.name} you published on Luo the following dates:<br>${requestedDatesList}Please click on the link below to accept my request.<br><br><a href="${process.env.BASE_URL}/${acceptLink}">Accept request</a><br><br>Additionally, you can contact me at ${requestingUser.email}.<br><br>Have a good day!<br><img height="50px" src="https://res.cloudinary.com/wildhamster26/image/upload/v1543477042/folder-name/small_face.jpg">`
+                    })
+                    res.json({
+                      success: true,
+                    })
+                      .then(info => console.log(info))
+                      .catch(error => console.log(error))
+                  })
+              })
+          })
+          .catch(err => next(err))
       })
-      .then(info => console.log(info))
-      .catch(error => console.log(error))
+  })
+})
+
+router.get("/request/:requestId/accept", (req, res, next) => {
+  const requestId = req.params.requestId
+  Request.findByIdAndUpdate(requestId, 
+    {
+      status: "accepted"
     })
-  })
-  })
-    .catch(err => next(err))
+    .then(data => {
+      data.requestedDates.forEach(date => {
+        let borrowerDatePair = {
+          _byUserId: data._borrower,
+          date: date
+        }
+        Item.findByIdAndUpdate(data._item,
+          {
+            $push: { reservedDates: borrowerDatePair }
+        })
+        .then(res => {console.log('SUCCESSSSSSSSS')})
+      })
+    })
 })
 
 module.exports = router;

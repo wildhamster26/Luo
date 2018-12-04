@@ -97,19 +97,17 @@ export default {
   },
   
   requestItem(id, owner, pickedDays){
-    // let varParams = ""
-    // for (let i = 0; i < pickedDays.length; i++) {
-    //   varParams += "day" + i + "=" + JSON.stringify(pickedDays[i])
-    //   if (i !== pickedDays.length ) {
-    //     varParams += "&"
-    //   }
-    // }
-
     return service
-    // .get(`/items/${id}/request/${JSON.parse(localStorage.getItem('user'))._id}`)
     .post(`/items/${id}/request/${owner._id}/`, pickedDays)
     .then(res => res.data)
     .catch(errHandler)
+  },
+
+  acceptRequest(requestId){
+    return service
+      .get(`items/request/${requestId}/accept`)
+      .then(res => res.data)
+      .catch(errHandler)
   },
 
   deleteItem(id){
