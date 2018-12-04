@@ -22,14 +22,15 @@ router.get('/', (req, res, next) => {
 
 router.post('/', isLoggedIn, (req, res, next) => {
   console.log("from the add item route - top")
-  let { name, description, pricePerPeriod, lng, lat } = req.body
+  let { name, description, categories, pricePerPeriod, lng, lat } = req.body
   let _owner = req.user._id
-  if (!name || !description || !pricePerPeriod || !lng || !lat) {
-    next(new Error('You have to send: name, description, pricePerPeriod, lng, lat'))
+  if (!name || !description || !categories || !pricePerPeriod || !lng || !lat) {
+    next(new Error('You have to send: name, description, categories, pricePerPeriod, lng, lat'))
   }
   Item.create({
     name,
     description,
+    categories,
     pricePerPeriod,
     location: {
       type: 'Point',
@@ -76,11 +77,12 @@ router.get('/:id', isLoggedIn, (req, res, next) => {
 })
 
 router.post('/:id/edit', uploadCloud.single('photo'), (req, res, next) => {
-  console.log("From the ITEM :id/edit route.")
-  let { name, description, pricePerPeriod, period, lng, lat } = req.body;
+  let { name, description, categories, pricePerPeriod, period, lng, lat } = req.body;
+  console.log("From the top of the edit item route:", categories)
   Item.findByIdAndUpdate(req.params.id, {
-    name: name,
+    name,
     description,
+    categories,
     pricePerPeriod,
     period,
     location: {
@@ -89,6 +91,7 @@ router.post('/:id/edit', uploadCloud.single('photo'), (req, res, next) => {
     },
     })
     .then(data => {	
+    console.log("From the end of the edit item route:", data)
       res.json({
         success: true, 
         data

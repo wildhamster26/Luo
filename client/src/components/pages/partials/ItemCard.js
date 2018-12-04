@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import api from '../../../api';
 import ModalInteraction from './ModalInteraction'
 // import ReactModal from 'react-modal'
-// import { Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 import MapModal from './MapModal'
 import CalendarModal from './CalendarModal'
 import DeleteItemModal from './DeleteItemModal'
@@ -14,7 +14,7 @@ import DeleteItemModal from './DeleteItemModal'
 const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates, updateDeleteItem}) => {
   let catFilt = false
   for (let i = 0; i < categories.length; i++) {
-    if (categoryFilter.includes(categories[i])) {
+    if (categoryFilter.includes(categories[i].toLowerCase())) {
       catFilt = true
     }
   }
@@ -63,14 +63,13 @@ const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description
               <div className="map-modal-div">{description}<br/><MapModal buttonLabel="Map" /></div>
             </div>
             <div className="itemCard-btn-div">
-              {/* {api.isLoggedIn() && <button className="btn-second" onClick={handleClick}>Request</button>} */}
               {api.isLoggedIn() && <button className="btn-second" onClick={requestItem}>Request</button>}
               {!api.isLoggedIn() && <ModalInteraction itemId={id} text="Request" />}
-              {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) && <DeleteItemModal deleteItem={deleteItem} itemId={id}/>}
-              <Link className="itemCard-btn-div" to={`/items/${id}/edit`}><img src="../images/edit.png" alt="edit" width="20px" /></Link>
+              <div className="editAndDelete">
+                {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) && <DeleteItemModal deleteItem={deleteItem} itemId={id}/>}
+                {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) &&<Button><Link to={`/items/${id}/edit`}><img src="../images/edit.png" alt="delete" width="20px" /></Link></Button>}
+              </div>
             </div>
-            {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) && <DeleteItemModal deleteItem={deleteItem} itemId={id}/>}
-            <Link className="itemCard-btn-div" to={`/items/${id}/edit`}><img src="../images/edit.png" alt="edit" width="20px" /></Link>
           </div>
       ) 
     } else {

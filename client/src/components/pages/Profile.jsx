@@ -70,6 +70,10 @@ class Profile extends Component {
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
+
+  // chooseFile() {
+  //   let input = document.getElementById("fileInput");
+  // }
   
   render() {
       return (
@@ -80,8 +84,12 @@ class Profile extends Component {
                     <Input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} />
                     <Input type="text" name="username" value={this.state.username} onChange={this.handleInputChange} />
                     <div className="user-img">
-                      <img src={this.state.imgPath} width="100px" alt="User avatar"/>
-                      <Input type="file" name="image" onChange={this.handleChange} />
+                      {/* <button onClick={this.chooseFile}> */}
+                        <img src={this.state.imgPath} width="100px" alt="User avatar"/>
+                        {/* </button> */}
+                      {/* <div className="file-input"> */}
+                        <input type="file" id="fileInput" name="fileInput" />
+                      {/* </div> */}
                     </div>
                     {(this.state.file || this.state.initialUsername !== this.state.username || this.state.initialEmail !== this.state.email) &&
                     <div className="user-button">
@@ -118,3 +126,7 @@ class Profile extends Component {
 }
 
 export default Profile;
+
+
+
+   

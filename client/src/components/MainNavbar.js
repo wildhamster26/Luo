@@ -72,9 +72,6 @@ export default class MainNavbar extends Component {
             <NavItem>
             {api.isLoggedIn() && <NavLink tag={NLink} to="/profile"><img src={this.state.imgPath} alt="User avatar" width="20px" />{this.state.username}</NavLink>}
             </NavItem>
-            <NavItem>
-              <NavLink tag={NLink} to="/items">Items</NavLink>
-            </NavItem>
             {!api.isLoggedIn() && <NavItem>
               <NavLink tag={NLink} to="/login">Login/Signup</NavLink>
             </NavItem>}
