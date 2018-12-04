@@ -20,11 +20,11 @@ class Profile extends Component {
       username: "",
       email: "",
       imgPath: "",
-      file: "",
+      file: null,
       id: "",
       items: [],
       initialUsername: null,
-      initialEmail: null
+      initialEmail: null,
     }
   }
 
@@ -83,7 +83,7 @@ class Profile extends Component {
                       <img src={this.state.imgPath} width="100px" alt="User avatar"/>
                       <Input type="file" name="image" onChange={this.handleChange} />
                     </div>
-                    {(this.state.initialUsername !== this.state.username || this.state.initialEmail !== this.state.email) &&
+                    {(this.state.file || this.state.initialUsername !== this.state.username || this.state.initialEmail !== this.state.email) &&
                     <div className="user-button">
                       <Button color="primary" onClick={(e) => this.handleClick(e)}>Edit</Button>
                     </div>}
