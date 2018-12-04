@@ -118,8 +118,14 @@ router.get('/:id/delete', isLoggedIn, (req, res, next) => {
     }
 )});
     
-router.get("/:id/request/:userId", (req, res, next) => {      
-  console.log("params:", req.params)
+
+router.post("/:id/request/:userId", (req, res, next) => {      
+  let pickedDays = req.body
+
+  for (let i = 0; i < pickedDays.length; i++) {
+    console.log(pickedDays[i])
+  }
+  
   const {userId, id} = req.params;
   User.findOne({_id : userId})
   .then(requestingUser => {
