@@ -100,23 +100,16 @@ class EditItem extends Component {
     api.editItem(this.props.match.params.itemId, data)
       .then(result => {
         console.log("result before image upload:", result)
-        if(this.state.file)
+        if(this.state.file) {
           api.addItemPicture(this.state.file, result.data._id)
-      })
-      .then(result => {
-        console.log('SUCCESS!', result)
-        this.setState({
-          message: `Your item has been edited`
-        })
-        setTimeout(() => {
-          this.setState({
-            message: null
+          .then(res => {
+            this.props.history.push("/");
           })
-        }, 2000)
+        } else {
+          this.props.history.push("/");
+        }
       })
-      .then(res => {
-        this.props.history.push("/");
-      })
+      
       .catch(err => this.setState({ message: err.toString() }));
   }
   componentDidMount() {
@@ -142,7 +135,7 @@ class EditItem extends Component {
       container: this.mapRef.current,
       style: 'mapbox://styles/mapbox/streets-v10',
       center: [this.state.lng, this.state.lat],
-      zoom: 5
+      zoom: 13
     })
 
     // Add zoom control on the top right corner

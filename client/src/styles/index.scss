@@ -372,6 +372,10 @@ hr{
   margin: auto;
   text-align: center;
   letter-spacing: 1px;
+  .file-input{
+    height: 0px;
+    overflow: hidden;
+  }
   input{
       text-align: center;
       border-radius: 10px;
@@ -485,11 +489,17 @@ hr{
   }
 
   .itemCard-btn-div {
+    display: flex;
     width: 100%;
     text-align: center;
     position: absolute;
     bottom: 15px;
     margin-bottom: 0;
+    padding: 0 10px;
+    .editAndDelete{
+      display: flex;
+      margin-left: auto;
+    }
   }
   #map-modal-link {
     color: $buy;

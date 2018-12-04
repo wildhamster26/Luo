@@ -100,25 +100,9 @@ class AddItem extends Component {
     api.addItem(data)
       .then(result => {
         api.addItemPicture(this.state.file, result.item._id)
-      })
-      .then(result => {
-        console.log('SUCCESS!', result)
-        this.setState({
-          name: "",
-          description: "",
-          categories: ["Bikes"],
-          pricePerPeriod: 0,
-          period: "day",
-          message: `Your item has been created`
+        .then(res => {
+          this.props.history.push("/");
         })
-        setTimeout(() => {
-          this.setState({
-            message: null
-          })
-        }, 2000)
-      })
-      .then(res => {
-        this.props.history.push("/");
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
@@ -133,7 +117,7 @@ class AddItem extends Component {
       container: this.mapRef.current,
       style: 'mapbox://styles/mapbox/streets-v10',
       center: [this.state.lng, this.state.lat],
-      zoom: 5
+      zoom: 13
     })
 
     // Add zoom control on the top right corner
@@ -147,7 +131,6 @@ class AddItem extends Component {
     // Trigger a function every time the marker is dragged
     this.marker.on('drag', () => {
       let {lng,lat} = this.marker.getLngLat()
-      // console.log('DEBUG lng, lat', lng, lat)
       this.setState({
         lng,
         lat
@@ -179,7 +162,6 @@ class AddItem extends Component {
                 Category:
                 <Dropdown direction="right" isOpen={this.state.dropdownCategoriesOpen} toggle={this.toggleCategories}  name="period">
                   <DropdownToggle caret>
-                  {console.log("From form:", this.state.categories)}
                     {this.state.categories}
                   </DropdownToggle>
                   <DropdownMenu >

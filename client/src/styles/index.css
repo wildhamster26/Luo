@@ -6582,6 +6582,9 @@ hr {
   margin: auto;
   text-align: center;
   letter-spacing: 1px; }
+  .profile-form-div .file-input {
+    height: 0px;
+    overflow: hidden; }
   .profile-form-div input {
     text-align: center;
     border-radius: 10px;
@@ -6667,11 +6670,16 @@ hr {
     margin: 10px 10px 40px 10px;
     font-size: 0.9em; }
   .itemCard .itemCard-btn-div {
+    display: flex;
     width: 100%;
     text-align: center;
     position: absolute;
     bottom: 15px;
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    padding: 0 10px; }
+    .itemCard .itemCard-btn-div .editAndDelete {
+      display: flex;
+      margin-left: auto; }
   .itemCard #map-modal-link {
     color: lightcoral; }
   .itemCard #map-modal-link:hover {
