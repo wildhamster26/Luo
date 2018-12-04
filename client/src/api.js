@@ -96,10 +96,18 @@ export default {
     .catch(errHandler)
   },
   
-  requestItem(id, pickedDays){
-    console.log('THIS IS THE SHIT', pickedDays)
+  requestItem(id, owner, pickedDays){
+    // let varParams = ""
+    // for (let i = 0; i < pickedDays.length; i++) {
+    //   varParams += "day" + i + "=" + JSON.stringify(pickedDays[i])
+    //   if (i !== pickedDays.length ) {
+    //     varParams += "&"
+    //   }
+    // }
+
     return service
-    .get(`/items/${id}/request/${JSON.parse(localStorage.getItem('user'))._id}`)
+    // .get(`/items/${id}/request/${JSON.parse(localStorage.getItem('user'))._id}`)
+    .post(`/items/${id}/request/${owner._id}/`, pickedDays)
     .then(res => res.data)
     .catch(errHandler)
   },

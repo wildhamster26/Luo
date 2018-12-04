@@ -21,7 +21,7 @@ const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description
   var pickedDays = "not updated"
 
   let requestItem = () => {
-    api.requestItem(id, pickedDays)
+    api.requestItem(id, owner, pickedDays)
     .then(res =>{
       alert("The owner has been contacted with your email.");
     });
@@ -35,9 +35,9 @@ const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description
     if (imgPath === undefined || imgPath.length === 0) 
       imgPath = 'https://res.cloudinary.com/wildhamster26/image/upload/v1543699130/folder-name/generic.png'
 
-    let handleClick = () => {
-      window.location.assign('/items/'+id);    
-    };
+    // let handleClick = () => {
+    //   window.location.assign('/items/'+id);    
+    // };
 
     let deleteItem = () => {
       api.deleteItem(id)
@@ -66,6 +66,8 @@ const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description
               {/* {api.isLoggedIn() && <button className="btn-second" onClick={handleClick}>Request</button>} */}
               {api.isLoggedIn() && <button className="btn-second" onClick={requestItem}>Request</button>}
               {!api.isLoggedIn() && <ModalInteraction itemId={id} text="Request" />}
+              {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) && <DeleteItemModal deleteItem={deleteItem} itemId={id}/>}
+              <Link className="itemCard-btn-div" to={`/items/${id}/edit`}><img src="../images/edit.png" alt="edit" width="20px" /></Link>
             </div>
             {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) && <DeleteItemModal deleteItem={deleteItem} itemId={id}/>}
             <Link className="itemCard-btn-div" to={`/items/${id}/edit`}><img src="../images/edit.png" alt="edit" width="20px" /></Link>
