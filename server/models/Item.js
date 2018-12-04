@@ -6,7 +6,7 @@ const itemSchema = new Schema({
   description: { type: String, required: true },
   pricePerPeriod: { type: Number, required: true },
   period: { type: String, enum: ['hour', 'day', 'month'], default: 'day' },
-  categories: [String],
+  categories: [],
   // pictureUrl: {type: String,  default:""},
   imgName: {type: String, default:""},
   imgPath: {type: String,  default:""},

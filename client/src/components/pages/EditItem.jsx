@@ -24,22 +24,30 @@ class EditItem extends Component {
     this.state = {
       name: "",
       description: "",
+      categories: ["Bikes"],
       pricePerPeriod: 0,
-      period: "",
+      period: "day",
       lng: 13.3711224,
       lat: 52.5063688,
       message: null,
       file: null,
-      dropdownOpen: false
+      dropdownCategoriesOpen: false,
+      dropdownPeriodOpen: false
     }
     this.mapRef = React.createRef()
     this.map = null
     this.marker = null
   }
 
-  toggle = () => {
+  toggleCategories = () => {
     this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen
+      dropdownCategoriesOpen: !prevState.dropdownCategoriesOpen
+    }));
+  }
+
+  togglePeriod = () => {
+    this.setState(prevState => ({
+      dropdownPeriodOpen: !prevState.dropdownPeriodOpen
     }));
   }
 
@@ -54,11 +62,20 @@ class EditItem extends Component {
     })
   }
 
+  categories = (value) => {
+    let newCat = [];
+    newCat.push(value);
+    this.setState({
+      categories: newCat
+    })
+  }
+
   period = (value) => {
     this.setState({
       period: value
     })
   }
+
 
   handleChange = (e) => {
     console.log('handleChange');
@@ -74,6 +91,7 @@ class EditItem extends Component {
     let data = {
       name: this.state.name,
       description: this.state.description,
+      categories: this.state.categories,
       pricePerPeriod: this.state.pricePerPeriod,
       period: this.state.period,
       lng: this.state.lng,
@@ -99,7 +117,7 @@ class EditItem extends Component {
       .then(res => {
         this.props.history.push("/");
       })
-      .catch(err => this.setState({ message: err.toString() }))
+      .catch(err => this.setState({ message: err.toString() }));
   }
   componentDidMount() {
     api.getItemById(this.props.match.params.itemId)
@@ -108,10 +126,11 @@ class EditItem extends Component {
       this.setState({
           name: data.item.name,
           description: data.item.description,
+          categories: data.item.categories[0],
           pricePerPeriod: data.item.pricePerPeriod,
           period: data.item.period,
           lng: data.item.location.coordinates[1],
-          lat: data.item.location.coordinates[0],
+          lat: data.item.location.coordinates[0]
         })
       })
       .catch(err => console.log(err))
@@ -165,16 +184,47 @@ class EditItem extends Component {
                 </Col>
               </FormGroup>
               <FormGroup row>
+                <Col xl={9}>
+                Category:
+                <Dropdown direction="right" isOpen={this.state.dropdownCategoriesOpen} toggle={this.toggleCategories}  name="period">
+                  <DropdownToggle caret>
+                  {console.log("From form:", this.state.categories)}
+                    {this.state.categories}
+                  </DropdownToggle>
+                  <DropdownMenu >
+                    <DropdownItem onClick={() => this.categories("Bikes")}>Bikes</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => this.categories("Books")}>Books</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => this.categories("Clothes")}>Clothes</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => this.categories("Computers")}>Computers</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => this.categories("Gardening")}>Gardening</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => this.categories("Kitchen")}>Kitchen</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => this.categories("Sports")}>Sports</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => this.categories("Tools")}>Tools</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => this.categories("Toys")}>Toys</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => this.categories("Others")}>Others</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
                 <Label for="pricePerPeriod" xl={3}>Price</Label>
                 <Col xl={9}>
                   <Input type="number" value={this.state.pricePerPeriod} name="pricePerPeriod" onChange={this.handleInputChange} />
                 </Col>
               </FormGroup>
               <FormGroup row>
-                {/* <Label for="period" xl={3}>Per...</Label> */}
                 <Col xl={9}>
                 Per:
-                <Dropdown direction="right" isOpen={this.state.dropdownOpen} toggle={this.toggle}  name="period">
+                <Dropdown direction="right" isOpen={this.state.dropdownPeriodOpen} toggle={this.togglePeriod}  name="period">
                   <DropdownToggle caret>
                     {this.state.period}
                   </DropdownToggle>

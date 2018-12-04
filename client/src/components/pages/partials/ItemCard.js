@@ -14,7 +14,7 @@ import DeleteItemModal from './DeleteItemModal'
 const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates, updateDeleteItem}) => {
   let catFilt = false
   for (let i = 0; i < categories.length; i++) {
-    if (categoryFilter.includes(categories[i])) {
+    if (categoryFilter.includes(categories[i].toLowerCase())) {
       catFilt = true
     }
   }
