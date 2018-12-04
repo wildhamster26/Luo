@@ -96,7 +96,8 @@ export default {
     .catch(errHandler)
   },
   
-  requestItem(id){
+  requestItem(id, pickedDays){
+    console.log('THIS IS THE SHIT', pickedDays)
     return service
     .get(`/items/${id}/request/${JSON.parse(localStorage.getItem('user'))._id}`)
     .then(res => res.data)

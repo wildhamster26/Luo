@@ -8,11 +8,9 @@ export default class SearchBox extends Component {
     }
   }
   changeSearchBar(e){
-    // console.log('HEYA!', e.target.value.toLowerCase())
     this.props.onSearch(e.target.value.toLowerCase());
   }
   render() {
-    // console.log(this.props.searchString)
     return (
       <div className="search-box">
         <form>
