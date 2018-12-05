@@ -7,11 +7,19 @@ import api from '../../../api';
 class CalendarModal extends React.Component {
   constructor(props) {
     super(props);
+
+    let reservedDates = []
+    if (props.reservedDates !== undefined && props.reservedDates.length !== 0) {
+      for (let i = 0; i < props.reservedDates.length; i++) {
+        reservedDates.push(new Date(props.reservedDates[i].date))
+      }
+    }
+
     this.state = {
       itemId: props.itemId,
       modal: false,
       buttonLabel: "",
-      reservedDates: [],
+      reservedDates: reservedDates,
       pickedDays: []
     };
 
@@ -40,9 +48,8 @@ class CalendarModal extends React.Component {
   handleSubmittedDays = () => {
     if (this.state.pickedDays.length !== 0) {
       this.props.pickedDays(this.state.pickedDays)
-      this.toggle();
     } else {
-      this.toggle();
+
     }
   }
 
@@ -58,17 +65,6 @@ class CalendarModal extends React.Component {
   //   })
   //   return false
   // }
-
-  componentDidMount() {
-    let reservedDates = []
-    if(!this.props.reservedDates) 
-      return;
-    else if (this.props.reservedDates.length !== 0) {
-      for (let i = 0; i < this.props.reservedDates.length; i++) {
-        reservedDates.push(new Date(this.props.reservedDates[i].date))
-      }
-    }
-  }
   
   render() {
     return (
