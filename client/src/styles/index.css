@@ -6602,7 +6602,7 @@ hr {
     align-items: center; }
 
 .profile-items-h2 {
-  margin: 30px auto 0;
+  margin: 30px auto 15px;
   border-bottom: 1px #1f232d solid; }
 
 .item-detail {

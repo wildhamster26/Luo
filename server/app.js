@@ -48,6 +48,13 @@ app.use(session({
 }))
 require('./passport')(app)
 
+// For debugging the site on loading time
+// app.use((req,res,next) => {
+//   setTimeout(() => {
+//     next()
+//   }, 1000)
+// })
+
 
 app.use('/api', require('./routes/index'))
 app.use('/api', require('./routes/auth'))

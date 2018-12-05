@@ -19,8 +19,8 @@ export default class MainNavbar extends Component {
     this.state = {
       isOpen: false,
       hasShadow: false,
-      username: "Howdy stranger!",
-      imgPath: "https://res.cloudinary.com/wildhamster26/image/upload/v1543843830/folder-name/default-user-image.png"
+      username: "",
+      imgPath: ""
     };
   }
   handleLogoutClick(e) {
@@ -44,8 +44,8 @@ export default class MainNavbar extends Component {
   }
 
   componentDidMount() {
-    if(!!localStorage.getItem("user")){
-      api.getUser()
+    // if(!!localStorage.getItem("user")){
+      api.getProfile()
         .then(user => {
           this.setState({
             username: user.username,
@@ -55,7 +55,7 @@ export default class MainNavbar extends Component {
           })
         })
         .catch(err => console.log(err))
-    }
+    // }
 
   }
 

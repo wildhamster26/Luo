@@ -207,6 +207,28 @@ router.get("/request/:requestId/accept", (req, res, next) => {
         .then(res => {console.log('Success')})
       })
     })
+    .then(() => {
+      Request.findById(requestId) 
+      .then(request => Promise.all([User.findById(request._owner), User.findById(request._borrower), Item.findById(request._item)]))
+      .then(results => {
+        let transporter = nodemailer.createTransport({
+          service: 'Gmail',
+          auth: {
+            user:  process.env.GMAIL_USER,
+            pass:  process.env.GMAIL_PASS
+          }
+        });
+        transporter.sendMail({
+          from: '"Luo"',
+          to: results[1].email,
+          subject: 'Your Luo item request have been accepted!', 
+          html: `Hi! :)<br><br> ${results[0].username} has accepted your request to rent their ${results[2].name}. <br><br> You can contact him here: ${results[0].email} <br><br> Have a great day!<br> <img height="50px" src=${results[2].imgPath}>`
+        })
+      })
+        .then(info => console.log(info))
+        .catch(error => console.log(error))
+      
+    })
 })
 
 module.exports = router;

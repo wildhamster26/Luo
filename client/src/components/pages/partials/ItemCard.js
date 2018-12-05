@@ -44,7 +44,6 @@ const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description
       api.deleteItem(id)
       .then(res => {
         console.log(res);
-        updateDeleteItem()
       });
     };
       return (
