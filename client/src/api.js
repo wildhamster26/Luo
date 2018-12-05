@@ -96,9 +96,10 @@ export default {
     .catch(errHandler)
   },
   
-  requestItem(id, owner, pickedDays){
+  requestItem(id, pickedDays){
+    let currentUserId = JSON.parse(localStorage.getItem('user'))._id
     return service
-    .post(`/items/${id}/request/${owner._id}/`, pickedDays)
+    .post(`/items/${id}/request/${currentUserId}/`, pickedDays)
     .then(res => res.data)
     .catch(errHandler)
   },

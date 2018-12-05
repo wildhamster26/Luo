@@ -13,9 +13,7 @@ export default class AcceptRequest extends Component {
   componentDidMount(){
     // console.log(this.props.match.params.requestId)
     api.acceptRequest(this.props.match.params.requestId)
-    .then(res => {
-      return res.data
-    })
+    .then(res => res.data)
     .catch(err => console.log(err))
   }
 }

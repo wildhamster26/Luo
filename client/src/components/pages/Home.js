@@ -16,6 +16,8 @@ export default class Home extends Component {
       date: new Date(),
       activeCategories: []
     }
+    // console.log('PROPSSSSPSSSPSSPSPSPSSSSS', props)
+    // console.log('LOCALSTORAGEGEGEGEGEEGEGE', JSON.parse(localStorage.getItem('user'))._id)
 
   }
   searchState = (character) => {
@@ -57,6 +59,7 @@ export default class Home extends Component {
   }
 
   render() {
+    // const currentUser = JSON.parse(localStorage.getItem('user'))._id
     return (
       <div>
         <ReactModal isOpen={this.state.isOpen} />
