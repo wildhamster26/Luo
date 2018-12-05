@@ -10,6 +10,8 @@ import DeleteItemModal from './DeleteItemModal'
 
 
 const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates, updateDeleteItem}) => {
+    // console.log('LOCALSTORAGEGEGEGEGEEGEGE', JSON.parse(localStorage.getItem('user'))._id)
+
   let catFilt = false
   for (let i = 0; i < categories.length; i++) {
     if (categoryFilter.includes(categories[i].toLowerCase())) {
@@ -20,7 +22,7 @@ const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description
   var pickedDays = "not updated"
 
   let requestItem = () => {
-    api.requestItem(id, owner, pickedDays)
+    api.requestItem(id, pickedDays)
     .then(res =>{
       alert("The owner has been contacted with your email.");
     });
