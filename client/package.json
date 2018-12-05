@@ -14,7 +14,8 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
-    "reactstrap": "^6.5.0"
+    "reactstrap": "^6.5.0",
+    "react-calendar": "^2.17.5"
   },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src/styles --include-path ./node_modules src/styles/ -o src/styles/",
