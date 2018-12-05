@@ -176,10 +176,11 @@ router.post("/:id/request/:borrowerId", (req, res, next) => {
                     })
                     res.json({
                       success: true,
+                      message: "Request email sent."
                     })
-                      .then(info => console.log(info))
-                      .catch(error => console.log(error))
                   })
+                  .then(info => console.log(info))
+                  .catch(error => console.log(error))
               })
           })
           .catch(err => next(err))

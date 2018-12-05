@@ -9,7 +9,7 @@ class CalendarModal extends React.Component {
     super(props);
 
     let reservedDates = []
-    if (props.reservedDates.length !== 0) {
+    if (props.reservedDates !== undefined && props.reservedDates.length !== 0) {
       for (let i = 0; i < props.reservedDates.length; i++) {
         reservedDates.push(new Date(props.reservedDates[i].date))
       }
