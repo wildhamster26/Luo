@@ -6418,7 +6418,7 @@ nav {
   position: fixed;
   transition: all 0.25s; }
   .MainNavbar .logo {
-    height: 150px;
+    height: 40px;
     padding-bottom: 4px; }
   .MainNavbar .navbar-brand {
     padding: 4px 0 0 0; }
@@ -6745,9 +6745,11 @@ hr {
 
 .modal-footer {
   border: none;
-  color: white;
+  color: white !important;
   justify-content: center;
   text-align: center; }
+  .modal-footer p {
+    color: white !important; }
   .modal-footer button {
     background-color: rgba(255, 255, 255, 0); }
   .modal-footer button:hover {

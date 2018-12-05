@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, ModalHeader, ModalFooter } from 'reactstrap';
 import {Link } from 'react-router-dom'
 
-class ModalInteraction extends React.Component {
+class ModalRequested extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,10 +28,10 @@ class ModalInteraction extends React.Component {
         <a onClick={this.toggle}>{this.props.text}</a>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>
-            Please log in or sign up to do that.
+            An email has been sent to the owner of this item with your request.
           </ModalHeader>
           <ModalFooter>
-            <Link to="/login" ><p>Sure - Let's do it!</p></Link>
+            <Link to="/login" ><p></p></Link>
           </ModalFooter>
         </Modal>
       </div>
@@ -39,4 +39,4 @@ class ModalInteraction extends React.Component {
   }
 }
 
-export default ModalInteraction;
+export default ModalRequested;
