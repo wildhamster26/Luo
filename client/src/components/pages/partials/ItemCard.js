@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../../api';
 import ModalInteraction from './ModalInteraction'
+import ModalAlert from './ModalAlert'
+import ModalRequested from './ModalRequested'
 // import ReactModal from 'react-modal'
 import { Button } from 'reactstrap';
 import MapModal from './MapModal'
@@ -10,7 +12,6 @@ import DeleteItemModal from './DeleteItemModal'
 
 
 const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates, updateDeleteItem}) => {
-    // console.log('LOCALSTORAGEGEGEGEGEEGEGE', JSON.parse(localStorage.getItem('user'))._id)
 
   let catFilt = false
   for (let i = 0; i < categories.length; i++) {
@@ -18,14 +19,19 @@ const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description
       catFilt = true
     }
   }
-  // console.log('RESERVED DATES FROM ITEMCARD', reservedDates)
-  var pickedDays = "not updated"
+  var pickedDays = ""
 
   let requestItem = () => {
-    api.requestItem(id, pickedDays)
-    .then(res =>{
-      alert("The owner has been contacted with your email.");
-    });
+    if (pickedDays === "") {
+      alert("Please pick some dates.");
+    } else {
+      api.requestItem(id, pickedDays)
+      .then(res =>{
+        console.log(res)
+        alert("The owner has been contacted with your email.");
+      });
+
+    }
   }
 
   let getPickedDays = (e) => {
@@ -35,10 +41,6 @@ const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description
   if (((searchFilter !== "" && (name.toLowerCase().includes(searchFilter) || description.toLowerCase().includes(searchFilter))) || catFilt) || (searchFilter === "" && categoryFilter.length === 0)) {
     if (imgPath === undefined || imgPath.length === 0) 
       imgPath = 'https://res.cloudinary.com/wildhamster26/image/upload/v1543699130/folder-name/generic.png'
-
-    // let handleClick = () => {
-    //   window.location.assign('/items/'+id);    
-    // };
 
     let deleteItem = () => {
       api.deleteItem(id)
@@ -64,7 +66,7 @@ const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description
             </div>
             <div className="itemCard-btn-div">
               {api.isLoggedIn() && <button className="btn-second" onClick={requestItem}>Request</button>}
-              {!api.isLoggedIn() && <ModalInteraction itemId={id} text="Request" />}
+              {!api.isLoggedIn() && <button className="btn-second"><ModalInteraction itemId={id} text="Request" /></button>}
               <div className="editAndDelete">
                 {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) && <DeleteItemModal deleteItem={deleteItem} itemId={id}/>}
                 {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) &&<Button><Link to={`/items/${id}/edit`}><img src="../images/edit.png" alt="delete" width="20px" /></Link></Button>}
