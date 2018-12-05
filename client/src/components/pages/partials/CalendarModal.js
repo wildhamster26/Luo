@@ -48,8 +48,9 @@ class CalendarModal extends React.Component {
   handleSubmittedDays = () => {
     if (this.state.pickedDays.length !== 0) {
       this.props.pickedDays(this.state.pickedDays)
+      this.toggle();
     } else {
-
+      this.toggle();
     }
   }
 
