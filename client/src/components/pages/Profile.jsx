@@ -23,6 +23,8 @@ class Profile extends Component {
       file: null,
       id: "",
       items: [],
+      rented: [],
+      borrowed: [],
       initialUsername: null,
       initialEmail: null,
     }
@@ -97,8 +99,19 @@ class Profile extends Component {
                     </div>}
               </Form>
           </div>
+          <h2 className="profile-items-h2">All of my items:</h2>
           <div className="itemCards-container">
             {this.state.items.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
+          </div>
+          {console.log(this.state.rented)}
+          <h2 className="profile-items-h2">Currently rented items:</h2>
+          <div className="itemCards-container">
+            {this.state.rented.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
+          </div>
+          {console.log(this.state.borrowed)}
+          <h2 className="profile-items-h2">Borrowed items:</h2>
+          <div className="itemCards-container">
+            {this.state.borrowed.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
           </div>
         </div>
       );
@@ -106,18 +119,41 @@ class Profile extends Component {
   
   componentDidMount() {
     if(localStorage.getItem("user")){
-    Promise.all([api.getUser(), api.getItems()])
+    Promise.all([api.getUser(), api.getItems(), api.getRequests()])
     .then(res => {
-        this.setState({
-          username: res[0].username,
-          initialUsername: res[0].username,
-          email: res[0].email,
-          initialEmail: res[0].email,
-          imgPath: res[0].imgPath,
-          id: res[0]._id,
-          items: res[1].filter(item => {
-             return item._owner._id === res[0]._id
-        })
+      this.setState({
+        username: res[0].username,
+        initialUsername: res[0].username,
+        email: res[0].email,
+        initialEmail: res[0].email,
+        imgPath: res[0].imgPath,
+        id: res[0]._id,
+        items: res[1].filter(item => {
+          return item._owner._id === res[0]._id
+        }),
+        // iterate through all the items and return the relevant ones
+        rented: res[1].filter((item, i) => {
+          let relevantItem = false;
+          //if the item appears in a request, keep going
+          for(let i = 0; i < res[2].length; i++){
+            if (item._id === res[2][i]._item && 
+              // if that request's renter is equal to the user => return true
+              res[2][i]._owner === res[0]._id) 
+              relevantItem = true 
+          }
+          return relevantItem;
+        }),
+        borrowed: res[1].filter((item, i) => {
+          let relevantItem = false;
+          //if the item appears in a request, keep going
+          for(let i = 0; i < res[2].length; i++){
+            if (item._id === res[2][i]._item && 
+              // if that request's borrower is equal to the user => return true
+              res[2][i]._borrower === res[0]._id) 
+              relevantItem = true 
+          }
+          return relevantItem;
+        }),
       })      
     })
     .catch(err => console.log(err))

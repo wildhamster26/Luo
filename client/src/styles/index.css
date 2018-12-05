@@ -6601,6 +6601,10 @@ hr {
     margin: auto;
     align-items: center; }
 
+.profile-items-h2 {
+  margin: 30px auto 0;
+  border-bottom: 1px #1f232d solid; }
+
 .item-detail {
   display: flex;
   flex-direction: column;

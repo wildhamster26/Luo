@@ -131,7 +131,7 @@ export default {
       .catch(errHandler)
   },
   //====================
-  //User routes --- to be set
+  //User routes
   //====================
 
   getUser() {
@@ -169,7 +169,18 @@ export default {
       })
       .then(res => res.data)
       .catch(errHandler);
-  }
+  },
+
+   //====================
+  //Request route
+  //====================
+
+  getRequests() {
+    return service
+      .get('/requests')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
 }
 
 
