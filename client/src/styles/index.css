@@ -6441,6 +6441,9 @@ nav {
 .navbar {
   padding: 0 10px; }
 
+.nav-link {
+  padding: 0; }
+
 .MainNavbar {
   height: 70px;
   margin-bottom: 0px;
@@ -6472,10 +6475,18 @@ nav {
 
 .navbar-img {
   border-radius: 50px;
-  height: 30px; }
+  height: 40px;
+  width: 40px;
+  object-fit: cover; }
 
-.nav-item {
-  vertical-align: center; }
+.navbar-img-action {
+  height: 20px;
+  width: 20px; }
+
+.nav-item, .nav-link {
+  display: flex;
+  align-content: center;
+  align-items: center; }
 
 .hasShadow {
   box-shadow: 0 0 15px black;
@@ -6628,7 +6639,7 @@ nav {
     .Login-signup-page form input {
       border: none;
       text-align: center;
-      font-size: 0.9em; }
+      font-size: 1.1em; }
   .Login-signup-page .Signup {
     height: 150px; }
 

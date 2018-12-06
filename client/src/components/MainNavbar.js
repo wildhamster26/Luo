@@ -70,19 +70,18 @@ export default class MainNavbar extends Component {
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <NavItem>
-              {/* {this.props.user && <NavLink tag={NLink} to="/profile"><img className="navbar-img" src={this.props.user.imgPath} alt="User avatar" /> {this.props.user.username}</NavLink>} */}
-              {this.props.user && <NavLink tag={NLink} to="/profile"><img className="navbar-img" src={this.props.user.imgPath} alt="User avatar" /> </NavLink>}
-            </NavItem>
             {!api.isLoggedIn() && <NavItem>
-              <NavLink tag={NLink} to="/login">Login/Signup</NavLink>
+              <NavLink tag={NLink} to="/login">Login/Signup<img style={{marginLeft: "20px"}} className="navbar-img-action" src="/images/login (white).png" /></NavLink>
             </NavItem>}
             {api.isLoggedIn() && <NavItem>
-              <NavLink tag={NLink} to="/items/new">Add your item</NavLink>
+              <NavLink tag={NLink} to="/items/new"><img className="navbar-img-action" src="/images/add (white).png" /></NavLink>
             </NavItem>}
               {api.isLoggedIn() && <NavItem>
-            <NavLink tag={Link} to="/"  onClick={(e) => this.handleLogoutClick(e)}>Logout</NavLink>
+            <NavLink tag={Link} to="/"  onClick={(e) => this.handleLogoutClick(e)}><img className="navbar-img-action" src="/images/logout (white).png" /></NavLink>
             </NavItem>}
+            <NavItem>
+              {this.props.user && <NavLink tag={NLink} to="/profile"><img className="navbar-img" src={this.props.user.imgPath} alt="User avatar" /> </NavLink>}
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
