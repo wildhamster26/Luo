@@ -6,7 +6,6 @@ import Items from './pages/Items';
 import AcceptRequest from './pages/AcceptRequest';
 import Profile from './pages/Profile';
 import AddItem from './pages/AddItem';
-import Secret from './pages/Secret';
 import LoginSignup from './pages/LoginSignup';
 import Confirm from './pages/Confirm';
 import PleaseConfirm from './pages/PleaseConfirm';
@@ -61,8 +60,7 @@ class App extends Component {
           <Route path="/logout" exact component={Home} />
           <Route path="/confirm" exact component={PleaseConfirm} />
           <Route path="/confirm/:confirmationCode" exact render={props => <Confirm {...props} onConfirm={this.getProfile} />} />
-          <Route path="/secret" exact component={Secret} />
-          <Route render={() => <h2>404 from your friendly neighbourhood react app.</h2>} />
+          <Route render={() => <h2>404 from your friendly neighbourhood react app. </h2>} />
         </Switch>
       </div>
     );
