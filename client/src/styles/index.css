@@ -6317,7 +6317,8 @@ body {
   padding: 0;
   font-family: sans-serif;
   width: 100% !important;
-  color: #484848; }
+  color: #484848;
+  background-color: #1f232d; }
 
 a {
   text-decoration: none !important; }
