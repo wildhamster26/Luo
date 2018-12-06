@@ -6381,7 +6381,7 @@ input:focus {
   background-color: lightcoral;
   color: white;
   cursor: pointer;
-  box-shadow: 0 2px 7px lightgrey;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.9);
   transition: all 0.15s; }
 
 .btn-second:focus {
@@ -6727,6 +6727,7 @@ label:hover {
 .profile-form-div {
   display: flex;
   max-width: 400px;
+  height: 350px;
   flex-direction: column;
   align-items: center;
   margin: auto;
@@ -6758,12 +6759,16 @@ label:hover {
     outline: none; }
   .profile-form-div .user-button {
     display: flex;
-    flex-direction: column;
-    margin: auto;
-    align-items: center; }
+    margin: 30px auto 0;
+    justify-content: center; }
+
+.btn-edit-details {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0);
+  justify-self: center; }
 
 .profile-items-h2 {
-  margin: 50px auto 15px;
+  margin: 0 auto 15px;
   border-bottom: 1px #1f232d solid;
   color: rgba(255, 255, 255, 0.9);
   font-size: 1.5em; }
@@ -6822,7 +6827,7 @@ label:hover {
     border-top-right-radius: 3px; }
     .itemCard .itemCard-img-wrapper img {
       margin: 0 auto 10px;
-      object-fit: contain;
+      object-fit: cover;
       max-width: 100%;
       max-height: 355px;
       height: auto; }
@@ -6952,3 +6957,11 @@ button.close {
   .itemCard {
     width: 95%;
     max-width: 350px; } }
+
+.AddItem {
+  color: rgba(255, 255, 255, 0.8);
+  width: 95%; }
+
+.add-item-img {
+  display: flex;
+  justify-content: center; }

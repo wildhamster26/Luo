@@ -74,9 +74,9 @@ export default class MainNavbar extends Component {
             </NavItem>}
             {api.isLoggedIn() && <NavItem>
               <NavLink tag={NLink} to="/items/new"><img className="navbar-img-action" src="/images/add (white).png" alt="add item" /></NavLink>
-            </NavItem>}
               {api.isLoggedIn() && <NavItem>
             <NavLink tag={Link} to="/"  onClick={(e) => this.handleLogoutClick(e)}><img className="navbar-img-action" src="/images/logout (white).png" alt="logout" /></NavLink>
+            </NavItem>}
             </NavItem>}
             <NavItem>
               {this.props.user && <NavLink tag={NLink} to="/profile"><img className="navbar-img" src={this.props.user.imgPath} alt="User avatar" /> </NavLink>}
