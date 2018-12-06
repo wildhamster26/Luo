@@ -18,7 +18,6 @@ export default class LoginSignup extends Component {
           </div>
           <Signup/>
       </div>
-          
     )
   }
 }
