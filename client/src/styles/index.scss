@@ -570,9 +570,12 @@ label:hover {
   }
   input{
       text-align: center;
-      border-radius: 10px;
+      border-radius: 3px;
       letter-spacing: 1px;
-      margin: 4px;
+      margin-top: 20px;
+      background-color: rgba(255, 255, 255, 0.3);
+      border: none;
+      color: white;
   }
   .user-img{
     display: flex;
@@ -580,6 +583,14 @@ label:hover {
     margin: auto;
     align-items: center;
     margin: 20px;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+  }
+  .user-img:focus {
+    outline: none;
   }
   .user-button{
     display: flex;
@@ -590,7 +601,7 @@ label:hover {
 }
 
 .profile-items-h2{
-  margin: 30px auto 15px;
+  margin: 50px auto 15px;
   border-bottom: 1px $primary solid;
   color: rgba(255, 255, 255, 0.9);
   font-size: 1.5em;
@@ -656,14 +667,15 @@ label:hover {
   .itemCard-img-wrapper {
     display: grid;
     justify-content: center;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     img {
       margin: 0 auto 10px;
       object-fit: contain;
       max-width: 100%;
       max-height: 355px;
       height: auto; 
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px;
+
     }
   }
   .itemCard-sub-img {

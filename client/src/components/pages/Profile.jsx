@@ -136,19 +136,18 @@ class Profile extends Component {
         <div className="profile-page">
           <div className="profile-form-div">
               <Form>
-                    <Input disabled value={this.state.user.email} />
-                    <Input type="text" name="username" value={this.state.user.username} onChange={this.handleUserInputChange} />
-                    <div className="user-img">
-                        <label htmlFor="file"><img src={this.state.user.imgPath} width="200px" alt="User avatar"/></label>
-                        <input type="file" name="file" id="file" className="input-file" onChange={this.handleChange} />
-                    </div>
-                    {(this.state.file || this.state.user !== this.props.user) &&
-                    <div className="user-button">
-                      <Button color="primary" onClick={(e) => this.handleEdit(e)}>Edit details</Button>
-                    </div>}
-                    {this.state.message && <div className="info">
-                      {this.state.message}
-                    </div>}
+                <div>
+                    <label htmlFor="file"><img className="user-img" src={this.state.user.imgPath} width="200px" alt="User avatar"/></label>
+                    <input type="file" name="file" id="file" className="input-file" onChange={this.handleChange} />
+                </div>
+                {/* <Input disabled value={this.state.user.email} /> */}
+                <Input type="text" className="" name="username" value={this.state.user.username} onChange={this.handleUserInputChange} />
+                {(this.state.file || this.state.user !== this.props.user) && <div className="user-button">
+                  <Button color="primary" onClick={(e) => this.handleEdit(e)}>Edit details</Button>
+                </div>}
+                {this.state.message && <div className="info">
+                  {this.state.message}
+                </div>}
               </Form>
           </div>
           {(this.state.items.length !== 0) && <h2 className="profile-items-h2">All my items</h2>}
