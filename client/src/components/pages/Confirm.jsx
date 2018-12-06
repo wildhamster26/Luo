@@ -14,6 +14,7 @@ export default class Confirm extends Component {
     console.log(this.props.match.params.confirmationCode)
     api.sendConfirmation(this.props.match.params.confirmationCode)
     .then(res => {
+      this.props.onConfirm()
       this.props.history.push("/");
     })
   }

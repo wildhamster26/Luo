@@ -10,13 +10,13 @@ export default class LoginSignup extends Component {
   render() {
     return (
       <div className="Login-signup-page">
-          <Login />
+          <Login onLoginSignup={this.props.onLoginSignup} />
           <div className="or">
             <div className="inner-or">
               <hr/>OR<hr/>
             </div>
           </div>
-          <Signup/>
+          <Signup />
       </div>
     )
   }

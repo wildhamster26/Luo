@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
+// import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
 class Map extends Component {
   constructor(props) {

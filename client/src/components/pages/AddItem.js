@@ -12,10 +12,13 @@ import {
   DropdownToggle,
   DropdownMenu, 
   DropdownItem
-} from 'reactstrap'
-import api from '../../api'
+} from 'reactstrap';
+import api from '../../api';
 
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
+import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
+// import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+// import MapboxSdk from '@mapbox/mapbox-sdk';
+
 
 
 class AddItem extends Component {
@@ -30,6 +33,7 @@ class AddItem extends Component {
       period: "day",
       lng: 13.3711224,
       lat: 52.5063688,
+      // address: "",
       message: null,
       file: null,
       dropdownCategoriesOpen: false,
@@ -106,6 +110,33 @@ class AddItem extends Component {
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
+
+  // addMarker = () => {
+  //   mapboxgl.accessToken = 'pk.eyJ1Ijoic2FneSIsImEiOiJjam96eXBwMW4ycHdlM2tsa3g2Zm56N2JpIn0.GQVNYCBHgV6RGCVEwNsvtg';
+  //   // eslint-disable-next-line no-undef
+  //   var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
+  //   mapboxClient.geocoding.forwardGeocode({
+  //       query: this.state.address,
+  //       autocomplete: false,
+  //       limit: 1
+  //   })
+  //   .send()
+  //   .then(function (response) {
+  //       if (response && response.body && response.body.features && response.body.features.length) {
+  //           var feature = response.body.features[0];
+
+  //           var map = new mapboxgl.Map({
+  //               container: 'map',
+  //               style: 'mapbox://styles/mapbox/streets-v9',
+  //               center: feature.center,
+  //               zoom: 10
+  //           });
+  //           new mapboxgl.Marker()
+  //               .setLngLat(feature.center)
+  //               .addTo(map);
+  //       }
+  //   });
+  // }
   
   componentDidMount() {
     this.initMap()
@@ -117,11 +148,18 @@ class AddItem extends Component {
       container: this.mapRef.current,
       style: 'mapbox://styles/mapbox/streets-v10',
       center: [this.state.lng, this.state.lat],
-      zoom: 13
+      zoom: 12
     })
 
     // Add zoom control on the top right corner
     this.map.addControl(new mapboxgl.NavigationControl())
+
+      //Add a location searchbox
+      // mapboxgl.accessToken = 'pk.eyJ1Ijoic2FneSIsImEiOiJjam96eXBwMW4ycHdlM2tsa3g2Zm56N2JpIn0.GQVNYCBHgV6RGCVEwNsvtg';
+      // var geocoder = new MapboxGeocoder({
+      //   accessToken: mapboxgl.accessToken
+      //  });
+      // this.map.addControl(geocoder);
 
     // Create a marker on the map
     this.marker = new mapboxgl.Marker({ color: 'red', draggable: true })
@@ -217,6 +255,12 @@ class AddItem extends Component {
                   <Input type="file" name="image" onChange={this.handleChange} />
                 </Col>
               </FormGroup>
+              {/* <FormGroup row>
+                <Label for="name" xl={3}>Address</Label>
+                <Col xl={9}>
+                  <Input type="text" value={this.state.address} name="address" onChange={this.handleInputChange} />
+                </Col>
+              </FormGroup> */}
               <FormGroup row>
                 <Label for="name" xl={3}>Longitude/Latitude</Label>
                 <Col xl={9}>
