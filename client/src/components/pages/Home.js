@@ -23,7 +23,7 @@ export default class Home extends Component {
     })
   }
   handleCategory = (category) => {
-    let cats = this.state.activeCategories
+    let cats = this.state.activeCategories;
     if (cats.indexOf(category.toLowerCase()) === -1) {
       cats.push(category.toLowerCase())
     } else {
@@ -33,9 +33,10 @@ export default class Home extends Component {
       activeCategories: cats
     })
   }
-  onSubmitDates = () => {
 
-  }
+  // onSubmitDates = () => {
+
+  // }
 
   updateDeleteItem = () => {
     api.getItems()

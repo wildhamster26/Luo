@@ -99,7 +99,7 @@ class Profile extends Component {
                     <Input disabled value={this.state.user.email} />
                     <Input type="text" name="username" value={this.state.user.username} onChange={this.handleUserInputChange} />
                     <div className="user-img">
-                        <label for="file"><img src={this.state.user.imgPath} width="200px" alt="User avatar"/></label>
+                        <label htmlFor="file"><img src={this.state.user.imgPath} width="200px" alt="User avatar"/></label>
                         <input type="file" name="file" id="file" className="input-file" onChange={this.handleChange} />
                     </div>
                     {(this.state.file || this.state.user !== this.props.user) &&

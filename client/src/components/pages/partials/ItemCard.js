@@ -8,7 +8,7 @@ import CalendarModal from './CalendarModal'
 import DeleteItemModal from './DeleteItemModal'
 
 
-const ItemCard = ({id, owner, name, imgPath, location, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates, updateDeleteItem}) => {
+const ItemCard = ({props, id, owner, name, imgPath, location, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates, updateDeleteItem}) => {
 
   let catFilt = false
   for (let i = 0; i < categories.length; i++) {
@@ -35,6 +35,8 @@ const ItemCard = ({id, owner, name, imgPath, location, pricePerPeriod, period, d
     pickedDays = e
   }
 
+    // console.log(this.a)
+
   if (((searchFilter !== "" && (name.toLowerCase().includes(searchFilter) || description.toLowerCase().includes(searchFilter))) || catFilt) || (searchFilter === "" && categoryFilter.length === 0)) {
     if (imgPath === undefined || imgPath.length === 0) 
       imgPath = 'https://res.cloudinary.com/wildhamster26/image/upload/v1543699130/folder-name/generic.png'
@@ -45,6 +47,7 @@ const ItemCard = ({id, owner, name, imgPath, location, pricePerPeriod, period, d
         console.log(res);
       });
     };
+
       return (
           <div className="itemCard">
             <div className="itemCard-name">
@@ -66,7 +69,7 @@ const ItemCard = ({id, owner, name, imgPath, location, pricePerPeriod, period, d
               {!api.isLoggedIn() && <button className="btn-second"><ModalInteraction itemId={id} text="Request" /></button>}
               <div className="editAndDelete">
                 {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) && <button className="item-edit"><Link to={`/items/${id}/edit`}><img src="../images/edit 0F7173.png" alt="delete" width="20px" /></Link></button>}
-                {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) && <DeleteItemModal deleteItem={deleteItem} itemId={id}/>}
+                {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) && <DeleteItemModal deleteItem={deleteItem} updateDeleteItem={updateDeleteItem} itemId={id}/>}
               </div>
             </div>
           </div>

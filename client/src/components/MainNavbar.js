@@ -60,7 +60,6 @@ export default class MainNavbar extends Component {
   
 
   render() {
-    console.log(this.props)
     window.onscroll = () => {this.shadowToggler()};
     return (
       <Navbar color="primary" dark expand="md" className={"MainNavbar" + (this.state.hasShadow ? " hasShadow" : "")}>
