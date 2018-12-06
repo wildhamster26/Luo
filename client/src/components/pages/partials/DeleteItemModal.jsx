@@ -30,6 +30,7 @@ class DeleteItemModal extends React.Component {
     return (
       <div>
         <Button onClick={this.toggle}><img src="../images/trash.png" alt="delete" width="20px" /></Button>
+        {/* <Button onClick={this.toggle}><img src="../images/trash.png" alt="delete" width="20px" className="button"/></Button> */}
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>
             Are you sure you want to delete this item?

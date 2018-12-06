@@ -6430,12 +6430,15 @@ nav {
 .empty-div {
   height: 60px; }
 
-.home h2 {
-  text-align: center;
-  font-weight: bold; }
-
-.home h3 {
-  text-align: center; }
+.home {
+  background-color: #1f232d; }
+  .home h2 {
+    text-align: center;
+    font-weight: bold; }
+  .home h3 {
+    text-align: center;
+    font-size: 1.3em;
+    color: white; }
 
 .search-box {
   background-color: #1F232D;
@@ -6534,19 +6537,83 @@ nav {
     .Items .row .map {
       height: 100px; }
 
-.Login-signup-page, .Login, .Signup {
-  max-width: 400px;
+.container {
+  min-width: 350px;
+  width: 100%;
   margin: auto;
-  text-align: center; }
+  text-align: center;
+  background-color: #1f232d !important; }
+
+.login-general-wrapper {
+  display: grid;
+  align-content: center;
+  position: relative;
+  top: 70px; }
+
+.signup-general-wrapper {
+  display: grid;
+  align-content: center;
+  position: relative;
+  bottom: 70px; }
+
+.Login-signup-page {
+  display: grid;
+  justify-content: center;
+  align-content: space-around;
+  min-width: 350px;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  background-color: #1f232d !important; }
+  .Login-signup-page h2 {
+    font-size: 1.5em;
+    color: white; }
+  .Login-signup-page form {
+    display: grid;
+    justify-content: stretch; }
+    .Login-signup-page form input {
+      border: none;
+      text-align: center;
+      font-size: 0.9em; }
+  .Login-signup-page .Signup {
+    height: 150px; }
+
+.Login-form {
+  min-width: 95%; }
+
+.btn-login-signup {
+  margin-top: 10px;
+  font-size: 1em;
+  width: 100px;
+  transition: all 0.25s;
+  background-color: rgba(0, 0, 0, 0); }
+
+.btn-login-signup:hover {
+  box-shadow: 0 2px 20px #0a0c0f;
+  transition: all 0.25s; }
 
 .text-input {
-  text-align: center;
-  border-radius: 10px;
-  letter-spacing: 1px;
-  margin: 4px; }
+  display: grid;
+  justify-content: center;
+  color: white;
+  font-size: 1.2em;
+  background-color: rgba(255, 255, 255, 0.3);
+  height: 40px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px; }
+  .text-input form {
+    justify-content: center;
+    text-align: center; }
+  .text-input .active-input {
+    transition: all 0.25s;
+    font-size: 1.2em;
+    background-color: rgba(255, 255, 255, 0.1); }
 
 .or {
-  display: flex; }
+  display: flex;
+  justify-content: center;
+  height: 20px; }
 
 .inner-or {
   display: flex;
@@ -6570,7 +6637,8 @@ hr {
 .profile-page {
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  background-color: #1f232d; }
   .profile-page h1 {
     margin: 20px auto; }
 
@@ -6633,7 +6701,6 @@ hr {
   align-content: flex-start;
   width: 100%;
   justify-content: center;
-  width: auto;
   margin: 0 auto; }
 
 .itemCard {
@@ -6641,7 +6708,7 @@ hr {
   display: flex;
   flex-flow: column;
   border-radius: 3px;
-  box-shadow: 0 5px 20px #d4d4d4;
+  box-shadow: 0 5px 20px black;
   background-color: #fff;
   transition: box-shadow 0.5s;
   margin: 15px 10px;
@@ -6664,7 +6731,8 @@ hr {
     padding: 10px;
     font-size: 1em; }
     .itemCard .itemCard-sub-img h6 {
-      font-size: 0.9em; }
+      font-size: 0.9em;
+      font-weight: bold; }
     .itemCard .itemCard-sub-img a {
       color: lightcoral; }
     .itemCard .itemCard-sub-img a:hover {
@@ -6691,7 +6759,7 @@ hr {
     color: #ec5f5f; }
 
 .itemCard:hover {
-  box-shadow: 0 7px 20px #b3b3b3;
+  box-shadow: 0 7px 20px black;
   transition: box-shadow 0.5s; }
 
 .modal {
@@ -6728,7 +6796,7 @@ hr {
   background: #1087ff; }
 
 .react-calendar__tile--active--custom {
-  background: #1087ff !important;
+  background: lightcoral !important;
   color: white !important; }
 
 .modal-content {

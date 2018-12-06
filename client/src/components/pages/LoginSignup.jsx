@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
 import Signup from './partials/Signup';
 import Login from './partials/Login';
-import { Container } from 'reactstrap';
+// import { Container } from 'reactstrap';
 
 
 
 export default class LoginSignup extends Component {
-  
+  // console.log(this.props.itemId)
   render() {
     return (
-      <Container className="Login-signup-page">
-        <Login/>
-        <br/>
-        <div className="or">
-          <div className="inner-or">
-            <hr/>OR<hr/>
+      <div className="Login-signup-page">
+          <Login />
+          <div className="or">
+            <div className="inner-or">
+              <hr/>OR<hr/>
+            </div>
           </div>
-        </div>
-        <br/>
-        <Signup itemId={this.props.itemId}/>
-      </Container>
+          <Signup/>
+      </div>
     )
   }
 }

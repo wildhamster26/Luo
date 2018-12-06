@@ -43,6 +43,7 @@ body {
   width: 100% !important;
   color: rgb(72, 72, 72);
 }
+
 a {
   text-decoration: none !important;
 }
@@ -173,13 +174,15 @@ nav {
 // Style for Home component
 .home {
   // background-image: linear-gradient(lightgrey, grey);
-  // background-color: $background1;
+  background-color: $background1;
   h2 {
     text-align: center;
     font-weight: bold;
   }
   h3 {
     text-align: center;
+    font-size: 1.3em;
+    color: white;
   }
 }
 .search-box {
@@ -313,22 +316,108 @@ nav {
     }
   }
 }
-
-.Login-signup-page, .Login, .Signup, {
-  max-width: 400px;
+.container {
+  min-width: 350px;
+  width: 100%;
   margin: auto;
   text-align: center;
+  background-color: $background1 !important;
 }
-
-.text-input{
+.login-general-wrapper {
+  display: grid;
+  align-content: center;
+  position: relative;
+  top: 70px;
+}
+.signup-general-wrapper {
+  display: grid;
+  align-content: center;
+  position: relative;
+  bottom: 70px;
+}
+.Login-signup-page {
+  display: grid;
+  justify-content: center;
+  align-content: space-around;
+  min-width: 350px;
+  width: 100%;
+  height: 100vh;
   text-align: center;
-  border-radius: 10px;
-  letter-spacing: 1px;
-  margin: 4px;
+  background-color: $background1 !important;
+  h2 {
+    font-size: 1.5em;
+    color: white;
+  }
+  form {
+    display: grid;
+    justify-content: stretch;
+    input {
+      border: none;
+      text-align: center;
+    font-size: 0.9em;
+
+    }
+  }
+  .Signup {
+    height: 150px;
+  }
+}
+.Login-form {
+  min-width: 95%;;
+}
+.btn-login-signup {
+  margin-top: 10px;
+  font-size: 1em;
+  width: 100px;
+  transition: all 0.25s;
+  background-color: rgba(0, 0, 0, 0);
+}
+.btn-login-signup:hover {
+  box-shadow: 0 2px 20px hsl(223, 18%, 5%);
+  transition: all 0.25s;
+}
+.text-input {
+  display: grid;
+  justify-content: center;
+  color: white;
+  font-size: 1.2em;
+  background-color: rgba(255, 255, 255, 0.3);
+  height: 40px; 
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+
+  form {
+    justify-content: center;
+    text-align: center;
+  }
+  // .form-control {
+  //   background-color: rgba(255, 255, 255, 0.3);
+  //   background-image: url("/images/magnifying-glass (white).png");
+  //   background-repeat: no-repeat;
+  //   background-size: 15px;
+  //   background-position: 95% 50%;
+  //   color: rgba(255, 255, 255, 1); 
+  //   border: none;
+  //   border-radius: 5px;
+  //   width: 400px;
+  //   max-width: 90%;
+  //   text-align: center;
+  //   padding: 10px 30px;
+  //   transition: all 0.25s;
+  // }
+  .active-input {
+    transition: all 0.25s;
+    font-size: 1.2em;
+    background-color: rgba(255, 255, 255, 0.1);
+
+  }
 }
 
 .or{
   display: flex;
+  justify-content: center;
+  height: 20px;
 }
 
 .inner-or{
@@ -359,6 +448,7 @@ hr{
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: $background1;
   h1{
     margin: 20px auto;
   }
@@ -442,7 +532,7 @@ hr{
   align-content: flex-start;
   width: 100%;
   justify-content: center;
-  width: auto;
+  // width: auto;
   margin: 0 auto;
 }
 .itemCard {
@@ -450,7 +540,8 @@ hr{
   display: flex;
   flex-flow: column;
   border-radius: 3px;
-  box-shadow: 0 5px 20px hsl(0, 0%, 83%);
+  // box-shadow: 0 5px 20px hsl(223, 18%, 5%);
+  box-shadow: 0 5px 20px black;
   background-color: #fff;
   transition: box-shadow 0.5s;
   margin: 15px 10px;
@@ -479,6 +570,7 @@ hr{
     h6 {
       // margin: 10px;
       font-size: 0.9em;
+      font-weight: bold;
     }
     a { 
       color: $buy;
@@ -515,7 +607,8 @@ hr{
   }
 }
 .itemCard:hover {
-  box-shadow: 0 7px 20px hsl(0, 0%, 70%);
+  // box-shadow: 0 7px 20px hsl(0, 0%, 70%);
+  box-shadow: 0 7px 20px black;
   transition: box-shadow 0.5s;
 }
 .modal {
@@ -554,7 +647,7 @@ hr{
   background: #1087ff;
 }
 .react-calendar__tile--active--custom {
-  background: #1087ff !important;
+  background: lightcoral !important;
   color: white !important;
 }
 //END OF OVERRIDE
