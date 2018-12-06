@@ -21,7 +21,7 @@ class DeleteItemModal extends React.Component {
   }
 
   toggleAndDelete() {
-    this.props.deleteItem()
+    this.props.deleteItem();
     this.toggle()
   }
   

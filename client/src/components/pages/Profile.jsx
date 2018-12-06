@@ -86,6 +86,47 @@ class Profile extends Component {
       })
       .catch(err => this.setState({ message: err.toString() }))
     }
+
+    updateDeleteItem = () => {
+      Promise.all([api.getProfile(), api.getItems(), api.getRequests()])
+      .then(res => {
+        this.setState({
+          username: res[0].username,
+          initialUsername: res[0].username,
+          email: res[0].email,
+          initialEmail: res[0].email,
+          imgPath: res[0].imgPath,
+          id: res[0]._id,
+          items: res[1].filter(item => {
+            return item._owner._id === res[0]._id
+          }),
+          // iterate through all the items and return the relevant ones
+          rented: res[1].filter((item, i) => {
+            let relevantItem = false;
+            //if the item appears in a request, keep going
+            for(let i = 0; i < res[2].length; i++){
+              if (item._id === res[2][i]._item && 
+                // if that request's renter is equal to the user => return true
+                res[2][i]._owner === res[0]._id) 
+                relevantItem = true 
+            }
+            return relevantItem;
+          }),
+          borrowed: res[1].filter((item, i) => {
+            let relevantItem = false;
+            //if the item appears in a request, keep going
+            for(let i = 0; i < res[2].length; i++){
+              if (item._id === res[2][i]._item && 
+                // if that request's borrower is equal to the user => return true
+                res[2][i]._borrower === res[0]._id) 
+                relevantItem = true 
+            }
+            return relevantItem;
+          }),
+        })      
+      })
+      .catch(err => console.log(err))
+    }
   
   render() {
     if (!this.state.user) {
@@ -95,20 +136,19 @@ class Profile extends Component {
         <div className="profile-page">
           <div className="profile-form-div">
               <Form>
-                <div className="user-img">
-                  <label for="file"><img className="profile-user-img" src={this.state.user.imgPath} width="200px" alt="User avatar"/></label>
-                  <input type="file" name="file" id="file" className="input-file" onChange={this.handleChange} />
-                </div>
-                <Input disabled value={this.state.user.email} />
-                <Input type="text" name="username" value={this.state.user.username} onChange={this.handleUserInputChange} />
-                {(this.state.file || this.state.user !== this.props.user) &&
-                <div className="user-button">
-                  <button className="btn-second" onClick={(e) => this.handleEdit(e)}>Edit details</button>
-                </div>}
-      
-                {this.state.message && <div className="info">
-                  {this.state.message}
-                </div>}
+                    <Input disabled value={this.state.user.email} />
+                    <Input type="text" name="username" value={this.state.user.username} onChange={this.handleUserInputChange} />
+                    <div className="user-img">
+                        <label htmlFor="file"><img src={this.state.user.imgPath} width="200px" alt="User avatar"/></label>
+                        <input type="file" name="file" id="file" className="input-file" onChange={this.handleChange} />
+                    </div>
+                    {(this.state.file || this.state.user !== this.props.user) &&
+                    <div className="user-button">
+                      <Button color="primary" onClick={(e) => this.handleEdit(e)}>Edit details</Button>
+                    </div>}
+                    {this.state.message && <div className="info">
+                      {this.state.message}
+                    </div>}
               </Form>
           </div>
           {(this.state.items.length !== 0) && <h2 className="profile-items-h2">All my items</h2>}

@@ -78,8 +78,7 @@ class EditItem extends Component {
 
 
   handleChange = (e) => {
-    console.log('handleChange');
-    console.log('DEBUG e.target.files[0]', e.target.files[0]);
+    console.log('DEBUG from handleChange e.target.files[0]', e.target.files[0]);
     this.setState({
       file: e.target.files[0]
     })
@@ -99,7 +98,6 @@ class EditItem extends Component {
     }
     api.editItem(this.props.match.params.itemId, data)
       .then(result => {
-        console.log("result before image upload:", result)
         if(this.state.file) {
           api.addItemPicture(this.state.file, result.data._id)
           .then(res => {
@@ -115,7 +113,6 @@ class EditItem extends Component {
   componentDidMount() {
     api.getItemById(this.props.match.params.itemId)
     .then(data => {
-      console.log("item is:", data.item)
       this.setState(() => {
         return {
           name: data.item.name,
@@ -188,7 +185,6 @@ class EditItem extends Component {
                 Category:
                 <Dropdown direction="right" isOpen={this.state.dropdownCategoriesOpen} toggle={this.toggleCategories}  name="period">
                   <DropdownToggle caret>
-                  {console.log("From form:", this.state.categories)}
                     {this.state.categories}
                   </DropdownToggle>
                   <DropdownMenu >

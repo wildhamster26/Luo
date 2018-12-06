@@ -8,7 +8,7 @@ import CalendarModal from './CalendarModal'
 import DeleteItemModal from './DeleteItemModal'
 
 
-const ItemCard = ({id, owner, name, imgPath, location, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates, updateDeleteItem}) => {
+const ItemCard = ({updateDeleteItem, id, owner, name, imgPath, location, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates}) => {
 
   let catFilt = false
   for (let i = 0; i < categories.length; i++) {
@@ -43,8 +43,10 @@ const ItemCard = ({id, owner, name, imgPath, location, pricePerPeriod, period, d
       api.deleteItem(id)
       .then(res => {
         console.log(res);
+        updateDeleteItem();
       });
     };
+
       return (
           <div className="itemCard">
             <div className="itemCard-img-wrapper">
