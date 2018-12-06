@@ -6432,14 +6432,20 @@ btn-map:active {
   font-size: large; }
 
 nav {
-  height: 60px;
+  height: 70px;
   z-index: 999;
   width: 100%;
   position: fixed;
   transition: all 0.25s; }
 
+.navbar {
+  padding: 0 10px; }
+
+.nav-link {
+  padding: 0; }
+
 .MainNavbar {
-  height: 60px;
+  height: 70px;
   margin-bottom: 0px;
   border: none;
   z-index: 999;
@@ -6467,12 +6473,27 @@ nav {
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.3); }
 
+.navbar-img {
+  border-radius: 50px;
+  height: 40px;
+  width: 40px;
+  object-fit: cover; }
+
+.navbar-img-action {
+  height: 20px;
+  width: 20px; }
+
+.nav-item, .nav-link {
+  display: flex;
+  align-content: center;
+  align-items: center; }
+
 .hasShadow {
   box-shadow: 0 0 15px black;
   transition: all 1s; }
 
 .empty-div {
-  height: 60px; }
+  height: 70px; }
 
 .home {
   background-color: #1f232d; }
@@ -6571,7 +6592,7 @@ nav {
 .Items {
   margin-top: 0px; }
   .Items .row {
-    height: calc(100vh - 60px); }
+    height: calc(100vh - 70px); }
     .Items .row .col-text {
       padding: 20px;
       overflow-y: scroll; }
@@ -6618,7 +6639,7 @@ nav {
     .Login-signup-page form input {
       border: none;
       text-align: center;
-      font-size: 0.9em; }
+      font-size: 1.1em; }
   .Login-signup-page .Signup {
     height: 150px; }
 

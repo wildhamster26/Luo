@@ -23,7 +23,7 @@ $warning: rgb(223, 190, 153);
 $danger: rgb(219, 83, 117);
 $buy: lightcoral;
 $marginBottomNavbar: 0px;
-$navbarHeight: 60px;
+$navbarHeight: 70px;
 
 // Palette 3
 // $primary: #403F4C;
@@ -189,6 +189,13 @@ nav {
   position: fixed;
   transition: all 0.25s;
 }
+.navbar {
+  padding: 0 10px;
+}
+.nav-link {
+  padding: 0;
+}
+
 .MainNavbar {
   height: $navbarHeight;
   margin-bottom: $marginBottomNavbar;
@@ -197,6 +204,7 @@ nav {
   width: 100%;
   position: fixed;
   transition: all 0.25s;
+  // vertical-align: center;
   .logo {
     height: 40px;
     padding-bottom: 4px;
@@ -215,14 +223,26 @@ nav {
 }
 .navbar-toggler {
   border: none;
-
 }
 .navbar-toggler:focus {
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.3);
-
 }
-
+.navbar-img {
+  border-radius: 50px;
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+}
+.navbar-img-action {
+  height: 20px;
+  width: 20px;
+}
+.nav-item, .nav-link {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
 .hasShadow {
   box-shadow: 0 0 15px black;
   transition: all 1s;
@@ -416,7 +436,7 @@ nav {
     input {
       border: none;
       text-align: center;
-    font-size: 0.9em;
+      font-size: 1.1em;
 
     }
   }
