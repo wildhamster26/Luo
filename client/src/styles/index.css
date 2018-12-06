@@ -6810,7 +6810,7 @@ label:hover {
   flex-flow: column;
   border-radius: 3px;
   box-shadow: 0 5px 20px black;
-  background-color: #fff;
+  background-color: white;
   transition: box-shadow 0.5s;
   margin: 15px 10px;
   padding: 0 0 20px;
@@ -6829,7 +6829,6 @@ label:hover {
       margin: 0 auto 10px;
       object-fit: cover;
       max-width: 100%;
-      max-height: 355px;
       height: auto; }
   .itemCard .itemCard-sub-img {
     display: flex;
