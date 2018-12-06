@@ -6541,7 +6541,6 @@ nav {
   min-width: 350px;
   width: 100%;
   margin: auto;
-  text-align: center;
   background-color: #1f232d !important; }
 
 .login-general-wrapper {
@@ -6633,6 +6632,22 @@ hr {
 
 .please-confirm-image {
   margin-top: 50px; }
+
+.input-file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1; }
+
+label {
+  cursor: pointer;
+  /* "hand" cursor */ }
+
+label:hover {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px; }
 
 .profile-page {
   display: flex;

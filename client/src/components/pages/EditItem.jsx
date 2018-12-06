@@ -119,6 +119,7 @@ class EditItem extends Component {
       this.setState(() => {
         return {
           name: data.item.name,
+          imgPath: data.item.imgPath,
           description: data.item.description,
           categories: data.item.categories[0],
           pricePerPeriod: data.item.pricePerPeriod,
@@ -171,6 +172,10 @@ class EditItem extends Component {
                 <Col xl={9}>
                   <Input type="text" value={this.state.name} name="name" onChange={this.handleInputChange} />
                 </Col>
+              </FormGroup>
+              <FormGroup row className="user-img">
+                  <Label for="file"><img src={this.state.imgPath} width="200px" alt="Item"/></Label>
+                  <Input type="file" name="file" id="file" className="input-file" onChange={this.handleChange} />
               </FormGroup>
               <FormGroup row>
                 <Label for="description" xl={3}>Description</Label>
@@ -233,12 +238,12 @@ class EditItem extends Component {
                 </Dropdown>
                 </Col>
               </FormGroup>
-              <FormGroup row>
+              {/* <FormGroup row>
                 <Label for="image" xl={3}>Image</Label>
                 <Col xl={9}>
                   <Input type="file" name="image" onChange={this.handleChange} />
                 </Col>
-              </FormGroup>
+              </FormGroup> */}
               <FormGroup row>
                 <Label for="name" xl={3}>Longitude/Latitude</Label>
                 <Col xl={9}>

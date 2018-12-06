@@ -189,6 +189,10 @@ class AddItem extends Component {
                   <Input type="text" value={this.state.name} name="name" onChange={this.handleInputChange} />
                 </Col>
               </FormGroup>
+              <FormGroup row className="user-img">
+                  <Label for="file"><img src="https://res.cloudinary.com/wildhamster26/image/upload/v1544105008/folder-name/default-image.png" width="200px" alt="Item"/></Label>
+                  <Input type="file" name="file" id="file" className="input-file" onChange={this.handleChange} />
+              </FormGroup>
               <FormGroup row>
                 <Label for="description" xl={3}>Description</Label>
                 <Col xl={9}>
@@ -249,12 +253,12 @@ class AddItem extends Component {
                 </Dropdown>
                 </Col>
               </FormGroup>
-              <FormGroup row>
+              {/* <FormGroup row>
                 <Label for="image" xl={3}>Image</Label>
                 <Col xl={9}>
                   <Input type="file" name="image" onChange={this.handleChange} />
                 </Col>
-              </FormGroup>
+              </FormGroup> */}
               {/* <FormGroup row>
                 <Label for="name" xl={3}>Address</Label>
                 <Col xl={9}>

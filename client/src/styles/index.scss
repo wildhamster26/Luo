@@ -320,7 +320,7 @@ nav {
   min-width: 350px;
   width: 100%;
   margin: auto;
-  text-align: center;
+  // text-align: center;
   background-color: $background1 !important;
 }
 .login-general-wrapper {
@@ -441,6 +441,25 @@ hr{
 
 .please-confirm-image{
   margin-top: 50px;
+}
+
+// style for the file input button
+.input-file {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+label {
+	cursor: pointer; /* "hand" cursor */
+}
+
+label:hover {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
 }
 
 // style for the profile page

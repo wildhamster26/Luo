@@ -66,7 +66,7 @@ class Profile extends Component {
             ...this.state.user,
             imgPath: result.picture
           },
-          message: `Yay!`
+          message: `Updated! Yay!`
         }, () => {
           this.props.onUserChange(this.state.user)
         })
@@ -76,7 +76,7 @@ class Profile extends Component {
       .then(result => {
         this.props.onUserChange(this.state.user)
         this.setState({
-          message: 'yay!'
+          message: 'Updated! Yay!'
         })
         setTimeout(() => {
           this.setState({
@@ -86,9 +86,6 @@ class Profile extends Component {
       })
       .catch(err => this.setState({ message: err.toString() }))
     }
-  // chooseFile() {
-  //   let input = document.getElementById("fileInput");
-  // }
   
   render() {
     if (!this.state.user) {
@@ -102,16 +99,12 @@ class Profile extends Component {
                     <Input disabled value={this.state.user.email} />
                     <Input type="text" name="username" value={this.state.user.username} onChange={this.handleUserInputChange} />
                     <div className="user-img">
-                      {/* <button onClick={this.chooseFile}> */}
-                        <img src={this.state.user.imgPath} width="100px" alt="User avatar"/>
-                        {/* </button> */}
-                      {/* <div className="file-input"> */}
-                        <input type="file" id="fileInput" name="fileInput" onChange={this.handleChange} />
-                      {/* </div> */}
+                        <label for="file"><img src={this.state.user.imgPath} width="200px" alt="User avatar"/></label>
+                        <input type="file" name="file" id="file" className="input-file" onChange={this.handleChange} />
                     </div>
                     {(this.state.file || this.state.user !== this.props.user) &&
                     <div className="user-button">
-                      <Button color="primary" onClick={(e) => this.handleEdit(e)}>Edit</Button>
+                      <Button color="primary" onClick={(e) => this.handleEdit(e)}>Edit details</Button>
                     </div>}
          
                     {this.state.message && <div className="info">
