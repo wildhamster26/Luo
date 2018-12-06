@@ -16,9 +16,6 @@ export default class Home extends Component {
       date: new Date(),
       activeCategories: []
     }
-    // console.log('PROPSSSSPSSSPSSPSPSPSSSSS', props)
-    // console.log('LOCALSTORAGEGEGEGEGEEGEGE', JSON.parse(localStorage.getItem('user'))._id)
-
   }
   searchState = (character) => {
     this.setState({
@@ -64,6 +61,7 @@ export default class Home extends Component {
       <div>
         <ReactModal isOpen={this.state.isOpen} />
       <div className="home">
+      <h3>Rent anything, from anyone. Rent out your stuff, to anyone.</h3>
         <div className="search-box-div">
           <SearchBox placeholder="" searchString={this.state.search} onSearch={this.searchState} />
         </div>

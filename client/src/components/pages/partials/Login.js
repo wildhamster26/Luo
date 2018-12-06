@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import api from '../../../api';
 import { withRouter } from "react-router";
-import { Input, Button, Container } from 'reactstrap';
+// import { Input, Button, Container } from 'reactstrap';
 
 
 class Login extends Component {
@@ -32,17 +32,20 @@ class Login extends Component {
 
   render() {
     return (
-      <Container className="LoginOld">
+      // <div className="LoginOld">
+      <div className="login-general-wrapper">
         <h2>Login</h2>
         <form className="Login-form">
-           <Input className="text-input" placeholder="Email" type="text" value={this.state.email} onChange={(e) => this.handleInputChange("email", e)} />
-           <Input className="text-input" placeholder="Password" type="password" value={this.state.password} onChange={(e) => this.handleInputChange("password", e)} />
-          <Button color="primary" className="submit" onClick={(e) => this.handleClick(e)}>Login</Button>
+           <input className="text-input" placeholder="Email" type="text" value={this.state.email} onChange={(e) => this.handleInputChange("email", e)} />
+           <input className="text-input" placeholder="Password" type="password" value={this.state.password} onChange={(e) => this.handleInputChange("password", e)} />
+           <div>
+            <button color="primary" className="btn-second btn-login-signup" onClick={(e) => this.handleClick(e)}>Login</button>
+           </div>
         </form>
         {this.state.message && <div className="info info-danger">
           {this.state.message}
         </div>}
-      </Container>
+      </div>
     );
   }
 }

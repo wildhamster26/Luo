@@ -70,7 +70,7 @@ export default class MainNavbar extends Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-            {api.isLoggedIn() && <NavLink tag={NLink} to="/profile"><img src={this.state.imgPath} alt="User avatar" width="20px" />{this.state.username}</NavLink>}
+            {api.isLoggedIn() && <NavLink tag={NLink} to="/profile"><img src={this.state.imgPath} alt="User avatar" width="20px" /> {this.state.username}</NavLink>}
             </NavItem>
             {!api.isLoggedIn() && <NavItem>
               <NavLink tag={NLink} to="/login">Login/Signup</NavLink>
