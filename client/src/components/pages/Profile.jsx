@@ -26,7 +26,7 @@ class Profile extends Component {
       borrowed: [],
       initialUsername: null,
       initialEmail: null,
-      message: null
+      message: null,
     }
   }
 
@@ -107,20 +107,21 @@ class Profile extends Component {
           {(this.state.items.length !== 0) && <h2 className="profile-items-h2">All my items:</h2>}
           {(this.state.items.length === 0) && <h6 className="profile-items-h2">I have not added any items... yet.</h6>}
           <div className="itemCards-container">
-            {this.state.items.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
+            {this.state.items.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} location={item.location.coordinates} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
           </div>
           {(this.state.rented.length !== 0) && <h2 className="profile-items-h2">Rented items:</h2>}
           {(this.state.rented.length === 0) && <h6 className="profile-items-h2">No rented items.</h6>}
           <div className="itemCards-container">
-            {this.state.rented.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
+            {this.state.rented.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} location={item.location.coordinates} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
           </div>
           {(this.state.borrowed.length !== 0) && <h2 className="profile-items-h2">Borrowed items:</h2>}
           {(this.state.borrowed.length === 0) && <h6 className="profile-items-h2">No borrowed items.</h6>}
           <div className="itemCards-container">
-            {this.state.borrowed.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
+            {this.state.borrowed.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} location={item.location.coordinates} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
           </div>
         </div>
       );
+    
   }
   
   componentDidMount() {

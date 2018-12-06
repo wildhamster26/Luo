@@ -8,7 +8,7 @@ import CalendarModal from './CalendarModal'
 import DeleteItemModal from './DeleteItemModal'
 
 
-const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates, updateDeleteItem}) => {
+const ItemCard = ({id, owner, name, imgPath, location, pricePerPeriod, period, description, searchFilter, categories, categoryFilter, reservedDates, updateDeleteItem}) => {
 
   let catFilt = false
   for (let i = 0; i < categories.length; i++) {
@@ -59,7 +59,7 @@ const ItemCard = ({id, owner, name, imgPath, pricePerPeriod, period, description
               {!api.isLoggedIn() && <CalendarModal itemId={id} linkName="Availability" />}
             </div>
             <div>
-              <div className="map-modal-div">{description}<br/><MapModal buttonLabel="Map" /></div>
+              <div className="map-modal-div">{description}<br/><MapModal buttonLabel="Map" location={location} /></div>
             </div>
             <div className="itemCard-btn-div">
               {api.isLoggedIn() && <button className="btn-second" onClick={requestItem}>Request</button>}

@@ -14,26 +14,27 @@ class Map extends Component {
     this.map = new mapboxgl.Map({
       container: this.mapRef.current,
       style: 'mapbox://styles/mapbox/streets-v10',
-      center: this.props.coordinates[0], // Berlin lng,lat
+      center: this.props.location, // Berlin lng,lat
       zoom: 13
     })
 
     // Add zoom control on the top right corner
     this.map.addControl(new mapboxgl.NavigationControl())
 
-    for (let i = 0; i < this.props.coordinates.length; i++) {
+    for (let i = 0; i < 2; i++) {
       this.markers.push(
         new mapboxgl.Marker({ color: 'red' })
-                    .setLngLat(this.props.coordinates[i])
+                    .setLngLat(this.props.location)
                     .on('click', () => { console.log("clicked") })
                     .addTo(this.map)
       )
     }
   }
   handleItemSelection() {
-    this.map.setCenter(this.props.coordinates[0])
+    this.map.setCenter(this.props.location)
   }
   render() {
+    console.log("from the Map component:", this.props.location)
     return (
       <div ref={this.mapRef} className="map" style={{height: 200}}></div>
     );

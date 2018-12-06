@@ -33,7 +33,7 @@ class AddItem extends Component {
       message: null,
       file: null,
       dropdownCategoriesOpen: false,
-      dropdownPeriodOpen: false
+      dropdownPeriodOpen: false,
     }
     this.mapRef = React.createRef()
     this.map = null
