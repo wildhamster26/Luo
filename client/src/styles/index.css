@@ -6744,7 +6744,8 @@ label:hover {
     display: flex;
     flex-direction: column;
     margin: auto;
-    align-items: center; }
+    align-items: center;
+    margin: 20px; }
   .profile-form-div .user-button {
     display: flex;
     flex-direction: column;
@@ -6753,7 +6754,15 @@ label:hover {
 
 .profile-items-h2 {
   margin: 30px auto 15px;
-  border-bottom: 1px #1f232d solid; }
+  border-bottom: 1px #1f232d solid;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.5em; }
+
+.profile-user-img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover; }
 
 .item-detail {
   display: flex;
@@ -6789,7 +6798,7 @@ label:hover {
   background-color: #fff;
   transition: box-shadow 0.5s;
   margin: 15px 10px;
-  padding: 10px 0 20px;
+  padding: 0 0 20px;
   width: 95%;
   max-width: 250px; }
   .itemCard h5 {
@@ -6800,11 +6809,13 @@ label:hover {
     display: grid;
     justify-content: center; }
     .itemCard .itemCard-img-wrapper img {
-      margin: 0 auto;
+      margin: 0 auto 10px;
       object-fit: contain;
       max-width: 100%;
       max-height: 355px;
-      height: auto; }
+      height: auto;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px; }
   .itemCard .itemCard-sub-img {
     display: flex;
     width: 100%;

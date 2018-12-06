@@ -47,11 +47,11 @@ const ItemCard = ({id, owner, name, imgPath, location, pricePerPeriod, period, d
     };
       return (
           <div className="itemCard">
-            <div className="itemCard-name">
-              <h5>{name}</h5>
-            </div>
             <div className="itemCard-img-wrapper">
               <img src={imgPath} alt="The item"/>
+            </div>
+            <div className="itemCard-name">
+              <h5>{name}</h5>
             </div>
             <div className="itemCard-sub-img">
               <h6>{pricePerPeriod}€ per {period}</h6>

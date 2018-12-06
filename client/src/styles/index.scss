@@ -579,6 +579,7 @@ label:hover {
     flex-direction: column;
     margin: auto;
     align-items: center;
+    margin: 20px;
   }
   .user-button{
     display: flex;
@@ -591,8 +592,15 @@ label:hover {
 .profile-items-h2{
   margin: 30px auto 15px;
   border-bottom: 1px $primary solid;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.5em;
 }
-
+.profile-user-img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
 .item-detail{
   display: flex;
   flex-direction: column;
@@ -637,7 +645,7 @@ label:hover {
   background-color: #fff;
   transition: box-shadow 0.5s;
   margin: 15px 10px;
-  padding: 10px 0 20px;
+  padding: 0 0 20px;
   width: 95%;
   max-width: 250px;
   h5 {
@@ -649,11 +657,13 @@ label:hover {
     display: grid;
     justify-content: center;
     img {
-      margin: 0 auto;
+      margin: 0 auto 10px;
       object-fit: contain;
       max-width: 100%;
       max-height: 355px;
       height: auto; 
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
     }
   }
   .itemCard-sub-img {
@@ -806,5 +816,6 @@ button.close {
   .itemCard {
     width: 95%;
     max-width: 350px;
+
   }
 }
