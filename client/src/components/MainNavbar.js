@@ -71,7 +71,8 @@ export default class MainNavbar extends Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              {this.props.user && <NavLink tag={NLink} to="/profile"><img src={this.props.user.imgPath} alt="User avatar" width="20px" /> {this.props.user.username}</NavLink>}
+              {/* {this.props.user && <NavLink tag={NLink} to="/profile"><img className="navbar-img" src={this.props.user.imgPath} alt="User avatar" /> {this.props.user.username}</NavLink>} */}
+              {this.props.user && <NavLink tag={NLink} to="/profile"><img className="navbar-img" src={this.props.user.imgPath} alt="User avatar" /> </NavLink>}
             </NavItem>
             {!api.isLoggedIn() && <NavItem>
               <NavLink tag={NLink} to="/login">Login/Signup</NavLink>

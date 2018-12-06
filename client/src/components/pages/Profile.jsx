@@ -96,7 +96,7 @@ class Profile extends Component {
     }
       return (
         <div className="profile-page">
-          <h1>My Profile</h1>
+          <h2>My Profile</h2>
           <div className="profile-form-div">
               <Form>
                     <Input disabled value={this.state.user.email} />

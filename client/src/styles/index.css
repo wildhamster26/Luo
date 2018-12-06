@@ -6432,14 +6432,17 @@ btn-map:active {
   font-size: large; }
 
 nav {
-  height: 60px;
+  height: 70px;
   z-index: 999;
   width: 100%;
   position: fixed;
   transition: all 0.25s; }
 
+.navbar {
+  padding: 0 10px; }
+
 .MainNavbar {
-  height: 60px;
+  height: 70px;
   margin-bottom: 0px;
   border: none;
   z-index: 999;
@@ -6467,12 +6470,19 @@ nav {
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.3); }
 
+.navbar-img {
+  border-radius: 50px;
+  height: 30px; }
+
+.nav-item {
+  vertical-align: center; }
+
 .hasShadow {
   box-shadow: 0 0 15px black;
   transition: all 1s; }
 
 .empty-div {
-  height: 60px; }
+  height: 70px; }
 
 .home {
   background-color: #1f232d; }
@@ -6571,7 +6581,7 @@ nav {
 .Items {
   margin-top: 0px; }
   .Items .row {
-    height: calc(100vh - 60px); }
+    height: calc(100vh - 70px); }
     .Items .row .col-text {
       padding: 20px;
       overflow-y: scroll; }
