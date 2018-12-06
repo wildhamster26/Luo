@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import Map from './Map'
 
 

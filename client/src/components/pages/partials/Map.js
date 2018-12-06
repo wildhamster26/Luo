@@ -34,9 +34,8 @@ class Map extends Component {
     this.map.setCenter(this.props.location)
   }
   render() {
-    console.log("from the Map component:", this.props.location)
     return (
-      <div ref={this.mapRef} className="map" style={{height: 200}}></div>
+      <div ref={this.mapRef} className="map" style={{width:400, height: 400}}></div>
     );
   }
   componentDidMount() {
