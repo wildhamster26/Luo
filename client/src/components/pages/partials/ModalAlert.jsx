@@ -1,6 +1,5 @@
 import React from 'react';
-import { Modal, ModalHeader, ModalFooter } from 'reactstrap';
-import {Link } from 'react-router-dom'
+import { Modal, ModalHeader } from 'reactstrap';
 
 class ModalAlert extends React.Component {
   constructor(props) {
@@ -28,7 +27,7 @@ class ModalAlert extends React.Component {
         <a onClick={this.toggle}>{this.props.text}</a>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>
-            Please choose days
+            Please choose days.
           </ModalHeader>
           {/* <ModalFooter>
             <Link to="/login" ><p>Sure - Let's do it!</p></Link>

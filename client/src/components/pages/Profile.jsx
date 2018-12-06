@@ -49,36 +49,31 @@ class Profile extends Component {
       username: this.state.username,
       email: this.state.email,
     }
+    if(!!this.state.file){
+      api.addUserPicture(this.state.file, api.getUserSync()._id)
+      .then(result => 
+        this.setState({
+        imgPath: result.picture,
+        message: `Yay!`
+      }))
+   }
     api.editUser(api.getUserSync()._id, data)
       .then(result => {
-        console.log("result before USER image upload:", result)
-        console.log("result before USER image upload:", this.state.file)
-        if(this.state.file)
-           return api.addUserPicture(this.state.file, result.data._id)
-      })
-      .then(result => {
-        if(!!result.picture){
-          console.log('SUCCESS!', result.picture)
-          this.setState({
-            imgPath: result.picture,
-            message: `Yay!`
-          })
-        } else {
-          this.setState({
-            message: `Yay!`
-          })
-        }
+        this.setState({
+          message: 'yay!'
+        })
         setTimeout(() => {
           this.setState({
             message: null
           })
         }, 2500)
       })
-      // .then(res => {
-        // })
-        .catch(err => this.setState({ message: err.toString() }))
-  }
-
+      .catch(err => this.setState({ message: err.toString() }))
+      this.navbarUpdate()
+    }
+    navbarUpdate = () => {
+      this.props.userSetState(this.state.username, this.state.imgPath);
+    }
   // chooseFile() {
   //   let input = document.getElementById("fileInput");
   // }

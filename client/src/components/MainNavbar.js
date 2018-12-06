@@ -19,18 +19,20 @@ export default class MainNavbar extends Component {
     this.state = {
       isOpen: false,
       hasShadow: false,
-      username: "",
-      imgPath: ""
+      username: null,
+      imgPath: null
     };
   }
   handleLogoutClick(e) {
     api.logout()
   }
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
+
   shadowToggler = () => {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       this.setState({
@@ -44,22 +46,19 @@ export default class MainNavbar extends Component {
   }
 
   componentDidMount() {
-    // if(!!localStorage.getItem("user")){
       api.getProfile()
         .then(user => {
           this.setState({
             username: user.username,
-            // email: user.email,
             imgPath: user.imgPath,
-            // id: user._id
           })
         })
         .catch(err => console.log(err))
-    // }
-
   }
+  
 
   render() {
+    console.log(this.props)
     window.onscroll = () => {this.shadowToggler()};
     return (
       <Navbar color="primary" dark expand="md" className={"MainNavbar" + (this.state.hasShadow ? " hasShadow" : "")}>

@@ -2,9 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../../api';
 import ModalInteraction from './ModalInteraction'
-import ModalAlert from './ModalAlert'
-import ModalRequested from './ModalRequested'
-// import ReactModal from 'react-modal'
 import { Button } from 'reactstrap';
 import MapModal from './MapModal'
 import CalendarModal from './CalendarModal'
