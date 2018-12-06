@@ -6773,10 +6773,6 @@ label:hover {
   max-width: 400px;
   min-width: 300px; }
 
-.Secret .result {
-  font-size: 1.2em;
-  color: #1f232d; }
-
 .itemCards-container {
   display: flex;
   flex-flow: wrap;
