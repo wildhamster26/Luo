@@ -5,6 +5,15 @@ const uploadCloud = require('../configs/cloudinary');
 
 const router = express.Router();
 
+// Route to get the connected user
+router.get('/profile', isLoggedIn, (req, res, next) => {
+  User.findById(req.user._id)
+    .then(user => {
+      res.json(user);
+    })
+    .catch(err => next(err))
+});
+
 // Route to get a single user
 router.get('/:id', (req, res, next) => {
   User.findById(req.params.id)

@@ -20,6 +20,11 @@ export default {
   //====================
   //Login/Signup routes
   //====================
+
+  getUserSync() {
+    return JSON.parse(localStorage.getItem('user'))
+  },
+
   isLoggedIn() {
     return localStorage.getItem('user') != null
   },
@@ -29,7 +34,7 @@ export default {
       .post('/signup', userInfo)
       .then(res => {
         // If we have localStorage.getItem('user') saved, the application will consider we are loggedin
-        localStorage.setItem('user', JSON.stringify(res.data))
+        // localStorage.setItem('user', JSON.stringify(res.data))
       })
       .catch(errHandler)
   },
@@ -51,7 +56,9 @@ export default {
   sendConfirmation(confirmationCode){
     return service
     .get(`/confirm/${confirmationCode}`)
-    .then(user => {
+    .then(res => {
+      let user = res.data
+      localStorage.setItem('user', JSON.stringify(user))
       return user;
     })
   },
@@ -134,12 +141,19 @@ export default {
   //User routes
   //====================
 
-  getUser() {
+  // getUser() {
+  //   return service
+  //   .get(`/users/${JSON.parse(localStorage.getItem('user'))._id}`)
+  //   .then(res => 
+  //     res.data)
+  //   .catch(errHandler)
+  // },
+
+  getProfile(){
     return service
-    .get(`/users/${JSON.parse(localStorage.getItem('user'))._id}`)
-    .then(res => 
-      res.data)
-    .catch(errHandler)
+      .get(`/users/profile`)
+      .then(res => res.data)
+      .catch(errHandler)
   },
 
   editUser(id, data) {

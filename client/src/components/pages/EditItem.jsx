@@ -27,8 +27,8 @@ class EditItem extends Component {
       categories: ["Bikes"],
       pricePerPeriod: 0,
       period: "day",
-      lng: 13.3711224,
-      lat: 52.5063688,
+      lng: "",
+      lat: "",
       message: null,
       file: null,
       dropdownCategoriesOpen: false,
@@ -116,25 +116,27 @@ class EditItem extends Component {
     api.getItemById(this.props.match.params.itemId)
     .then(data => {
       console.log("item is:", data.item)
-      this.setState({
+      this.setState(() => {
+        return {
           name: data.item.name,
           description: data.item.description,
           categories: data.item.categories[0],
           pricePerPeriod: data.item.pricePerPeriod,
           period: data.item.period,
-          lng: data.item.location.coordinates[1],
-          lat: data.item.location.coordinates[0]
+          lng: data.item.location.coordinates[0],
+          lat: data.item.location.coordinates[1]
+        }
         })
+        this.initMap(this.state.lng, this.state.lat)
       })
       .catch(err => console.log(err))
-    this.initMap()
   }
-  initMap() {
+  initMap(lng, lat) {
     // Init the map where "this.mapRef" is defined in the render
     this.map = new mapboxgl.Map({
       container: this.mapRef.current,
       style: 'mapbox://styles/mapbox/streets-v10',
-      center: [this.state.lng, this.state.lat],
+      center: [lng, lat],
       zoom: 13
     })
 
@@ -143,7 +145,7 @@ class EditItem extends Component {
 
     // Create a marker on the map
     this.marker = new mapboxgl.Marker({ color: 'red', draggable: true })
-      .setLngLat([this.state.lng, this.state.lat])
+      .setLngLat([lng, lat])
       .addTo(this.map)
 
     // Trigger a function every time the marker is dragged

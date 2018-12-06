@@ -19,9 +19,20 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      
+      username: "",
+      imgPath: ""
     }
-    // api.loadUser();
+  }
+
+  userSetState = (username, imgPath) => {
+    api.getProfile()
+        .then(user => {
+          this.setState({
+            username: user.username,
+            imgPath: user.imgPath
+          })
+        })
+        .catch(err => console.log(err))
   }
 
   handleLogoutClick(e) {
@@ -31,12 +42,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <MainNavbar />
+        <MainNavbar username={this.state.username} imgPath={this.state.imgPath}/>
         <div className="empty-div"></div>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/items" exact component={Items} />
-          <Route path="/profile" exact component={Profile} />
+          <Route path="/profile" exact userSetState={this.userSetState} component={Profile} />
           <Route path="/items/new" exact  component={AddItem} />
           <Route path="/items/:itemId" exact component={ItemDetail} />
           <Route path="/items/:itemId/edit" exact component={EditItem} />
@@ -46,7 +57,7 @@ class App extends Component {
           <Route path="/confirm" exact component={PleaseConfirm} />
           <Route path="/confirm/:confirmationCode" exact component={Confirm} />
           <Route path="/secret" exact component={Secret} />
-          <Route render={() => <h2>Front end 404</h2>} />
+          <Route render={() => <h2>404 from your friendly neighbourhood react app.</h2>} />
         </Switch>
       </div>
     );

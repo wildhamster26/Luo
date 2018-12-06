@@ -56,7 +56,7 @@ router.post("/signup", (req, res, next) => {
         from: '"Luo"',
         to: email, // the email entered in the form 
         subject: 'Validate your Luo account', 
-        html: `Hi! :)<br> Please click <a href="${process.env.BASE_URL}/confirm/${confirmationCode}">here</a> to confirm your account.<br> <img src="https://res.cloudinary.com/wildhamster26/image/upload/v1543477042/folder-name/small_face.jpg">` //Additional alternative text: If the link doesn't work, you can go here: ${process.env.BASE_URL}auth/confirm/${confirmationCode}`
+        html: `Welcome to Luo!<br><br> Please click <a href="${process.env.BASE_URL}/confirm/${confirmationCode}">here</a> and you'll get started in a heartbeat.<br><br> Have a great day!<br><img height="50px" src="https://res.cloudinary.com/wildhamster26/image/upload/v1543477042/folder-name/small_face.jpg">` //Additional alternative text: If the link doesn't work, you can go here: ${process.env.BASE_URL}auth/confirm/${confirmationCode}`
       })
 
       .then(info => console.log(info))

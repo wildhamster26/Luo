@@ -8,7 +8,6 @@ import {
 } from 'reactstrap'
 // import ItemDetail from './ItemDetail'
 import api from '../../api';
-const currentUser = JSON.parse(localStorage.getItem('user'))
 
 
 // import mapboxgl from 'mapbox-gl/dist/mapbox-gl'
@@ -27,6 +26,7 @@ class Profile extends Component {
       borrowed: [],
       initialUsername: null,
       initialEmail: null,
+      message: null,
     }
   }
 
@@ -49,30 +49,31 @@ class Profile extends Component {
       username: this.state.username,
       email: this.state.email,
     }
-    api.editUser(currentUser._id, data)
-      .then(result => {
-        console.log("result before USER image upload:", result)
-        console.log("result before USER image upload:", this.state.file)
-        if(this.state.file)
-           return api.addUserPicture(this.state.file, result.data._id)
-      })
-      .then(result => {
-        console.log('SUCCESS!', result)
+    if(!!this.state.file){
+      api.addUserPicture(this.state.file, api.getUserSync()._id)
+      .then(result => 
         this.setState({
-          message: `Your details have been edited.`
+        imgPath: result.picture,
+        message: `Yay!`
+      }))
+   }
+    api.editUser(api.getUserSync()._id, data)
+      .then(result => {
+        this.setState({
+          message: 'yay!'
         })
         setTimeout(() => {
           this.setState({
             message: null
           })
-        }, 2000)
-      })
-      .then(res => {
-        this.props.history.push("/profile");
+        }, 2500)
       })
       .catch(err => this.setState({ message: err.toString() }))
-  }
-
+      this.navbarUpdate()
+    }
+    navbarUpdate = () => {
+      this.props.userSetState(this.state.username, this.state.imgPath);
+    }
   // chooseFile() {
   //   let input = document.getElementById("fileInput");
   // }
@@ -83,43 +84,49 @@ class Profile extends Component {
           <h1>My Profile</h1>
           <div className="profile-form-div">
               <Form>
-                    <Input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} />
+                    <Input disabled value={this.state.email} />
                     <Input type="text" name="username" value={this.state.username} onChange={this.handleInputChange} />
                     <div className="user-img">
                       {/* <button onClick={this.chooseFile}> */}
                         <img src={this.state.imgPath} width="100px" alt="User avatar"/>
                         {/* </button> */}
                       {/* <div className="file-input"> */}
-                        <input type="file" id="fileInput" name="fileInput" />
+                        <input type="file" id="fileInput" name="fileInput" onChange={this.handleChange} />
                       {/* </div> */}
                     </div>
                     {(this.state.file || this.state.initialUsername !== this.state.username || this.state.initialEmail !== this.state.email) &&
                     <div className="user-button">
                       <Button color="primary" onClick={(e) => this.handleClick(e)}>Edit</Button>
                     </div>}
+         
+                    {this.state.message && <div className="info">
+                      {this.state.message}
+                    </div>}
               </Form>
           </div>
-          <h2 className="profile-items-h2">All of my items:</h2>
+          {(this.state.items.length !== 0) && <h2 className="profile-items-h2">All my items:</h2>}
+          {(this.state.items.length === 0) && <h6 className="profile-items-h2">I have not added any items... yet.</h6>}
           <div className="itemCards-container">
-            {this.state.items.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
+            {this.state.items.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} location={item.location.coordinates} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
           </div>
-          {console.log(this.state.rented)}
-          <h2 className="profile-items-h2">Currently rented items:</h2>
+          {(this.state.rented.length !== 0) && <h2 className="profile-items-h2">Rented items:</h2>}
+          {(this.state.rented.length === 0) && <h6 className="profile-items-h2">No rented items.</h6>}
           <div className="itemCards-container">
-            {this.state.rented.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
+            {this.state.rented.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} location={item.location.coordinates} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
           </div>
-          {console.log(this.state.borrowed)}
-          <h2 className="profile-items-h2">Borrowed items:</h2>
+          {(this.state.borrowed.length !== 0) && <h2 className="profile-items-h2">Borrowed items:</h2>}
+          {(this.state.borrowed.length === 0) && <h6 className="profile-items-h2">No borrowed items.</h6>}
           <div className="itemCards-container">
-            {this.state.borrowed.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
+            {this.state.borrowed.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} location={item.location.coordinates} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
           </div>
         </div>
       );
+    
   }
   
   componentDidMount() {
-    if(localStorage.getItem("user")){
-    Promise.all([api.getUser(), api.getItems(), api.getRequests()])
+    if(api.isLoggedIn()){
+    Promise.all([api.getProfile(), api.getItems(), api.getRequests()])
     .then(res => {
       this.setState({
         username: res[0].username,
