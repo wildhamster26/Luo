@@ -16,17 +16,18 @@ class Profile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: "",
-      email: "",
-      imgPath: "",
+      // username: "",
+      // email: "",
+      // imgPath: "",
       file: null,
-      id: "",
+      // id: "",
       items: [],
       rented: [],
       borrowed: [],
-      initialUsername: null,
-      initialEmail: null,
+      // initialUsername: null,
+      // initialEmail: null,
       message: null,
+      user: this.props.user
     }
   }
 
@@ -37,28 +38,43 @@ class Profile extends Component {
     })
   }
 
-  handleInputChange = (event) => {
+  handleUserInputChange = (event) => {
+    // let user = {
+    //   ...this.state.user,
+    //   [event.target.name]: event.target.value
+    // }
+    // this.props.onUserChange(user)
     this.setState({
-      [event.target.name]: event.target.value
+      user: {
+        ...this.state.user,
+        [event.target.name]: event.target.value
+      }
     })
   }
 
-  handleClick(e) {
+  handleEdit(e) {
     e.preventDefault()
     let data = {
-      username: this.state.username,
-      email: this.state.email,
+      username: this.state.user.username,
+      email: this.state.user.email,
     }
-    if(!!this.state.file){
-      api.addUserPicture(this.state.file, api.getUserSync()._id)
+    if(this.state.file){
+      api.addUserPicture(this.state.file,this.state.user._id)
       .then(result => 
         this.setState({
-        imgPath: result.picture,
-        message: `Yay!`
-      }))
+          user: {
+            ...this.state.user,
+            imgPath: result.picture
+          },
+          message: `Yay!`
+        }, () => {
+          this.props.onUserChange(this.state.user)
+        })
+      )
    }
-    api.editUser(api.getUserSync()._id, data)
+    api.editUser(this.state.user._id, data)
       .then(result => {
+        this.props.onUserChange(this.state.user)
         this.setState({
           message: 'yay!'
         })
@@ -69,34 +85,33 @@ class Profile extends Component {
         }, 2500)
       })
       .catch(err => this.setState({ message: err.toString() }))
-      this.navbarUpdate()
-    }
-    navbarUpdate = () => {
-      this.props.userSetState(this.state.username, this.state.imgPath);
     }
   // chooseFile() {
   //   let input = document.getElementById("fileInput");
   // }
   
   render() {
+    if (!this.state.user) {
+      return <div>Loading...</div>
+    }
       return (
         <div className="profile-page">
           <h1>My Profile</h1>
           <div className="profile-form-div">
               <Form>
-                    <Input disabled value={this.state.email} />
-                    <Input type="text" name="username" value={this.state.username} onChange={this.handleInputChange} />
+                    <Input disabled value={this.state.user.email} />
+                    <Input type="text" name="username" value={this.state.user.username} onChange={this.handleUserInputChange} />
                     <div className="user-img">
                       {/* <button onClick={this.chooseFile}> */}
-                        <img src={this.state.imgPath} width="100px" alt="User avatar"/>
+                        <img src={this.state.user.imgPath} width="100px" alt="User avatar"/>
                         {/* </button> */}
                       {/* <div className="file-input"> */}
                         <input type="file" id="fileInput" name="fileInput" onChange={this.handleChange} />
                       {/* </div> */}
                     </div>
-                    {(this.state.file || this.state.initialUsername !== this.state.username || this.state.initialEmail !== this.state.email) &&
+                    {(this.state.file || this.state.user !== this.props.user) &&
                     <div className="user-button">
-                      <Button color="primary" onClick={(e) => this.handleClick(e)}>Edit</Button>
+                      <Button color="primary" onClick={(e) => this.handleEdit(e)}>Edit</Button>
                     </div>}
          
                     {this.state.message && <div className="info">
@@ -107,17 +122,20 @@ class Profile extends Component {
           {(this.state.items.length !== 0) && <h2 className="profile-items-h2">All my items:</h2>}
           {(this.state.items.length === 0) && <h6 className="profile-items-h2">I have not added any items... yet.</h6>}
           <div className="itemCards-container">
-            {this.state.items.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} location={item.location.coordinates} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
+            {this.state.items.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} location={item.location.coordinates} pr
+            icePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
           </div>
           {(this.state.rented.length !== 0) && <h2 className="profile-items-h2">Rented items:</h2>}
           {(this.state.rented.length === 0) && <h6 className="profile-items-h2">No rented items.</h6>}
           <div className="itemCards-container">
-            {this.state.rented.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} location={item.location.coordinates} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
+            {this.state.rented.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} location={item.location.coordinates} pr
+            icePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
           </div>
           {(this.state.borrowed.length !== 0) && <h2 className="profile-items-h2">Borrowed items:</h2>}
           {(this.state.borrowed.length === 0) && <h6 className="profile-items-h2">No borrowed items.</h6>}
           <div className="itemCards-container">
-            {this.state.borrowed.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} location={item.location.coordinates} pricePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
+            {this.state.borrowed.map(item => <ItemCard key={item._id} name={item.name} owner={item._owner}  id={item._id} imgPath={item.imgPath} location={item.location.coordinates} pr
+            icePerPeriod={item.pricePerPeriod} period={item.period} description={item.description} reservedDates={item.reservedDates} date={this.state.date} updateDeleteItem={this.updateDeleteItem} searchFilter="" categoryFilter={[]} categories={[]}/>)}
           </div>
         </div>
       );
@@ -165,6 +183,13 @@ class Profile extends Component {
     })
     .catch(err => console.log(err))
    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.user !== this.props.user) {
+      this.setState({
+        user: this.props.user
+      })
+    }
   }
 }
 

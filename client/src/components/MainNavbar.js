@@ -12,6 +12,7 @@ import { NavLink as NLink, Link } from 'react-router-dom' // Be careful, NavLink
 import api from '../api';
 
 
+
 export default class MainNavbar extends Component {
   constructor(props) {
     super(props);
@@ -19,12 +20,13 @@ export default class MainNavbar extends Component {
     this.state = {
       isOpen: false,
       hasShadow: false,
-      username: null,
-      imgPath: null
     };
   }
   handleLogoutClick(e) {
     api.logout()
+    .then(() => {
+      this.props.onLogout()
+    })
   }
 
   toggle() {
@@ -45,16 +47,16 @@ export default class MainNavbar extends Component {
     }
   }
 
-  componentDidMount() {
-      api.getProfile()
-        .then(user => {
-          this.setState({
-            username: user.username,
-            imgPath: user.imgPath,
-          })
-        })
-        .catch(err => console.log(err))
-  }
+  // componentDidMount() {
+  //     api.getProfile()
+  //       .then(user => {
+  //         this.setState({
+  //           username: user.username,
+  //           imgPath: user.imgPath,
+  //         })
+  //       })
+  //       .catch(err => console.log(err))
+  // }
   
 
   render() {
@@ -69,7 +71,7 @@ export default class MainNavbar extends Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-            {api.isLoggedIn() && <NavLink tag={NLink} to="/profile"><img src={this.state.imgPath} alt="User avatar" width="20px" /> {this.state.username}</NavLink>}
+            {this.props.user && <NavLink tag={NLink} to="/profile"><img src={this.props.user.imgPath} alt="User avatar" width="20px" /> {this.props.user.username}</NavLink>}
             </NavItem>
             {!api.isLoggedIn() && <NavItem>
               <NavLink tag={NLink} to="/login">Login/Signup</NavLink>
