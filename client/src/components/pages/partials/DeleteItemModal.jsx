@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalFooter } from 'reactstrap';
 
 
 class DeleteItemModal extends React.Component {

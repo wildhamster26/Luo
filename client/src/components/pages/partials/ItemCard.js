@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../../api';
 import ModalInteraction from './ModalInteraction'
-import { Button } from 'reactstrap';
+// import { Button } from 'reactstrap';
 import MapModal from './MapModal'
 import CalendarModal from './CalendarModal'
 import DeleteItemModal from './DeleteItemModal'
