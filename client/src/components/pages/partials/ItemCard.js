@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../../api';
 import ModalInteraction from './ModalInteraction'
-import { Button } from 'reactstrap';
+// import { Button } from 'reactstrap';
 import MapModal from './MapModal'
 import CalendarModal from './CalendarModal'
 import DeleteItemModal from './DeleteItemModal'
@@ -65,8 +65,8 @@ const ItemCard = ({id, owner, name, imgPath, location, pricePerPeriod, period, d
               {api.isLoggedIn() && <button className="btn-second" onClick={requestItem}>Request</button>}
               {!api.isLoggedIn() && <button className="btn-second"><ModalInteraction itemId={id} text="Request" /></button>}
               <div className="editAndDelete">
+                {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) && <button className="item-edit"><Link to={`/items/${id}/edit`}><img src="../images/edit 0F7173.png" alt="delete" width="20px" /></Link></button>}
                 {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) && <DeleteItemModal deleteItem={deleteItem} itemId={id}/>}
-                {api.isLoggedIn() && (JSON.parse(localStorage.getItem('user'))._id === owner._id) &&<Button><Link to={`/items/${id}/edit`}><img src="../images/edit.png" alt="delete" width="20px" /></Link></Button>}
               </div>
             </div>
           </div>

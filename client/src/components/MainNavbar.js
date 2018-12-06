@@ -71,7 +71,7 @@ export default class MainNavbar extends Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-            {this.props.user && <NavLink tag={NLink} to="/profile"><img src={this.props.user.imgPath} alt="User avatar" width="20px" /> {this.props.user.username}</NavLink>}
+              {this.props.user && <NavLink tag={NLink} to="/profile"><img src={this.props.user.imgPath} alt="User avatar" width="20px" /> {this.props.user.username}</NavLink>}
             </NavItem>
             {!api.isLoggedIn() && <NavItem>
               <NavLink tag={NLink} to="/login">Login/Signup</NavLink>
@@ -79,8 +79,8 @@ export default class MainNavbar extends Component {
             {api.isLoggedIn() && <NavItem>
               <NavLink tag={NLink} to="/items/new">Add your item</NavLink>
             </NavItem>}
-            {api.isLoggedIn() && <NavItem>
-              <NavLink tag={Link} to="/"  onClick={(e) => this.handleLogoutClick(e)}>Logout</NavLink>
+              {api.isLoggedIn() && <NavItem>
+            <NavLink tag={Link} to="/"  onClick={(e) => this.handleLogoutClick(e)}>Logout</NavLink>
             </NavItem>}
           </Nav>
         </Collapse>
