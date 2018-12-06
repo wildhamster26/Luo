@@ -29,15 +29,15 @@ class DeleteItemModal extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.toggle}><img src="../images/trash.png" alt="delete" width="20px" /></Button>
+        <button className="item-delete" onClick={this.toggle}><img src="../images/trash (coral).png" alt="delete" width="20px" /></button>
         {/* <Button onClick={this.toggle}><img src="../images/trash.png" alt="delete" width="20px" className="button"/></Button> */}
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>
             Are you sure you want to delete this item?
           </ModalHeader>
           <ModalFooter>
-            <Button  onClick={this.toggleAndDelete}>Yes.</Button>
-            <Button onClick={this.toggle} >Oops, no.</Button>
+            <button className="btn-second" onClick={this.toggleAndDelete}>Yes</button>
+            <button className="btn-second" onClick={this.toggle} >Oops, no</button>
           </ModalFooter>
         </Modal>
       </div>

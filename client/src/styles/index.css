@@ -6367,13 +6367,14 @@ input:focus {
 
 .btn-second {
   background-color: white;
-  font-size: 0.9em;
+  font-size: 0.85em;
   border-radius: 20px;
   border: 1px solid lightcoral;
   padding: 0 20px;
-  height: auto;
+  height: 20px;
   color: lightcoral;
-  transition: all 0.15s; }
+  transition: all 0.15s;
+  align-self: flex-end; }
 
 .btn-second:hover {
   background-color: lightcoral;
@@ -6384,6 +6385,33 @@ input:focus {
 
 .btn-second:focus {
   outline: 0; }
+
+.btn-map {
+  background: none;
+  color: lightcoral;
+  box-shadow: none;
+  padding: 0;
+  border: none; }
+  .btn-map h6 {
+    font-size: 1em; }
+
+.btn-map:hover {
+  background: none !important;
+  color: #ec5f5f;
+  border: none !important;
+  cursor: pointer; }
+
+btn-map:focus {
+  border: none !important;
+  background: none !important;
+  background-color: white !important;
+  outline: none !important; }
+
+btn-map:active {
+  border: none !important;
+  background: none !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  outline: none !important; }
 
 .App .App-header {
   background-color: #1f232d;
@@ -6585,6 +6613,7 @@ nav {
   margin-top: 10px;
   font-size: 1em;
   width: 100px;
+  height: auto;
   transition: all 0.25s;
   background-color: rgba(0, 0, 0, 0); }
 
@@ -6732,14 +6761,14 @@ hr {
     font-size: 1em; }
     .itemCard .itemCard-sub-img h6 {
       font-size: 0.9em;
-      font-weight: bold; }
+      font-weight: 1000; }
     .itemCard .itemCard-sub-img a {
       color: lightcoral; }
     .itemCard .itemCard-sub-img a:hover {
       cursor: pointer;
       color: #ec5f5f; }
   .itemCard .map-modal-div {
-    margin: 10px 10px 40px 10px;
+    margin: 10px 10px 40px;
     font-size: 0.9em; }
   .itemCard .itemCard-btn-div {
     display: flex;
@@ -6757,6 +6786,16 @@ hr {
   .itemCard #map-modal-link:hover {
     cursor: pointer;
     color: #ec5f5f; }
+
+.item-edit {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer; }
+
+.item-delete {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer; }
 
 .itemCard:hover {
   box-shadow: 0 7px 20px black;

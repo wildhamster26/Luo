@@ -25,6 +25,19 @@ $buy: lightcoral;
 $marginBottomNavbar: 0px;
 $navbarHeight: 60px;
 
+// Palette 3
+// $primary: #403F4C;
+// $secondary: #3A7CA5;
+// $terciary: rgb(236, 145, 146);
+// $background1: $primary;
+// $background2: #713E5A;
+// $shadow: lightgray;
+// $warning: rgb(223, 190, 153);
+// $danger: rgb(219, 83, 117);
+// $buy: lightcoral;
+// $marginBottomNavbar: 0px;
+// $navbarHeight: 60px;
+
 
 // ----------------------------------------
 // To install Boostrap:
@@ -94,14 +107,14 @@ input:focus {
 
 .btn-second {
   background-color: white;
-  font-size: 0.9em;
+  font-size: 0.85em;
   border-radius: 20px;
   border: 1px solid $secondary;
   padding: 0 20px;
-  height: auto;
+  height: 20px;
   color: $secondary;
   transition: all 0.15s;
-
+  align-self: flex-end;
 }
 .btn-second:hover {
   background-color: $secondary;
@@ -112,6 +125,35 @@ input:focus {
 }
 .btn-second:focus {
   outline: 0;
+}
+.btn-map {
+  background: none;
+  color: lightcoral;
+  box-shadow: none;
+  padding: 0;
+  border: none;
+
+  h6 {
+    font-size: 1em;
+  }
+}
+.btn-map:hover {
+  background: none !important;
+  color: hsl(0, 79%, 65%);
+  border: none !important;
+  cursor: pointer;
+}
+btn-map:focus {
+  border: none !important;
+  background: none !important;
+  background-color: rgb(255, 255, 255) !important;
+  outline: none !important;
+}
+btn-map:active {
+  border: none !important;
+  background: none !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  outline: none !important;
 }
 // --------------------
 // Style for App component
@@ -369,6 +411,7 @@ nav {
   margin-top: 10px;
   font-size: 1em;
   width: 100px;
+  height: auto;
   transition: all 0.25s;
   background-color: rgba(0, 0, 0, 0);
 }
@@ -568,9 +611,8 @@ hr{
     padding:10px;
     font-size: 1em;
     h6 {
-      // margin: 10px;
       font-size: 0.9em;
-      font-weight: bold;
+      font-weight: 1000;
     }
     a { 
       color: $buy;
@@ -581,7 +623,7 @@ hr{
     }
   }
   .map-modal-div {
-    margin: 10px 10px 40px 10px; 
+    margin: 10px 10px 40px; 
     font-size: 0.9em;
   }
 
@@ -605,6 +647,17 @@ hr{
     cursor: pointer;
     color: hsl(0, 79%, 65%);
   }
+}
+.item-edit {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
+}
+.item-delete {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
+
 }
 .itemCard:hover {
   // box-shadow: 0 7px 20px hsl(0, 0%, 70%);
