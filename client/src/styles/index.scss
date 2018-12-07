@@ -121,7 +121,7 @@ input:focus {
   background-color: $secondary;
   color: white;
   cursor: pointer;
-  box-shadow: 0 2px 7px lightgrey;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.9);
   transition: all 0.15s;
 }
 .btn-second:focus {
@@ -242,6 +242,7 @@ nav {
   display: flex;
   align-content: center;
   align-items: center;
+  // margin: 10px;
 }
 .hasShadow {
   box-shadow: 0 0 15px black;
@@ -489,6 +490,8 @@ nav {
   //   padding: 10px 30px;
   //   transition: all 0.25s;
   // }
+
+
   .active-input {
     transition: all 0.25s;
     font-size: 1.2em;
@@ -568,6 +571,7 @@ label:hover {
 .profile-form-div{
   display: flex;
   max-width: 400px;
+  height: 350px;
   flex-direction: column;
   align-items: center;
   margin: auto;
@@ -579,29 +583,55 @@ label:hover {
   }
   input{
       text-align: center;
-      border-radius: 10px;
+      border-radius: 3px;
       letter-spacing: 1px;
-      margin: 4px;
+      margin-top: 20px;
+      background-color: rgba(255, 255, 255, 0.3);
+      border: none;
+      color: white;
   }
   .user-img{
     display: flex;
     flex-direction: column;
     margin: auto;
     align-items: center;
+    margin: 20px;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+  }
+  .user-img:focus {
+    outline: none;
   }
   .user-button{
     display: flex;
-    flex-direction: column;
-    margin: auto;
-    align-items: center;
+    // flex-direction: column;
+    margin: 30px auto 0;
+    // align-items: center;
+    justify-content: center;
+
   }
+}
+.btn-edit-details {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0);
+  justify-self: center;
 }
 
 .profile-items-h2{
-  margin: 30px auto 15px;
+  margin: 0 auto 15px;
   border-bottom: 1px $primary solid;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.5em;
 }
-
+.profile-user-img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
 .item-detail{
   display: flex;
   flex-direction: column;
@@ -643,10 +673,10 @@ label:hover {
   border-radius: 3px;
   // box-shadow: 0 5px 20px hsl(223, 18%, 5%);
   box-shadow: 0 5px 20px black;
-  background-color: #fff;
+  background-color: hsl(0, 0%, 100%);
   transition: box-shadow 0.5s;
   margin: 15px 10px;
-  padding: 10px 0 20px;
+  padding: 0 0 20px;
   width: 95%;
   max-width: 250px;
   h5 {
@@ -657,12 +687,15 @@ label:hover {
   .itemCard-img-wrapper {
     display: grid;
     justify-content: center;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     img {
-      margin: 0 auto;
-      object-fit: contain;
+      margin: 0 auto 10px;
+      object-fit: cover;
       max-width: 100%;
-      max-height: 355px;
+      // max-height: 355px;
       height: auto; 
+
     }
   }
   .itemCard-sub-img {
@@ -815,5 +848,15 @@ button.close {
   .itemCard {
     width: 95%;
     max-width: 350px;
+
   }
+}
+.AddItem {
+  // display: flex;
+  color: rgba(255, 255, 255, 0.8);
+  width: 95%;
+}
+.add-item-img {
+  display: flex;
+  justify-content: center;
 }

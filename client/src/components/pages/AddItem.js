@@ -179,7 +179,6 @@ class AddItem extends Component {
     return (
       <Container className="AddItem">
         <h2>Add your Item</h2>
-
         <Row>
           <Col md={6}>
             <Form>
@@ -189,7 +188,7 @@ class AddItem extends Component {
                   <Input type="text" value={this.state.name} name="name" onChange={this.handleInputChange} />
                 </Col>
               </FormGroup>
-              <FormGroup row className="user-img">
+              <FormGroup row className="add-item-img">
                   <Label for="file"><img src="https://res.cloudinary.com/wildhamster26/image/upload/v1544105008/folder-name/default-image.png" width="200px" alt="Item"/></Label>
                   <Input type="file" name="file" id="file" className="input-file" onChange={this.handleChange} />
               </FormGroup>
