@@ -4,7 +4,7 @@ import ItemCard from './partials/ItemCard';
 import {
   Form,
   Input, 
-  Button,
+  // Button,
 } from 'reactstrap'
 // import ItemDetail from './ItemDetail'
 import api from '../../api';
@@ -208,9 +208,9 @@ class Profile extends Component {
           for(let i = 0; i < res[2].length; i++){
             if (item._id === res[2][i]._item && 
               // if that request's borrower is equal to the user => return true
-              res[2][i]._borrower === res[0]._id &&
+              res[2][i]._borrower === res[0]._id)
               //only show items that have been accepted, not pending
-              res[2][i].status === "accepted") 
+              // res[2][i].status === "accepted") 
               relevantItem = true 
           }
           return relevantItem;
