@@ -204,11 +204,14 @@ class Profile extends Component {
         }),
         borrowed: res[1].filter((item, i) => {
           let relevantItem = false;
+          console.log(res[2][i].status)
           //if the item appears in a request, keep going
           for(let i = 0; i < res[2].length; i++){
             if (item._id === res[2][i]._item && 
               // if that request's borrower is equal to the user => return true
-              res[2][i]._borrower === res[0]._id) 
+              res[2][i]._borrower === res[0]._id &&
+              //only show items that have been accepted, not pending
+              res[2][i].status === "accepted") 
               relevantItem = true 
           }
           return relevantItem;
