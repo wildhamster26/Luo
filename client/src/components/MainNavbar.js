@@ -46,17 +46,6 @@ export default class MainNavbar extends Component {
       })
     }
   }
-
-  // componentDidMount() {
-  //     api.getProfile()
-  //       .then(user => {
-  //         this.setState({
-  //           username: user.username,
-  //           imgPath: user.imgPath,
-  //         })
-  //       })
-  //       .catch(err => console.log(err))
-  // }
   
 
   render() {

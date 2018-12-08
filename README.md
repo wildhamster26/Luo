@@ -4,7 +4,7 @@ https://luocz.herokuapp.com/
 
 ## Description
 
-A social network for fruit & vegetables. :)
+A community marketplace for renting stuff. :)
 
 
 ## Technologies used
@@ -34,8 +34,8 @@ A social network for fruit & vegetables. :)
 - Items display on homepage
 - User profiles with three different lists: all items, rented out items and borrowed items
 - Map modal for each item
-- calendar modal
-- delete item verification
+- Calendar modal
+- Delete item verification
 - On image update the site updates automatically *including the navbar*
 - File upload as an image
 - sticky navbar

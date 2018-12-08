@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import ItemCard from './partials/ItemCard';
-// import { NavLink, Route, Switch, Link } from 'react-router-dom'
 import {
   Form,
   Input, 
-  // Button,
 } from 'reactstrap'
-// import ItemDetail from './ItemDetail'
 import api from '../../api';
 
 
@@ -16,16 +13,10 @@ class Profile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // username: "",
-      // email: "",
-      // imgPath: "",
       file: null,
-      // id: "",
       items: [],
       rented: [],
       borrowed: [],
-      // initialUsername: null,
-      // initialEmail: null,
       message: null,
       user: this.props.user
     }
@@ -39,11 +30,6 @@ class Profile extends Component {
   }
 
   handleUserInputChange = (event) => {
-    // let user = {
-    //   ...this.state.user,
-    //   [event.target.name]: event.target.value
-    // }
-    // this.props.onUserChange(user)
     this.setState({
       user: {
         ...this.state.user,
@@ -87,7 +73,7 @@ class Profile extends Component {
       .catch(err => this.setState({ message: err.toString() }))
     }
 
-    updateDeleteItem = () => {
+    getItems = () => {
       Promise.all([api.getProfile(), api.getItems(), api.getRequests()])
       .then(res => {
         this.setState({
@@ -126,6 +112,10 @@ class Profile extends Component {
         })      
       })
       .catch(err => console.log(err))
+    }
+
+    updateDeleteItem = () => {
+      this.getItems()
     }
   
   render() {
@@ -176,50 +166,10 @@ class Profile extends Component {
   }
   
   componentDidMount() {
-    if(api.isLoggedIn()){
-    Promise.all([api.getProfile(), api.getItems(), api.getRequests()])
-    .then(res => {
-      this.setState({
-        username: res[0].username,
-        initialUsername: res[0].username,
-        email: res[0].email,
-        initialEmail: res[0].email,
-        imgPath: res[0].imgPath,
-        id: res[0]._id,
-        items: res[1].filter(item => {
-          return item._owner._id === res[0]._id
-        }),
-        // iterate through all the items and return the relevant ones
-        rented: res[1].filter((item, i) => {
-          let relevantItem = false;
-          //if the item appears in a request, keep going
-          for(let i = 0; i < res[2].length; i++){
-            if (item._id === res[2][i]._item && 
-              // if that request's renter is equal to the user => return true
-              res[2][i]._owner === res[0]._id) 
-              relevantItem = true 
-          }
-          return relevantItem;
-        }),
-        borrowed: res[1].filter((item, i) => {
-          let relevantItem = false;
-          console.log(res[2][i].status)
-          //if the item appears in a request, keep going
-          for(let i = 0; i < res[2].length; i++){
-            if (item._id === res[2][i]._item && 
-              // if that request's borrower is equal to the user => return true
-              res[2][i]._borrower === res[0]._id)
-              //only show items that have been accepted, not pending
-              // res[2][i].status === "accepted") 
-              relevantItem = true 
-          }
-          return relevantItem;
-        }),
-      })      
-    })
-    .catch(err => console.log(err))
-   }
+    if(api.isLoggedIn())
+      this.getItems()    
   }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.user !== this.props.user) {
       this.setState({
