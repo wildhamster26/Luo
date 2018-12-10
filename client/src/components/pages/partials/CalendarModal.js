@@ -79,7 +79,7 @@ class CalendarModal extends React.Component {
             <Calendar  tileDisabled={({activeStartDate, date, view }) => this.state.reservedDates.toString().includes(date.toString())} selectRange={false} tileClassName={({ date, view }) => (view === 'month' && JSON.stringify(this.state.pickedDays).includes(JSON.stringify(date.toJSON())) ? 'react-calendar__tile--active--custom' : "")} onClickDay={(e) => this.handleClickedDay(e)} />
           </div>
           <ModalFooter>
-            {!api.isLoggedIn() && <Link to="/login" >Sure - Let's sign up!</Link>}
+            {!api.isLoggedIn() && <Link to="/login" className="calendar-please-login">Please login or sign up to reserve dates.</Link>}
             {api.isLoggedIn() && <button className="btn-second" onClick={() => this.handleSubmittedDays()}>Pick dates</button>}
           </ModalFooter>
         </Modal>
