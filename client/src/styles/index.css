@@ -6381,7 +6381,7 @@ input:focus {
   background-color: lightcoral;
   color: white;
   cursor: pointer;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.8);
   transition: all 0.15s; }
 
 .btn-second:focus {
@@ -6879,7 +6879,7 @@ label:hover {
   cursor: pointer; }
 
 .itemCard:hover {
-  box-shadow: 0 7px 20px black;
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.9);
   transition: box-shadow 0.5s; }
 
 .modal {
